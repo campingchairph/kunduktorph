@@ -2,486 +2,944 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kundoktor — Know Before You Buy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0d0d0d;--bg2:#161616;--bg3:#1e1e1e;--bg4:#252525;--border:#2a2a2a;--border2:#333;--yellow:#f5c400;--ydim:rgba(245,196,0,.10);--ymid:rgba(245,196,0,.20);--orange:#f07322;--red:#e03c3c;--rdim:rgba(224,60,60,.10);--rmid:rgba(224,60,60,.22);--green:#27c97e;--gdim:rgba(39,201,126,.10);--gmid:rgba(39,201,126,.22);--blue:#4f9ef8;--bdim:rgba(79,158,248,.10);--text:#f0efe8;--t2:#888;--t3:#4a4a4a;--r:16px;--rsm:10px;}
+:root{
+  --bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--bg4:#222;
+  --border:#272727;--border2:#333;
+  --y:#f5c400;--ydim:rgba(245,196,0,.10);--ymid:rgba(245,196,0,.22);
+  --org:#f07322;
+  --red:#e03c3c;--rdim:rgba(224,60,60,.10);--rmid:rgba(224,60,60,.22);
+  --grn:#27c97e;--gdim:rgba(39,201,126,.10);--gmid:rgba(39,201,126,.22);
+  --blu:#4f9ef8;--bdim:rgba(79,158,248,.10);
+  --tx:#f0efe8;--tx2:#888;--tx3:#444;
+  --r:14px;--rsm:9px;
+  --maxw:1400px;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{background:var(--bg);}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden;}
-h1,h2,h3,.bb{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em;}
-button{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:none;color:inherit;}
-::-webkit-scrollbar{width:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100dvh;overflow-x:hidden;}
+.bb{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em;}
+button,a{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:none;color:inherit;text-decoration:none;}
+::-webkit-scrollbar{width:0;height:0;}
+img{display:block;width:100%;height:100%;object-fit:cover;}
+
+/* ── SCREENS ── */
 .screen{display:none;min-height:100dvh;flex-direction:column;}
 .screen.active{display:flex;}
-.sb{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-/* TOP BAR */
-.tb{display:flex;align-items:center;gap:12px;padding:15px 18px 13px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
-.tb-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;flex:1;}
-.ib{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;transition:background .15s;}
-.ib:active{background:var(--bg4);}
-/* BUTTONS */
-.btn{display:flex;align-items:center;justify-content:center;gap:7px;border-radius:var(--rsm);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;padding:0 20px;min-height:52px;transition:opacity .15s,transform .1s;width:100%;}
-.btn:active{transform:scale(.97);opacity:.85;}
-.bp{background:var(--yellow);color:#111;}
-.bs{background:var(--bg3);color:var(--text);border:1px solid var(--border);}
-.bg_{background:transparent;color:var(--t2);border:1px solid var(--border);}
-.br{background:var(--rdim);color:var(--red);border:1px solid rgba(224,60,60,.25);}
-.bsm{min-height:40px;font-size:13px;padding:0 14px;border-radius:8px;}
-/* TAGS */
+.page-body{flex:1;overflow-y:auto;}
+
+/* ── SITE HEADER ── */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(10,10,10,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:100%;
+}
+.header-logo{display:flex;align-items:center;gap:9px;cursor:pointer;}
+.logo-mark{width:34px;height:34px;background:var(--y);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.logo-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.1em;}
+.logo-name em{color:var(--y);font-style:normal;}
+.header-nav{display:flex;align-items:center;gap:6px;}
+.hnav-btn{padding:8px 16px;border-radius:var(--rsm);font-size:13px;font-weight:600;color:var(--tx2);transition:color .15s;}
+.hnav-btn:hover{color:var(--tx);}
+.hnav-btn.primary{background:var(--y);color:#111;padding:9px 18px;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;padding:0 22px;min-height:52px;transition:opacity .15s,transform .1s;cursor:pointer;border:none;width:100%;}
+.btn:active{transform:scale(.97);opacity:.88;}
+.bp{background:var(--y);color:#111;}
+.bs{background:var(--bg3);color:var(--tx);border:1px solid var(--border);}
+.bg_{background:transparent;color:var(--tx2);border:1px solid var(--border);}
+.bsm{min-height:40px;font-size:13px;padding:0 16px;border-radius:8px;width:auto;}
+.btn-inline{width:auto;}
+
+/* ── TAGS ── */
 .tag{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
-.ty{background:var(--ydim);color:var(--yellow);}
+.ty{background:var(--ydim);color:var(--y);}
 .tr{background:var(--rdim);color:var(--red);}
-.tg{background:var(--gdim);color:var(--green);}
-.tb_{background:var(--bdim);color:var(--blue);}
-/* CHIP */
-.chip{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:var(--bg3);color:var(--t2);transition:all .15s;white-space:nowrap;}
-.chip.active{border-color:var(--yellow);background:var(--ydim);color:var(--yellow);}
-/* TOAST */
-.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(6px);background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rsm);padding:11px 18px;font-size:13px;color:var(--text);z-index:9999;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;}
+.tg{background:var(--gdim);color:var(--grn);}
+.tb_{background:var(--bdim);color:var(--blu);}
+
+/* ── CHIP ── */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:var(--rsm);font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:var(--bg3);color:var(--tx2);transition:all .15s;white-space:nowrap;}
+.chip:hover,.chip.active{border-color:var(--y);background:var(--ydim);color:var(--y);}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rsm);padding:12px 20px;font-size:13px;color:var(--tx);z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-/* BOTTOM NAV */
-.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);display:flex;padding:8px 0 12px;z-index:100;}
-.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 0;border:none;background:transparent;color:var(--t3);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:color .15s;}
-.ni .nicon{font-size:21px;line-height:1;}
-.ni.active{color:var(--yellow);}
-.hnav{padding-bottom:70px;}
-/* SECTION LABEL */
-.slbl{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--t3);text-transform:uppercase;margin-bottom:10px;}
 
-/* ===== HOME ===== */
-.home-hero{padding:26px 18px 0;background:linear-gradient(180deg,rgba(245,196,0,.05) 0%,transparent 55%);}
-.home-brand{display:flex;align-items:center;gap:10px;margin-bottom:5px;}
-.bmark{width:42px;height:42px;background:var(--yellow);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;}
-.bname{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.1em;}
-.bname em{color:var(--yellow);font-style:normal;}
-.home-sub{font-size:13px;color:var(--t2);margin-bottom:22px;line-height:1.55;}
-.hcta{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 18px;margin-bottom:16px;position:relative;overflow:hidden;}
-.hcta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--yellow),transparent);}
-.hcta h2{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1;margin-bottom:5px;}
-.hcta p{font-size:13px;color:var(--t2);margin-bottom:14px;line-height:1.5;}
-.sec-row{display:flex;gap:6px;margin-bottom:14px;}
-.spip{display:flex;flex-direction:column;align-items:center;gap:3px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 6px;flex:1;}
-.spip .si{font-size:17px;}
-.spip .sl{font-size:9px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.03em;text-align:center;}
-.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 18px 18px;}
-.htile{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px 14px;cursor:pointer;transition:border-color .15s;}
-.htile:active{border-color:var(--yellow);}
-.htile .ti{font-size:24px;margin-bottom:7px;}
-.htile .tl{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.05em;margin-bottom:2px;}
-.htile .ts{font-size:11px;color:var(--t2);line-height:1.4;}
+/* ── MODAL ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;opacity:0;pointer-events:none;transition:opacity .2s;display:flex;align-items:flex-end;justify-content:center;}
+.modal-bg.show{opacity:1;pointer-events:all;}
+.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:20px 20px 0 0;width:100%;max-width:560px;padding:24px 24px 40px;transform:translateY(40px);transition:transform .3s cubic-bezier(.4,0,.2,1);}
+.modal-bg.show .modal-box{transform:translateY(0);}
+.modal-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 20px;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.05em;margin-bottom:18px;}
+.form-group{margin-bottom:16px;}
+.form-label{font-size:12px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;}
+.form-input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--rsm);padding:13px 15px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
+.form-input:focus{border-color:var(--y);}
+.form-input option{background:var(--bg3);}
+.modal-actions{display:flex;gap:10px;margin-top:20px;}
 
-/* ===== LISTINGS ===== */
-.dtabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg);}
-.dtab{flex:1;padding:13px 6px;text-align:center;font-size:12px;font-weight:600;color:var(--t2);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;transition:all .15s;}
-.dtab.active{color:var(--yellow);border-bottom-color:var(--yellow);}
-.fbar{padding:12px 18px;display:flex;gap:8px;overflow-x:auto;border-bottom:1px solid var(--border);}
-.fbar::-webkit-scrollbar{display:none;}
-.lcount{padding:10px 18px 0;font-size:12px;color:var(--t2);}
-.lcount strong{color:var(--text);}
-.clist{padding:12px 18px;display:flex;flex-direction:column;gap:12px;}
-.ccard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:border-color .15s;}
-.ccard:active{border-color:var(--yellow);}
-.cthumb{height:148px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:62px;position:relative;border-bottom:1px solid var(--border);}
-.ctb-l{position:absolute;top:10px;left:10px;display:flex;gap:5px;}
-.ctb-r{position:absolute;top:10px;right:10px;}
-.cinfo{padding:13px 14px;}
-.cmake{font-weight:700;font-size:15px;margin-bottom:3px;}
-.cmeta{font-size:11px;color:var(--t2);margin-bottom:10px;display:flex;flex-wrap:wrap;gap:3px 8px;}
-.cmeta span::before{content:'·';margin-right:4px;opacity:.35;}
-.cmeta span:first-child::before{display:none;}
-.cprow{display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.cprice{font-family:'Bebas Neue',sans-serif;font-size:23px;color:var(--yellow);letter-spacing:.04em;}
-.ccta{display:flex;gap:6px;}
+/* ── PAGE WRAPPER ── */
+.pw{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+/* ════════════════════════════════════════
+   HOME SCREEN
+════════════════════════════════════════ */
+#s-home{padding-top:60px;}
+
+/* HERO */
+.hero{
+  position:relative;height:80vh;min-height:520px;max-height:800px;
+  overflow:hidden;display:flex;align-items:flex-end;
+}
+.hero-img{position:absolute;inset:0;}
+.hero-img img{object-position:center 30%;}
+.hero-gradient{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,.7) 35%, rgba(10,10,10,.1) 70%, transparent 100%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  width:100%;text-align:center;
+  padding:0 24px 56px;
+}
+.hero-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--y);margin-bottom:14px;
+}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,9vw,110px);
+  line-height:.95;letter-spacing:.04em;
+  margin-bottom:18px;
+}
+.hero-title em{color:var(--y);font-style:normal;}
+.hero-sub{
+  font-size:clamp(15px,2.5vw,19px);color:rgba(240,239,232,.7);
+  max-width:560px;margin:0 auto 36px;line-height:1.55;font-weight:300;
+}
+.hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.hero-cta-row .btn{width:auto;min-width:200px;}
+.hero-scroll-hint{
+  position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+  font-size:11px;color:var(--tx2);letter-spacing:.1em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.scroll-arrow{width:1px;height:32px;background:linear-gradient(to bottom,var(--y),transparent);}
+
+/* FEATURE SLIDER */
+.feature-slider-section{padding:48px 0 32px;overflow:hidden;}
+.section-eyebrow{text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--y);margin-bottom:10px;}
+.section-title{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,52px);letter-spacing:.04em;margin-bottom:6px;}
+.section-sub{text-align:center;font-size:14px;color:var(--tx2);max-width:480px;margin:0 auto 36px;line-height:1.5;}
+
+.fslider-track-wrap{position:relative;overflow:hidden;}
+.fslider-track{display:flex;gap:16px;transition:transform .5s cubic-bezier(.4,0,.2,1);padding:0 24px 24px;}
+.fcard{
+  flex-shrink:0;width:320px;height:220px;border-radius:var(--r);overflow:hidden;
+  position:relative;cursor:pointer;border:1px solid var(--border);
+}
+.fcard-img{position:absolute;inset:0;}
+.fcard-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.3) 60%,transparent 100%);}
+.fcard-content{position:absolute;bottom:0;left:0;right:0;padding:18px;}
+.fcard-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--y);margin-bottom:6px;}
+.fcard-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;margin-bottom:5px;}
+.fcard-desc{font-size:12px;color:rgba(240,239,232,.65);line-height:1.4;}
+
+.fslider-dots{display:flex;gap:7px;justify-content:center;margin-top:4px;}
+.fdot{width:24px;height:3px;border-radius:2px;background:var(--border2);cursor:pointer;transition:background .2s,width .2s;}
+.fdot.active{background:var(--y);width:36px;}
+
+/* CTA SECTION */
+.cta-section{padding:48px 24px;text-align:center;border-top:1px solid var(--border);}
+.cta-section h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);letter-spacing:.04em;margin-bottom:12px;}
+.cta-section p{font-size:14px;color:var(--tx2);max-width:400px;margin:0 auto 28px;line-height:1.6;}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta-btns .btn{width:auto;min-width:180px;}
+
+/* LISTINGS PREVIEW */
+.listings-preview{padding:48px 0;border-top:1px solid var(--border);}
+
+/* SITE FOOTER */
+.site-footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--tx3);}
+
+/* ════════════════════════════════════════
+   INNER PAGE LAYOUT
+════════════════════════════════════════ */
+.inner-page{padding-top:60px;}
+.page-header{
+  padding:40px 24px 32px;
+  border-bottom:1px solid var(--border);
+  text-align:center;
+  background:linear-gradient(180deg,rgba(245,196,0,.04) 0%,transparent 100%);
+}
+.page-header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);letter-spacing:.05em;margin-bottom:8px;}
+.page-header p{font-size:14px;color:var(--tx2);max-width:480px;margin:0 auto;line-height:1.55;}
+
+/* ════════════════════════════════════════
+   RESPONSIVE CARD GRID
+════════════════════════════════════════ */
+.card-grid{
+  display:grid;
+  gap:16px;
+  padding:24px;
+  max-width:var(--maxw);
+  margin:0 auto;
+  /* default mobile */
+  grid-template-columns:1fr;
+}
+@media(min-width:540px){.card-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:900px){.card-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:1200px){.card-grid{grid-template-columns:repeat(4,1fr);}}
+
+/* ════════════════════════════════════════
+   FILTER BAR — GRID, NOT SCROLL
+════════════════════════════════════════ */
+.filter-wrap{
+  max-width:var(--maxw);margin:0 auto;
+  padding:20px 24px 0;
+}
+.filter-section{margin-bottom:16px;}
+.filter-row-label{font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;}
+.filter-grid{display:flex;flex-wrap:wrap;gap:7px;}
+
 /* DRAWER */
-.dov{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;opacity:0;pointer-events:none;transition:opacity .2s;}
+.dov{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:300;opacity:0;pointer-events:none;transition:opacity .2s;}
 .dov.show{opacity:1;pointer-events:all;}
-.fdrawer{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);border-radius:20px 20px 0 0;z-index:201;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:90dvh;overflow-y:auto;padding-bottom:20px;}
+.fdrawer{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border2);border-radius:20px 20px 0 0;z-index:301;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:90dvh;overflow-y:auto;padding-bottom:32px;}
 .fdrawer.show{transform:translateY(0);}
 .dh{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:12px auto 0;}
-.dhead{display:flex;align-items:center;justify-content:space-between;padding:13px 18px 10px;}
-.dhead h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;}
-.dbody{padding:0 18px 20px;display:flex;flex-direction:column;gap:18px;}
-.fg-label{font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;}
+.dhead{display:flex;align-items:center;justify-content:space-between;padding:16px 24px 14px;}
+.dhead h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.05em;}
+.dbody{padding:0 24px 20px;display:flex;flex-direction:column;gap:20px;}
+.fg-label{font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px;}
 .fchips{display:flex;flex-wrap:wrap;gap:7px;}
-input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:var(--bg4);border-radius:2px;outline:none;margin-top:8px;}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--yellow);cursor:pointer;border:2px solid #111;}
-.rrow{display:flex;justify-content:space-between;font-size:11px;color:var(--t2);margin-top:5px;}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:var(--bg4);border-radius:2px;outline:none;margin-top:9px;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--y);cursor:pointer;border:2px solid #111;}
+.rrow{display:flex;justify-content:space-between;font-size:12px;color:var(--tx2);margin-top:6px;}
 
-/* ===== INSPECTION ===== */
-.insp-top{background:var(--bg);position:sticky;top:0;z-index:10;padding:14px 18px 0;}
-.insp-hrow{display:flex;align-items:center;gap:12px;margin-bottom:9px;}
-.isname{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.08em;color:var(--yellow);flex:1;}
-.icnt{font-size:12px;color:var(--t2);}
-.ptk{height:3px;background:var(--bg3);border-radius:2px;}
-.pf{height:100%;background:var(--yellow);border-radius:2px;transition:width .3s ease;}
-.sdrow{display:flex;gap:5px;padding:9px 0 12px;}
-.sdot{flex:1;height:3px;border-radius:2px;background:var(--bg3);transition:background .3s;}
-.sdot.done{background:var(--yellow);}
-.sdot.active{background:var(--orange);}
-.ibody{flex:1;overflow-y:auto;padding:18px 18px 0;}
-.qcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px 18px;margin-bottom:18px;}
-.qslbl{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px;}
-.qicn{font-size:30px;margin-bottom:11px;line-height:1;}
-.qtxt{font-size:18px;font-weight:500;line-height:1.45;margin-bottom:9px;}
-.qhint{font-size:12px;color:var(--t2);line-height:1.5;padding:9px 12px;background:var(--bg3);border-radius:8px;border-left:2px solid var(--border2);}
-.agroup{display:flex;flex-direction:column;gap:9px;margin-bottom:20px;}
-.abtn{display:flex;align-items:center;gap:13px;padding:15px 17px;border-radius:var(--rsm);border:1.5px solid var(--border);background:var(--bg2);color:var(--text);font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;text-align:left;width:100%;}
-.abtn:active{transform:scale(.98);}
-.adot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;border:1.5px solid var(--border);}
-/* Context-aware answer button colors */
-.abtn.ayb .adot{background:var(--rdim);border-color:rgba(224,60,60,.3);}   /* yes=bad */
-.abtn.ayg .adot{background:var(--gdim);border-color:rgba(39,201,126,.3);}  /* yes=good */
-.abtn.anb .adot{background:var(--gdim);border-color:rgba(39,201,126,.3);}  /* no=bad(good answer) */
-.abtn.ang .adot{background:var(--rdim);border-color:rgba(224,60,60,.3);}   /* no=good(bad answer) */
-.abtn.ans_ .adot{background:var(--ydim);border-color:rgba(245,196,0,.3);}
-.abtn.selected.ayb{border-color:var(--red);background:var(--rdim);}
-.abtn.selected.ayg{border-color:var(--green);background:var(--gdim);}
-.abtn.selected.anb{border-color:var(--green);background:var(--gdim);}
-.abtn.selected.ang{border-color:var(--red);background:var(--rdim);}
-.abtn.selected.ans_{border-color:var(--yellow);background:var(--ydim);}
-.atext .asub{font-size:11px;opacity:.55;margin-top:1px;}
-.backrow{padding:0 18px 24px;}
-.finrow{padding:0 18px 24px;display:none;}
+/* ════════════════════════════════════════
+   CAR LISTING CARD
+════════════════════════════════════════ */
+.car-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;cursor:pointer;
+  transition:border-color .2s,transform .2s;
+  display:flex;flex-direction:column;
+}
+.car-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.car-thumb{height:180px;background:var(--bg3);position:relative;overflow:hidden;}
+.car-thumb img{object-position:center;}
+.car-thumb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);}
+.car-thumb-badges{position:absolute;top:12px;left:12px;display:flex;flex-wrap:wrap;gap:5px;}
+.car-thumb-cond{position:absolute;top:12px;right:12px;}
+.car-info{padding:14px;flex:1;display:flex;flex-direction:column;}
+.car-make{font-weight:700;font-size:15px;margin-bottom:4px;line-height:1.3;}
+.car-meta{display:flex;flex-wrap:wrap;gap:3px 10px;font-size:11px;color:var(--tx2);margin-bottom:12px;}
+.car-meta span::before{content:'·';margin-right:5px;opacity:.35;}
+.car-meta span:first-child::before{display:none;}
+.car-price{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--y);letter-spacing:.04em;margin-bottom:12px;margin-top:auto;}
+.car-actions{display:flex;gap:8px;}
 
-/* ===== RESULT ===== */
-.rhero{padding:28px 18px 20px;text-align:center;position:relative;}
-.rhero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,196,0,.07) 0%,transparent 70%);pointer-events:none;}
-.rvbadge{display:inline-flex;align-items:center;justify-content:center;width:86px;height:86px;border-radius:50%;margin-bottom:15px;font-size:38px;}
-.vbuy .rvbadge{background:var(--gdim);border:2px solid var(--green);}
-.vneg .rvbadge{background:var(--ydim);border:2px solid var(--yellow);}
-.vavoid .rvbadge{background:var(--rdim);border:2px solid var(--red);}
-.vuns .rvbadge{background:var(--bdim);border:2px solid var(--blue);}
-.rvtxt{font-family:'Bebas Neue',sans-serif;font-size:50px;line-height:1;margin-bottom:7px;}
-.vbuy .rvtxt{color:var(--green);}
-.vneg .rvtxt{color:var(--yellow);}
-.vavoid .rvtxt{color:var(--red);}
-.vuns .rvtxt{color:var(--blue);}
-.rsub{font-size:13.5px;color:var(--t2);max-width:280px;margin:0 auto;line-height:1.6;}
-.rbody{padding:0 18px 24px;display:flex;flex-direction:column;gap:12px;}
-.riskcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rsm);padding:13px 16px;display:flex;align-items:center;gap:10px;}
-.rlbl{font-size:13px;color:var(--t2);flex:1;}
-.rval{font-weight:700;font-size:14px;}
-.rval.low{color:var(--green);}
-.rval.medium{color:var(--yellow);}
-.rval.high{color:var(--red);}
-.icard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
-.ichead{padding:12px 14px;border-bottom:1px solid var(--border);font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.05em;display:flex;align-items:center;justify-content:space-between;}
-.irow{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-bottom:1px solid var(--border);}
+/* ════════════════════════════════════════
+   MECHANIC CARD
+════════════════════════════════════════ */
+.mech-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.mech-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.mech-photo{height:160px;background:var(--bg3);position:relative;overflow:hidden;}
+.mech-photo img{object-position:center;}
+.mech-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 55%);}
+.mech-photo-info{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;}
+.mech-photo-name{font-weight:700;font-size:15px;margin-bottom:2px;}
+.mech-photo-loc{font-size:12px;color:rgba(240,239,232,.6);}
+.mech-body{padding:14px;}
+.mech-rating{font-size:13px;color:var(--y);font-weight:600;margin-bottom:8px;}
+.mquip{font-size:12px;color:var(--tx2);font-style:italic;line-height:1.5;margin-bottom:12px;padding:9px 11px;background:var(--bg3);border-radius:8px;}
+.msvcs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.schip{background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:500;padding:4px 10px;color:var(--tx2);}
+
+/* ════════════════════════════════════════
+   INSPECTION SCREEN
+════════════════════════════════════════ */
+#s-insp{padding-top:60px;}
+.insp-layout{display:flex;max-width:900px;margin:0 auto;min-height:calc(100dvh - 60px);}
+
+/* Section nav sidebar (desktop) */
+.insp-sidenav{
+  width:200px;flex-shrink:0;
+  padding:28px 16px;
+  border-right:1px solid var(--border);
+  position:sticky;top:60px;height:calc(100dvh - 60px);
+  overflow-y:auto;
+}
+@media(max-width:700px){.insp-sidenav{display:none;}}
+.snav-title{font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+.snav-item{
+  display:flex;align-items:center;gap:9px;
+  padding:10px 12px;border-radius:var(--rsm);
+  font-size:13px;font-weight:500;color:var(--tx2);
+  cursor:pointer;transition:all .15s;margin-bottom:4px;
+  border:1px solid transparent;
+}
+.snav-item:hover{background:var(--bg3);color:var(--tx);}
+.snav-item.active{background:var(--ydim);border-color:rgba(245,196,0,.25);color:var(--y);}
+.snav-item.done{color:var(--grn);}
+.snav-item .sni{font-size:16px;}
+.snav-item .sncount{margin-left:auto;font-size:10px;color:var(--tx3);}
+
+/* Mobile section nav */
+.insp-topnav{
+  display:none;
+  overflow-x:auto;padding:12px 18px;
+  gap:8px;border-bottom:1px solid var(--border);
+  background:var(--bg);position:sticky;top:60px;z-index:10;
+}
+@media(max-width:700px){.insp-topnav{display:flex;}}
+.insp-topnav::-webkit-scrollbar{display:none;}
+.insp-nav-chip{
+  flex-shrink:0;display:flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:var(--rsm);font-size:12px;font-weight:600;
+  border:1.5px solid var(--border);background:var(--bg3);color:var(--tx2);
+  cursor:pointer;transition:all .15s;
+}
+.insp-nav-chip.active{border-color:var(--y);background:var(--ydim);color:var(--y);}
+.insp-nav-chip.done{border-color:rgba(39,201,126,.3);background:var(--gdim);color:var(--grn);}
+
+/* Main question area */
+.insp-main{flex:1;overflow-y:auto;padding:28px 24px;min-width:0;}
+@media(max-width:700px){.insp-main{padding:18px;};}
+
+.insp-section-header{
+  margin-bottom:24px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+}
+.ish-left h2{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.04em;margin-bottom:4px;}
+.ish-left p{font-size:13px;color:var(--tx2);}
+.insp-progress-mini{text-align:right;}
+.ipm-num{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--y);}
+.ipm-label{font-size:11px;color:var(--tx2);}
+.prog-bar-full{height:3px;background:var(--bg3);border-radius:2px;margin-bottom:28px;}
+.prog-bar-fill{height:100%;background:var(--y);border-radius:2px;transition:width .35s ease;}
+
+/* QUESTION STACK */
+.q-stack{display:flex;flex-direction:column;gap:14px;}
+.q-item{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+  transition:border-color .2s;
+}
+.q-item.answered{border-color:var(--border2);}
+.q-item.unanswered-upcoming{opacity:.45;pointer-events:none;}
+
+/* Photo reference */
+.q-photo{height:180px;position:relative;overflow:hidden;flex-shrink:0;}
+@media(max-width:700px){.q-photo{height:140px;}}
+.q-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 60%);}
+.q-photo-label{position:absolute;bottom:10px;left:14px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,239,232,.6);}
+
+/* Question body */
+.q-body{padding:16px 18px 18px;}
+@media(max-width:700px){.q-body{padding:14px 15px 15px;}}
+.q-num{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
+.q-text{font-size:17px;font-weight:500;line-height:1.45;margin-bottom:9px;}
+@media(max-width:700px){.q-text{font-size:15px;}}
+.q-hint{font-size:12px;color:var(--tx2);line-height:1.5;padding:9px 12px;background:var(--bg3);border-radius:8px;border-left:2px solid var(--border2);margin-bottom:16px;}
+
+/* Answer choices */
+.q-answers{display:flex;flex-direction:column;gap:8px;}
+.q-answers.collapsed{display:none;}
+.ans-btn{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 15px;border-radius:var(--rsm);
+  border:1.5px solid var(--border);background:var(--bg3);
+  color:var(--tx);font-size:14px;font-weight:500;
+  cursor:pointer;transition:all .15s;text-align:left;width:100%;
+}
+.ans-btn:active{transform:scale(.98);}
+.ans-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1.5px solid var(--border);}
+.ans-sub{font-size:11px;opacity:.55;margin-top:1px;}
+
+/* Context-aware colors */
+.ans-btn.ayb .ans-dot{background:var(--rdim);border-color:rgba(224,60,60,.3);}
+.ans-btn.ayg .ans-dot{background:var(--gdim);border-color:rgba(39,201,126,.3);}
+.ans-btn.anb .ans-dot{background:var(--gdim);border-color:rgba(39,201,126,.3);}
+.ans-btn.ang .ans-dot{background:var(--rdim);border-color:rgba(224,60,60,.3);}
+.ans-btn.ans_ .ans-dot{background:var(--ydim);border-color:rgba(245,196,0,.3);}
+.ans-btn.sel.ayb{border-color:var(--red);background:rgba(224,60,60,.06);}
+.ans-btn.sel.ayg{border-color:var(--grn);background:rgba(39,201,126,.06);}
+.ans-btn.sel.anb{border-color:var(--grn);background:rgba(39,201,126,.06);}
+.ans-btn.sel.ang{border-color:var(--red);background:rgba(224,60,60,.06);}
+.ans-btn.sel.ans_{border-color:var(--y);background:rgba(245,196,0,.06);}
+
+/* Selected answer pill (shown when collapsed) */
+.ans-selected-pill{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;border-radius:var(--rsm);
+  font-size:13px;font-weight:500;cursor:pointer;
+  border:1.5px solid var(--border2);
+  transition:border-color .15s;
+}
+.ans-selected-pill:hover{border-color:var(--y);}
+.ans-selected-pill .pill-icon{font-size:14px;}
+.ans-selected-pill .pill-label{flex:1;}
+.ans-selected-pill .pill-edit{font-size:11px;color:var(--tx3);}
+
+.finish-wrap{padding:24px 0;display:none;}
+
+/* ════════════════════════════════════════
+   RESULT SCREEN
+════════════════════════════════════════ */
+#s-result{padding-top:60px;}
+.result-layout{max-width:700px;margin:0 auto;padding:40px 24px;}
+@media(max-width:600px){.result-layout{padding:24px 18px;}}
+
+.result-verdict-block{text-align:center;margin-bottom:36px;}
+.rvb-badge{display:inline-flex;align-items:center;justify-content:center;width:90px;height:90px;border-radius:50%;font-size:38px;margin-bottom:18px;}
+.vc-buy .rvb-badge{background:var(--gdim);border:2px solid var(--grn);}
+.vc-neg .rvb-badge{background:var(--ydim);border:2px solid var(--y);}
+.vc-avoid .rvb-badge{background:var(--rdim);border:2px solid var(--red);}
+.vc-uns .rvb-badge{background:var(--bdim);border:2px solid var(--blu);}
+.rvb-text{font-family:'Bebas Neue',sans-serif;font-size:64px;line-height:1;margin-bottom:10px;}
+.vc-buy .rvb-text{color:var(--grn);}
+.vc-neg .rvb-text{color:var(--y);}
+.vc-avoid .rvb-text{color:var(--red);}
+.vc-uns .rvb-text{color:var(--blu);}
+.rvb-sub{font-size:15px;color:var(--tx2);max-width:340px;margin:0 auto;line-height:1.6;}
+
+.result-cards{display:flex;flex-direction:column;gap:14px;}
+.rcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;}
+.rcard-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.05em;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.risk-row_{display:flex;align-items:center;gap:10px;}
+.risk-lbl{font-size:13px;color:var(--tx2);flex:1;}
+.risk-val{font-weight:700;font-size:14px;}
+.risk-val.low{color:var(--grn);}
+.risk-val.medium{color:var(--y);}
+.risk-val.high{color:var(--red);}
+.irow{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);}
 .irow:last-child{border-bottom:none;}
 .idot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0;}
 .idot.crit{background:var(--red);}
-.idot.warn{background:var(--yellow);}
-.idot.info{background:var(--blue);}
+.idot.warn{background:var(--y);}
+.idot.info{background:var(--blu);}
 .ic .it{font-size:13px;font-weight:500;line-height:1.4;}
-.ic .is{font-size:11px;color:var(--t2);margin-top:2px;}
-.unscard{background:linear-gradient(135deg,var(--bdim),rgba(79,158,248,.03));border:1px solid rgba(79,158,248,.25);border-radius:var(--r);padding:18px 16px;}
-.unscard h3{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:.04em;margin-bottom:5px;color:var(--blue);}
-.unscard p{font-size:13px;color:var(--t2);line-height:1.55;margin-bottom:12px;}
+.ic .is{font-size:11px;color:var(--tx2);margin-top:2px;}
+.unscard{background:linear-gradient(135deg,var(--bdim),rgba(79,158,248,.03));border:1px solid rgba(79,158,248,.25);border-radius:var(--r);padding:20px;}
+.unscard h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;margin-bottom:6px;color:var(--blu);}
+.unscard p{font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:16px;}
+.result-actions{display:flex;flex-direction:column;gap:10px;}
 
-/* ===== MECHANICS ===== */
-.mtabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg);overflow-x:auto;}
-.mtabs::-webkit-scrollbar{display:none;}
-.mtab{padding:12px 16px;font-size:12px;font-weight:600;color:var(--t2);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .15s;flex-shrink:0;}
-.mtab.active{color:var(--yellow);border-bottom-color:var(--yellow);}
-.mlist{padding:12px 18px;display:flex;flex-direction:column;gap:12px;}
-.mcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px;}
-.mtop{display:flex;gap:12px;margin-bottom:10px;}
-.mavt{width:46px;height:46px;border-radius:12px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:1px solid var(--border);}
-.minfo .mn{font-weight:700;font-size:15px;margin-bottom:2px;}
-.minfo .ml{font-size:12px;color:var(--t2);margin-bottom:2px;}
-.minfo .mr{font-size:12px;color:var(--yellow);font-weight:600;}
-.mquip{font-size:12px;color:var(--t2);font-style:italic;margin-bottom:10px;padding:8px 10px;background:var(--bg3);border-radius:8px;line-height:1.45;}
-.msvcs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
-.schip{display:inline-flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:500;padding:4px 10px;color:var(--t2);}
-.macts{display:flex;gap:8px;}
-
-/* ===== REPORT ===== */
-.rmeta{margin:14px 18px 0;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rsm);padding:13px 15px;display:flex;align-items:center;gap:12px;}
-.rcsecs{padding:12px 18px;display:flex;flex-direction:column;gap:10px;}
+/* ════════════════════════════════════════
+   REPORT SCREEN
+════════════════════════════════════════ */
+#s-report{padding-top:60px;}
+.report-layout{max-width:800px;margin:0 auto;padding:32px 24px;}
+.report-meta-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+.rcar-icon{font-size:40px;}
+.rcar-info .rname{font-weight:700;font-size:16px;}
+.rcar-info .rdate{font-size:13px;color:var(--tx2);margin-top:3px;}
+.rsecs{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;}
 .rsec{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
-.rshead{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;gap:10px;}
-.rsh-l{display:flex;align-items:center;gap:8px;}
-.rstitle{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.05em;}
-.rsqa{border-top:1px solid var(--border);}
-.rqrow{display:flex;align-items:flex-start;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border);gap:10px;}
+.rsec-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;}
+.rsec-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.05em;display:flex;align-items:center;gap:8px;}
+.rsec-qa{border-top:1px solid var(--border);}
+.rqrow{display:flex;align-items:flex-start;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--border);gap:12px;}
 .rqrow:last-child{border-bottom:none;}
-.rq{font-size:12px;color:var(--t2);flex:1;line-height:1.4;}
-.ra{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+.rq{font-size:12.5px;color:var(--tx2);flex:1;line-height:1.4;}
+.ra{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
 .ra.yb{background:var(--rdim);color:var(--red);}
-.ra.yg{background:var(--gdim);color:var(--green);}
-.ra.nb{background:var(--gdim);color:var(--green);}
+.ra.yg{background:var(--gdim);color:var(--grn);}
+.ra.nb{background:var(--gdim);color:var(--grn);}
 .ra.ng{background:var(--rdim);color:var(--red);}
-.ra.ns{background:var(--ydim);color:var(--yellow);}
-.rnotes{margin:0 18px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;}
-textarea.ni_{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--text);font-size:13px;resize:none;min-height:78px;outline:none;line-height:1.5;margin-top:8px;}
-textarea.ni_:focus{border-color:var(--yellow);}
-textarea.ni_::placeholder{color:var(--t3);}
-.prow{display:flex;gap:8px;margin-top:10px;}
-.pph{flex:1;aspect-ratio:1;background:var(--bg3);border:1.5px dashed var(--border);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:20px;color:var(--t3);cursor:pointer;}
-.pph small{font-size:9px;color:var(--t3);}
-.racts{padding:0 18px 24px;display:flex;flex-direction:column;gap:8px;}
-@keyframes fu{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
-.fi{animation:fu .28s ease forwards;}
+.ra.ns{background:var(--ydim);color:var(--y);}
+.report-notes-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:24px;}
+.rnotes-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.05em;margin-bottom:16px;}
+textarea.ni{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--rsm);padding:13px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:13px;resize:none;min-height:80px;outline:none;line-height:1.5;}
+textarea.ni:focus{border-color:var(--y);}
+textarea.ni::placeholder{color:var(--tx3);}
+.photo-row{display:flex;gap:10px;margin-top:14px;}
+.pph{flex:1;aspect-ratio:1;max-width:90px;background:var(--bg3);border:1.5px dashed var(--border);border-radius:var(--rsm);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:20px;color:var(--tx3);cursor:pointer;}
+.pph small{font-size:9px;color:var(--tx3);}
+.send-mech-row{background:linear-gradient(135deg,var(--ydim),rgba(245,196,0,.04));border:1px solid rgba(245,196,0,.2);border-radius:var(--r);padding:18px;margin-bottom:24px;}
+.smr-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.04em;margin-bottom:5px;}
+.smr-sub{font-size:13px;color:var(--tx2);margin-bottom:14px;line-height:1.5;}
+.report-actions{display:flex;flex-direction:column;gap:10px;}
+
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.fade-in{animation:slideDown .28s ease forwards;}
 </style>
 </head>
 <body>
 
-<!-- HOME -->
+<!-- SITE HEADER (fixed, all screens) -->
+<header class="site-header" id="site-header">
+  <div class="header-logo" onclick="go('s-home')">
+    <div class="logo-mark">🔍</div>
+    <div class="logo-name">KUN<em>DOKTOR</em></div>
+  </div>
+  <nav class="header-nav">
+    <button class="hnav-btn" onclick="go('s-listings')">Listings</button>
+    <button class="hnav-btn" onclick="go('s-mechanics')">Mechanics</button>
+    <button class="hnav-btn primary btn" style="width:auto" onclick="startInsp()">Inspect a Car</button>
+  </nav>
+</header>
+
+<!-- ════════ HOME ════════ -->
 <div id="s-home" class="screen active">
-  <div class="sb hnav">
-    <div class="home-hero">
-      <div class="home-brand">
-        <div class="bmark">🔍</div>
-        <div class="bname">KUN<em>DOKTOR</em></div>
+  <div class="page-body">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1600&q=80&auto=format&fit=crop" alt="Mechanic under car lift" loading="eager">
       </div>
-      <p class="home-sub">Your street-smart car doctor.<br>Inspect, decide, drive. No bs. No regrets.</p>
-      <div class="hcta">
-        <h2>INSPECT A CAR NOW</h2>
-        <p>Standing beside a second-hand car? Run a full 5-section check and get an instant verdict.</p>
-        <div class="sec-row">
-          <div class="spip"><div class="si">🚗</div><div class="sl">Ext.</div></div>
-          <div class="spip"><div class="si">💺</div><div class="sl">Int.</div></div>
-          <div class="spip"><div class="si">⚙️</div><div class="sl">Engine</div></div>
-          <div class="spip"><div class="si">🛣️</div><div class="sl">Drive</div></div>
-          <div class="spip"><div class="si">📄</div><div class="sl">Docs</div></div>
+      <div class="hero-gradient"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Your street-smart car companion</div>
+        <h1 class="hero-title">YOU KNOW<br>YOUR <em>CARS</em>.<br>WE GOT YOUR BACK.</h1>
+        <p class="hero-sub">Got a car in mind? Already standing next to one? Run a proper inspection, know exactly what you're dealing with, and we'll find you the right mechanic to assist — not handle — the rest.</p>
+        <div class="hero-cta-row">
+          <button class="btn bp" onclick="startInsp()">🔍 &nbsp;Inspect a Car Now</button>
+          <button class="btn bg_" onclick="go('s-listings')">Browse Listings</button>
         </div>
-        <button class="btn bp" onclick="startInsp()">🔍 &nbsp;Start Inspection</button>
+      </div>
+      <div class="hero-scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
       </div>
     </div>
-    <div class="hgrid">
-      <div class="htile" onclick="go('s-listings')"><div class="ti">🚗</div><div class="tl">Car Listings</div><div class="ts">Carmudi · AutoDeal · AllCars</div></div>
-      <div class="htile" onclick="go('s-mechanics')"><div class="ti">🔧</div><div class="tl">Mechanics</div><div class="ts">PMS · Repairs · Inspections</div></div>
-      <div class="htile" onclick="showToast('Coming soon: Saved Inspections')"><div class="ti">📋</div><div class="tl">My Reports</div><div class="ts">Saved & shared reports</div></div>
-      <div class="htile" onclick="showToast('Coming soon: Car Tips')"><div class="ti">📚</div><div class="tl">Learn</div><div class="ts">Maintenance tips & tricks</div></div>
-    </div>
+
+    <!-- FEATURE SLIDER -->
+    <section class="feature-slider-section">
+      <div class="section-eyebrow">What Kundoktor does</div>
+      <h2 class="section-title">YOUR ASSISTANT.<br>NOT YOUR BABYSITTER.</h2>
+      <p class="section-sub">You call the shots. We just make sure you have every bit of information before you do.</p>
+      <div class="fslider-track-wrap" id="fslider-wrap">
+        <div class="fslider-track" id="fslider-track">
+          <div class="fcard">
+            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
+            <div class="fcard-grad"></div>
+            <div class="fcard-content">
+              <div class="fcard-label">01 · Core Feature</div>
+              <div class="fcard-title">GUIDED INSPECTION</div>
+              <div class="fcard-desc">5 sections. 20 questions. Photo references. You walk through it — we tell you what to look for.</div>
+            </div>
+          </div>
+          <div class="fcard">
+            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
+            <div class="fcard-grad"></div>
+            <div class="fcard-content">
+              <div class="fcard-label">02 · Smart Verdict</div>
+              <div class="fcard-title">BUY / NEGOTIATE / AVOID</div>
+              <div class="fcard-desc">No wishy-washy scores. We read your answers and give you a real decision, not a disclaimer.</div>
+            </div>
+          </div>
+          <div class="fcard">
+            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
+            <div class="fcard-grad"></div>
+            <div class="fcard-content">
+              <div class="fcard-label">03 · Mechanic Network</div>
+              <div class="fcard-title">FIND YOUR MECHANIC</div>
+              <div class="fcard-desc">PMS, repairs, or pre-buy inspection. Find a trusted shop and book directly through Kundoktor.</div>
+            </div>
+          </div>
+          <div class="fcard">
+            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1563237023-b1e970526dcb?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
+            <div class="fcard-grad"></div>
+            <div class="fcard-content">
+              <div class="fcard-label">04 · Listings</div>
+              <div class="fcard-title">BROWSE REAL LISTINGS</div>
+              <div class="fcard-desc">Carmudi, AutoDeal, AllCars — all in one place. Filter by brand, type, price, and coding day.</div>
+            </div>
+          </div>
+          <div class="fcard">
+            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
+            <div class="fcard-grad"></div>
+            <div class="fcard-content">
+              <div class="fcard-label">05 · Reports</div>
+              <div class="fcard-title">INSPECTION REPORTS</div>
+              <div class="fcard-desc">Every answer, every finding — saved. Send your report straight to any mechanic you book.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fslider-dots" id="fslider-dots"></div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="cta-section">
+      <h2>ALREADY FOUND<br>A CAR?</h2>
+      <p>Don't sign anything yet. Run an inspection in 5 minutes and know exactly what you're buying into.</p>
+      <div class="cta-btns">
+        <button class="btn bp" onclick="startInsp()">🔍 Start Inspection</button>
+        <button class="btn bg_" onclick="go('s-mechanics')">Find a Mechanic</button>
+      </div>
+    </section>
+
+    <!-- LISTINGS PREVIEW -->
+    <section class="listings-preview">
+      <div style="max-width:var(--maxw);margin:0 auto;padding:0 24px 24px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div class="section-eyebrow" style="text-align:left">From Carmudi · AutoDeal · AllCars</div>
+          <h2 class="section-title" style="text-align:left;margin-bottom:0">RECENT LISTINGS</h2>
+        </div>
+        <button class="btn bg_ btn-inline" style="width:auto" onclick="go('s-listings')">View All Listings →</button>
+      </div>
+      <div class="card-grid" id="home-listings-grid"></div>
+    </section>
+
+    <footer class="site-footer">© 2025 Kundoktor · Know before you buy.</footer>
   </div>
 </div>
 
-<!-- LISTINGS -->
-<div id="s-listings" class="screen">
-  <div class="tb"><button class="ib" onclick="go('s-home')">←</button><div class="tb-title">Car Listings</div><button class="ib" onclick="openF()" title="Filters">⚡</button></div>
-  <div class="dtabs">
-    <div class="dtab active" onclick="setDealer('carmudi',this)">🟠 Carmudi</div>
-    <div class="dtab" onclick="setDealer('autodeal',this)">🔵 AutoDeal</div>
-    <div class="dtab" onclick="setDealer('allcars',this)">🟢 AllCars</div>
+<!-- ════════ LISTINGS ════════ -->
+<div id="s-listings" class="screen inner-page">
+  <div class="page-body">
+    <div class="page-header">
+      <h1>CAR LISTINGS</h1>
+      <p>Browse from Carmudi, AutoDeal, and AllCars. Filter to find exactly what you need — then inspect before you commit.</p>
+    </div>
+    <!-- Dealer tabs -->
+    <div style="max-width:var(--maxw);margin:0 auto;padding:20px 24px 0;display:flex;gap:8px;flex-wrap:wrap;">
+      <div class="chip active" id="dt-carmudi" onclick="setDealer('carmudi',this)">🟠 Carmudi</div>
+      <div class="chip" id="dt-autodeal" onclick="setDealer('autodeal',this)">🔵 AutoDeal</div>
+      <div class="chip" id="dt-allcars" onclick="setDealer('allcars',this)">🟢 AllCars</div>
+      <div style="margin-left:auto">
+        <button class="btn bg_ bsm btn-inline" onclick="openF()">⚡ All Filters</button>
+      </div>
+    </div>
+    <!-- Inline filter grid -->
+    <div class="filter-wrap">
+      <div class="filter-section">
+        <div class="filter-row-label">Condition</div>
+        <div class="filter-grid">
+          <div class="chip active" onclick="qf(this)">All</div>
+          <div class="chip" onclick="qf(this)">✨ Brand New</div>
+          <div class="chip" onclick="qf(this)">🔄 Second Hand</div>
+        </div>
+      </div>
+      <div class="filter-section">
+        <div class="filter-row-label">Transmission & Fuel</div>
+        <div class="filter-grid">
+          <div class="chip active" onclick="qf(this)">All</div>
+          <div class="chip" onclick="qf(this)">⚙️ Automatic</div>
+          <div class="chip" onclick="qf(this)">🔩 Manual</div>
+          <div class="chip" onclick="qf(this)">🔁 CVT</div>
+          <div class="chip" onclick="qf(this)">⚡ Electric</div>
+          <div class="chip" onclick="qf(this)">🌿 Hybrid</div>
+          <div class="chip" onclick="qf(this)">⛽ Gasoline</div>
+          <div class="chip" onclick="qf(this)">🪨 Diesel</div>
+        </div>
+      </div>
+      <div class="filter-section">
+        <div class="filter-row-label">Body Type</div>
+        <div class="filter-grid">
+          <div class="chip" onclick="qf(this)">🚗 Sedan</div>
+          <div class="chip" onclick="qf(this)">🚙 SUV</div>
+          <div class="chip" onclick="qf(this)">🛻 Pickup</div>
+          <div class="chip" onclick="qf(this)">🚐 Van</div>
+          <div class="chip" onclick="qf(this)">🏎️ Sports</div>
+          <div class="chip" onclick="qf(this)">🚜 Hatchback</div>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:var(--maxw);margin:0 auto;padding:14px 24px 4px;font-size:13px;color:var(--tx2);" id="lcount"></div>
+    <div class="card-grid" id="clist"></div>
+    <div style="height:40px;"></div>
   </div>
-  <div class="fbar" id="qf">
-    <div class="chip active" onclick="qfClick(this,'all')">All</div>
-    <div class="chip" onclick="qfClick(this,'brandnew')">✨ Brand New</div>
-    <div class="chip" onclick="qfClick(this,'secondhand')">🔄 2nd Hand</div>
-    <div class="chip" onclick="qfClick(this,'at')">⚙️ AT</div>
-    <div class="chip" onclick="qfClick(this,'mt')">🔩 MT</div>
-    <div class="chip" onclick="qfClick(this,'electric')">⚡ Electric</div>
-    <div class="chip" onclick="qfClick(this,'hybrid')">🌿 Hybrid</div>
-    <div class="chip" onclick="qfClick(this,'suv')">🚙 SUV</div>
-    <div class="chip" onclick="qfClick(this,'sedan')">🚗 Sedan</div>
-    <div class="chip" onclick="qfClick(this,'pickup')">🛻 Pickup</div>
-  </div>
-  <div class="lcount" id="lcount"></div>
-  <div class="sb hnav"><div class="clist" id="clist"></div></div>
 </div>
 
 <!-- FILTER DRAWER -->
 <div class="dov" id="dov" onclick="closeF()"></div>
 <div class="fdrawer" id="fdrawer">
   <div class="dh"></div>
-  <div class="dhead"><h3>FILTER CARS</h3><button class="btn bsm bg_" style="width:auto" onclick="resetF()">Reset all</button></div>
+  <div class="dhead"><h3>ADVANCED FILTERS</h3><button class="btn bg_ bsm btn-inline" onclick="resetF()">Reset</button></div>
   <div class="dbody">
-    <div><div class="fg-label">Condition</div><div class="fchips"><div class="chip active" onclick="ft(this)">All</div><div class="chip" onclick="ft(this)">✨ Brand New</div><div class="chip" onclick="ft(this)">🔄 Second Hand</div></div></div>
-    <div><div class="fg-label">Transmission</div><div class="fchips"><div class="chip active" onclick="ft(this)">All</div><div class="chip" onclick="ft(this)">⚙️ Automatic</div><div class="chip" onclick="ft(this)">🔩 Manual</div><div class="chip" onclick="ft(this)">🔁 CVT</div></div></div>
-    <div><div class="fg-label">Fuel Type</div><div class="fchips"><div class="chip active" onclick="ft(this)">All</div><div class="chip" onclick="ft(this)">⛽ Gasoline</div><div class="chip" onclick="ft(this)">🪨 Diesel</div><div class="chip" onclick="ft(this)">⚡ Electric</div><div class="chip" onclick="ft(this)">🌿 Hybrid</div></div></div>
-    <div><div class="fg-label">Car Type</div><div class="fchips"><div class="chip" onclick="ft(this)">🚗 Sedan</div><div class="chip" onclick="ft(this)">🚙 SUV</div><div class="chip" onclick="ft(this)">🛻 Pickup</div><div class="chip" onclick="ft(this)">🚐 Van</div><div class="chip" onclick="ft(this)">🏎️ Sports</div><div class="chip" onclick="ft(this)">🚜 Hatchback</div></div></div>
-    <div><div class="fg-label">Brand</div><div class="fchips"><div class="chip" onclick="ft(this)">Toyota</div><div class="chip" onclick="ft(this)">Honda</div><div class="chip" onclick="ft(this)">Mitsubishi</div><div class="chip" onclick="ft(this)">Suzuki</div><div class="chip" onclick="ft(this)">Ford</div><div class="chip" onclick="ft(this)">Hyundai</div><div class="chip" onclick="ft(this)">Nissan</div><div class="chip" onclick="ft(this)">Kia</div><div class="chip" onclick="ft(this)">BYD</div><div class="chip" onclick="ft(this)">Tesla</div></div></div>
+    <div><div class="fg-label">Brand</div><div class="fchips"><div class="chip" onclick="ft(this)">Toyota</div><div class="chip" onclick="ft(this)">Honda</div><div class="chip" onclick="ft(this)">Mitsubishi</div><div class="chip" onclick="ft(this)">Suzuki</div><div class="chip" onclick="ft(this)">Ford</div><div class="chip" onclick="ft(this)">Hyundai</div><div class="chip" onclick="ft(this)">Nissan</div><div class="chip" onclick="ft(this)">Kia</div><div class="chip" onclick="ft(this)">BYD</div><div class="chip" onclick="ft(this)">Tesla</div><div class="chip" onclick="ft(this)">Subaru</div><div class="chip" onclick="ft(this)">MG</div></div></div>
     <div><div class="fg-label">Price Range</div><input type="range" min="0" max="5000000" step="50000" value="2500000" oninput="ur(this,'pval','₱','')"><div class="rrow"><span>₱0</span><span id="pval">Up to ₱2,500,000</span><span>₱5M+</span></div></div>
     <div><div class="fg-label">Max Mileage</div><input type="range" min="0" max="200000" step="5000" value="100000" oninput="ur(this,'mval','','km')"><div class="rrow"><span>0 km</span><span id="mval">Up to 100,000 km</span><span>200k+</span></div></div>
     <div><div class="fg-label">Coding Day (MMDA)</div><div class="fchips"><div class="chip active" onclick="ft(this)">Any</div><div class="chip" onclick="ft(this)">Mon</div><div class="chip" onclick="ft(this)">Tue</div><div class="chip" onclick="ft(this)">Wed</div><div class="chip" onclick="ft(this)">Thu</div><div class="chip" onclick="ft(this)">Fri</div></div></div>
-    <button class="btn bp" onclick="applyF()">Show Results</button>
+    <button class="btn bp" onclick="applyF()">Apply Filters</button>
   </div>
 </div>
 
-<!-- INSPECTION -->
+<!-- ════════ INSPECTION ════════ -->
 <div id="s-insp" class="screen">
-  <div class="insp-top">
-    <div class="insp-hrow">
-      <button class="ib" onclick="inspBack()">←</button>
-      <div style="flex:1">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <span class="isname" id="isname">Exterior</span>
-          <span class="icnt" id="icnt">1 / 20</span>
+  <div class="page-body">
+    <div class="insp-layout">
+      <!-- Sidebar (desktop) -->
+      <aside class="insp-sidenav" id="insp-sidenav">
+        <div class="snav-title">Sections</div>
+        <div id="snav-items"></div>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);">
+          <div style="font-size:12px;color:var(--tx3);margin-bottom:6px;">Progress</div>
+          <div class="prog-bar-full"><div class="prog-bar-fill" id="sidebar-prog" style="width:0%"></div></div>
+          <div style="font-size:12px;color:var(--tx2);" id="sidebar-prog-label"></div>
         </div>
-        <div class="ptk"><div class="pf" id="pf" style="width:0%"></div></div>
-      </div>
+        <div style="margin-top:16px;">
+          <button class="btn bg_" style="font-size:13px;min-height:40px;" onclick="go('s-home')">← Exit</button>
+        </div>
+      </aside>
+      <!-- Mobile top nav -->
+      <div class="insp-topnav" id="insp-topnav"></div>
+      <!-- Main question area -->
+      <main class="insp-main" id="insp-main">
+        <!-- Sections rendered here -->
+      </main>
     </div>
-    <div class="sdrow" id="sdrow"></div>
-  </div>
-  <div class="ibody sb" id="ibody">
-    <div class="qcard" id="qcard">
-      <div class="qslbl" id="qslbl"></div>
-      <div class="qicn" id="qicn"></div>
-      <div class="qtxt" id="qtxt"></div>
-      <div class="qhint" id="qhint"></div>
-    </div>
-    <div class="agroup" id="agroup"></div>
-    <div class="finrow" id="finrow"><button class="btn bp" onclick="finishInsp()">✅ &nbsp;See My Verdict</button></div>
-    <div class="backrow" id="backrow"></div>
   </div>
 </div>
 
-<!-- RESULT -->
-<div id="s-result" class="screen">
-  <div class="tb"><button class="ib" onclick="go('s-home')">←</button><div class="tb-title">Your Verdict</div><div style="width:40px"></div></div>
-  <div class="sb hnav" id="rc"></div>
-</div>
-
-<!-- MECHANICS -->
-<div id="s-mechanics" class="screen">
-  <div class="tb"><button class="ib" onclick="go('s-home')">←</button><div class="tb-title">Find a Mechanic</div><div style="width:40px"></div></div>
-  <div class="mtabs">
-    <div class="mtab active" onclick="setMT('pms',this)">🛢️ PMS</div>
-    <div class="mtab" onclick="setMT('repair',this)">🔧 Repairs</div>
-    <div class="mtab" onclick="setMT('inspection',this)">🔍 Buying Inspection</div>
-    <div class="mtab" onclick="setMT('other',this)">✨ Other</div>
+<!-- ════════ RESULT ════════ -->
+<div id="s-result" class="screen inner-page">
+  <div class="page-body">
+    <div class="result-layout" id="result-layout"></div>
   </div>
-  <div class="sb hnav"><div class="mlist" id="mlist"></div></div>
 </div>
 
-<!-- REPORT -->
-<div id="s-report" class="screen">
-  <div class="tb"><button class="ib" onclick="go('s-result')">←</button><div class="tb-title">Full Report</div><div style="width:40px"></div></div>
-  <div class="sb hnav">
-    <div class="rmeta">
-      <div style="font-size:34px">🚗</div>
-      <div style="flex:1"><div style="font-weight:700;font-size:15px">Vehicle Inspection</div><div style="font-size:12px;color:var(--t2);margin-top:2px" id="repdate"></div></div>
-      <div id="repvtag"></div>
+<!-- ════════ MECHANICS ════════ -->
+<div id="s-mechanics" class="screen inner-page">
+  <div class="page-body">
+    <div class="page-header">
+      <h1>FIND A MECHANIC</h1>
+      <p>Vetted shops for every need. Book a slot — they assist, you decide.</p>
     </div>
-    <div class="rcsecs" id="rcsecs"></div>
-    <div class="rnotes">
-      <div class="slbl">📝 Notes</div>
-      <textarea class="ni_" placeholder="e.g. Seller was evasive about the engine knock. Smelled faintly of cigarettes inside. Floor mats suspiciously thick..."></textarea>
-      <div style="margin-top:12px"><div class="slbl">📷 Photos</div>
-        <div class="prow">
-          <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
-          <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
-          <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
-          <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
+    <div style="max-width:var(--maxw);margin:0 auto;padding:20px 24px 0;">
+      <div class="filter-section">
+        <div class="filter-row-label">Service Type</div>
+        <div class="filter-grid">
+          <div class="chip active" id="mt-all" onclick="setMT('all',this)">All Services</div>
+          <div class="chip" id="mt-pms" onclick="setMT('pms',this)">🛢️ PMS</div>
+          <div class="chip" id="mt-repair" onclick="setMT('repair',this)">🔧 Car Repairs</div>
+          <div class="chip" id="mt-inspection" onclick="setMT('inspection',this)">🔍 Buying Inspection</div>
+          <div class="chip" id="mt-other" onclick="setMT('other',this)">✨ Other Services</div>
         </div>
       </div>
     </div>
-    <div class="racts">
-      <button class="btn bp" onclick="showToast('Report saved!')">💾 &nbsp;Save Report</button>
-      <button class="btn bs" onclick="showToast('Share feature coming soon')">📤 &nbsp;Share Report</button>
+    <div class="card-grid" id="mlist"></div>
+    <div style="height:40px;"></div>
+  </div>
+</div>
+
+<!-- ════════ REPORT ════════ -->
+<div id="s-report" class="screen inner-page">
+  <div class="page-body">
+    <div class="report-layout">
+      <button class="btn bg_ btn-inline" style="width:auto;min-height:40px;font-size:13px;margin-bottom:24px;" onclick="go('s-result')">← Back to Verdict</button>
+      <div class="report-meta-card">
+        <div class="rcar-icon">🚗</div>
+        <div class="rcar-info">
+          <div class="rname">Vehicle Inspection Report</div>
+          <div class="rdate" id="repdate"></div>
+        </div>
+        <div id="repvtag" style="margin-left:auto"></div>
+      </div>
+      <div class="rsecs" id="rcsecs"></div>
+      <!-- SEND TO MECHANIC -->
+      <div class="send-mech-row">
+        <div class="smr-title">📤 SEND TO YOUR MECHANIC</div>
+        <div class="smr-sub">Already booked a mechanic? Send them this report before your visit so they know exactly what to look at — no need to explain from scratch.</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn bp btn-inline" style="width:auto;flex:1;min-width:180px;" onclick="openSendModal()">Send Report to Mechanic</button>
+          <button class="btn bg_ btn-inline" style="width:auto;flex:1;min-width:160px;" onclick="showToast('Copied share link!')">Copy Share Link</button>
+        </div>
+      </div>
+      <div class="report-notes-section">
+        <div class="rnotes-title">NOTES & PHOTOS</div>
+        <textarea class="ni" placeholder="e.g. Seller was evasive about the engine knock. Floor mats suspiciously thick..."></textarea>
+        <div class="photo-row">
+          <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
+          <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
+          <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
+          <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
+        </div>
+      </div>
+      <div class="report-actions">
+        <button class="btn bp" onclick="showToast('Report saved!')">💾 &nbsp;Save Report</button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
-<nav class="bnav" id="bnav" style="display:none">
-  <button class="ni active" id="nav-home" onclick="go('s-home')"><span class="nicon">🏠</span>Home</button>
-  <button class="ni" id="nav-listings" onclick="go('s-listings')"><span class="nicon">🚗</span>Browse</button>
-  <button class="ni" id="nav-insp" onclick="startInsp()"><span class="nicon">🔍</span>Inspect</button>
-  <button class="ni" id="nav-mech" onclick="go('s-mechanics')"><span class="nicon">🔧</span>Mechanics</button>
-</nav>
+<!-- BOOKING MODAL -->
+<div class="modal-bg" id="book-modal" onclick="closeBookModal(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">BOOK AN APPOINTMENT</div>
+    <div id="book-mech-name" style="font-size:14px;color:var(--tx2);margin-bottom:18px;"></div>
+    <div class="form-group">
+      <div class="form-label">Select a Service</div>
+      <select class="form-input" id="book-service"></select>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Preferred Date</div>
+      <input type="date" class="form-input" id="book-date">
+    </div>
+    <div class="form-group">
+      <div class="form-label">Preferred Time</div>
+      <select class="form-input" id="book-time">
+        <option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option>
+        <option>11:00 AM</option><option>1:00 PM</option><option>2:00 PM</option>
+        <option>3:00 PM</option><option>4:00 PM</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Your Name</div>
+      <input type="text" class="form-input" placeholder="e.g. Juan dela Cruz">
+    </div>
+    <div class="modal-actions">
+      <button class="btn bp" onclick="submitBooking()">Confirm Booking</button>
+      <button class="btn bg_ btn-inline" style="width:auto;padding:0 20px;" onclick="closeBookModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- SEND REPORT MODAL -->
+<div class="modal-bg" id="send-modal" onclick="closeSendModal(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">SEND REPORT TO MECHANIC</div>
+    <p style="font-size:13px;color:var(--tx2);margin-bottom:20px;line-height:1.55;">Your booked mechanic will receive a full breakdown of your inspection results so they can prep before your visit.</p>
+    <div class="form-group">
+      <div class="form-label">Select Mechanic</div>
+      <select class="form-input">
+        <option>KarCheck Pasig — Pasig City</option>
+        <option>AutoCheck PH — Quezon City</option>
+        <option>Mang Totoy's Garage — BGC</option>
+        <option>SpeedShop Manila — QC</option>
+        <option>Other (enter email below)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Or Enter Mechanic's Email</div>
+      <input type="email" class="form-input" placeholder="mechanic@shop.com">
+    </div>
+    <div class="form-group">
+      <div class="form-label">Add a Note (optional)</div>
+      <textarea class="ni" placeholder="e.g. Engine knocking on cold start, please check..." style="min-height:60px;margin-top:0;"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn bp" onclick="submitSend()">Send Report</button>
+      <button class="btn bg_ btn-inline" style="width:auto;padding:0 20px;" onclick="closeSendModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 /* ================================================================
-   QUESTIONS DATA
-   polarity: 'biy' = bad_if_yes (yes=red, no=green)
-             'bin' = bad_if_no  (no=red, yes=green)
-   severity: 'c'=critical, 'w'=warn, 'i'=info
+   DATA
 ================================================================ */
+const CARS = {
+  carmudi:[
+    {img:'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600&q=70&auto=format&fit=crop',m:'2020 Toyota Vios 1.3 XLE',meta:['AT','52,000 km','Gasoline','Sedan'],p:'₱598,000',cond:'2nd Hand',coding:'Wed',tags:[{c:'tg',t:'Low KM'}]},
+    {img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=70&auto=format&fit=crop',m:'2022 Mitsubishi Xpander GLS',meta:['AT','28,000 km','Gasoline','MPV'],p:'₱1,098,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'ty',t:'Negotiable'}]},
+    {img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=70&auto=format&fit=crop',m:'2023 BYD Atto 3 Extended',meta:['AT','5,000 km','Electric','SUV'],p:'₱1,790,000',cond:'Brand New',coding:'Fri',tags:[{c:'tb_',t:'Electric'}]},
+    {img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=70&auto=format&fit=crop',m:'2020 Honda Jazz RS CVT',meta:['CVT','88,000 km','Gasoline','Hatchback'],p:'₱420,000',cond:'2nd Hand',coding:'Mon',tags:[{c:'tr',t:'High KM'}]},
+    {img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=70&auto=format&fit=crop',m:'2021 Ford Ranger Wildtrak 4x4',meta:['AT','41,000 km','Diesel','Pickup'],p:'₱1,250,000',cond:'2nd Hand',coding:'Tue',tags:[{c:'tg',t:'4x4'}]},
+    {img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=70&auto=format&fit=crop',m:'2019 Suzuki Ciaz GL',meta:['MT','66,000 km','Gasoline','Sedan'],p:'₱345,000',cond:'2nd Hand',coding:'Thu',tags:[]},
+  ],
+  autodeal:[
+    {img:'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600&q=70&auto=format&fit=crop',m:'2023 Toyota Corolla Altis V',meta:['AT','12,000 km','Gasoline','Sedan'],p:'₱1,348,000',cond:'Brand New',coding:'Fri',tags:[{c:'tg',t:'Casa Maintained'}]},
+    {img:'https://images.unsplash.com/photo-1616789916345-a3c5db57dcf4?w=600&q=70&auto=format&fit=crop',m:'2021 Hyundai Tucson 2.0 GL',meta:['AT','35,000 km','Gasoline','SUV'],p:'₱998,000',cond:'2nd Hand',coding:'Mon',tags:[{c:'ty',t:'Price Drop'}]},
+    {img:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=70&auto=format&fit=crop',m:'2022 Toyota Corolla Cross HEV',meta:['CVT','22,000 km','Hybrid','SUV'],p:'₱1,398,000',cond:'2nd Hand',coding:'Wed',tags:[{c:'tb_',t:'Hybrid'}]},
+    {img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70&auto=format&fit=crop',m:'2022 Mitsubishi Strada GLS',meta:['AT','30,000 km','Diesel','Pickup'],p:'₱1,088,000',cond:'2nd Hand',coding:'Tue',tags:[]},
+    {img:'https://images.unsplash.com/photo-1567818735868-e71b99932e29?w=600&q=70&auto=format&fit=crop',m:'2020 Honda City RS Turbo',meta:['CVT','48,000 km','Gasoline','Sedan'],p:'₱688,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'tg',t:'Turbo'}]},
+  ],
+  allcars:[
+    {img:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=70&auto=format&fit=crop',m:'2017 Toyota Vios 1.3 J',meta:['MT','112,000 km','Gasoline','Sedan'],p:'₱278,000',cond:'2nd Hand',coding:'Mon',tags:[{c:'tr',t:'High KM'}]},
+    {img:'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=70&auto=format&fit=crop',m:'2024 MG ZS EV Magnify',meta:['AT','3,000 km','Electric','SUV'],p:'₱1,398,000',cond:'Brand New',coding:'Fri',tags:[{c:'tb_',t:'Electric'},{c:'tg',t:'Low KM'}]},
+    {img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=70&auto=format&fit=crop',m:'2019 Toyota Hi-Ace Commuter',meta:['MT','78,000 km','Diesel','Van'],p:'₱878,000',cond:'2nd Hand',coding:'Wed',tags:[]},
+    {img:'https://images.unsplash.com/photo-1571127236794-81c0bbfe1ce3?w=600&q=70&auto=format&fit=crop',m:'2021 Kia Stonic 1.4 EX',meta:['AT','32,000 km','Gasoline','SUV'],p:'₱748,000',cond:'2nd Hand',coding:'Tue',tags:[{c:'ty',t:'Negotiable'}]},
+    {img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=70&auto=format&fit=crop',m:'2020 Subaru BRZ 2.0 AT',meta:['AT','55,000 km','Gasoline','Sports'],p:'₱1,188,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'tg',t:'Sports'}]},
+  ]
+};
+
+const MECHS = {
+  pms:[
+    {img:'https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600&q=70&auto=format&fit=crop',n:'Autozone PMS Center',l:'Ortigas, Pasig · 1.3 km',r:'★ 4.9 · 218 reviews',q:'"Oil swapped faster than you can say Castrol."',s:['Oil & Filter Change','Engine Flush','Spark Plugs','Air Filter','Brake Fluid']},
+    {img:'https://images.unsplash.com/photo-1590928052159-81d55e63281d?w=600&q=70&auto=format&fit=crop',n:"Car Care Philippines",l:'Kapitolyo, Pasig · 2.1 km',r:'★ 4.7 · 165 reviews',q:'"Your car\'s official spa day. No cucumber slices though."',s:['PMS Package','Battery Check','Tire Rotation','Coolant Flush']},
+    {img:'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=70&auto=format&fit=crop',n:'Pit Stop Auto Service',l:'Mandaluyong · 3.4 km',r:'★ 4.6 · 88 reviews',q:'"Named after F1. Services your Vios anyway. Respect."',s:['Full PMS','Timing Belt','Differential Oil','Transmission Flush']},
+  ],
+  repair:[
+    {img:'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&q=70&auto=format&fit=crop',n:"Mang Totoy's Garage",l:'BGC, Taguig · 2.5 km',r:'★ 4.8 · 134 reviews',q:'"Open since 1987. Fixed cars that hadn\'t been invented yet."',s:['Engine Overhaul','Transmission Rebuild','Suspension','Electrical Diagnosis']},
+    {img:'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=70&auto=format&fit=crop',n:'SpeedShop Manila',l:'Quezon City · 4.1 km',r:'★ 4.5 · 210 reviews',q:'"They fix brakes so well you\'ll miss the terrifying ones."',s:['Brake Overhaul','AC Repair','Exhaust System','Body & Paint']},
+    {img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70&auto=format&fit=crop',n:'German Auto Works',l:'Makati City · 5.2 km',r:'★ 4.9 · 72 reviews',q:'"Fluent in check engine light. It\'s a real language here."',s:['European Cars','OBD2 Diagnostics','AC Compressor','Head Gasket']},
+  ],
+  inspection:[
+    {img:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=70&auto=format&fit=crop',n:'KarCheck Pasig',l:'Pasig City · 0.8 km',r:'★ 4.9 · 62 reviews',q:'"Kundoktor, but physically present with a flashlight."',s:['Pre-Purchase Inspection','Full Vehicle Report','Road Test','Flood Check']},
+    {img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70&auto=format&fit=crop',n:'AutoCheck PH',l:'Quezon City · 3.8 km',r:'★ 4.7 · 109 reviews',q:'"They\'ve talked buyers out of lemons since 2014."',s:['Used Car Assessment','VIN Check','Chassis Inspection','Engine Scan']},
+    {img:'https://images.unsplash.com/photo-1563237023-b1e970526dcb?w=600&q=70&auto=format&fit=crop',n:'Casa Inspection Plus',l:'Alabang · 8.1 km',r:'★ 4.6 · 95 reviews',q:'"Certified by people who are certified by other certified people."',s:['Certified Report','Accident History','Odometer Verification','Market Value']},
+  ],
+  other:[
+    {img:'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&q=70&auto=format&fit=crop',n:'AutoGlow Detailing',l:'San Juan · 2.0 km',r:'★ 4.8 · 177 reviews',q:'"Makes your second-hand find look suspiciously brand new."',s:['Ceramic Coating','Paint Correction','Interior Deep Clean','Odor Removal']},
+    {img:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=70&auto=format&fit=crop',n:'Car Audio & Accessories Hub',l:'Pasig City · 1.5 km',r:'★ 4.4 · 93 reviews',q:'"A dashcam is the cheapest lawyer you\'ll ever hire."',s:['Dashcam Install','Android Head Unit','Alarm System','Window Tint']},
+  ]
+};
+
+/* Question photo references by section + index */
+const Q_PHOTOS = {
+  ext:['https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1502161254119-b460ec4c4e35?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=60&auto=format&fit=crop'],
+  int:['https://images.unsplash.com/photo-1541348263662-e068662d82af?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&q=60&auto=format&fit=crop'],
+  eng:['https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&q=60&auto=format&fit=crop'],
+  drv:['https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1611416517780-eff380e09f7e?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=60&auto=format&fit=crop'],
+  doc:['https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=60&auto=format&fit=crop'],
+};
+
 const SECS=[
   {id:'ext',label:'Exterior',icon:'🚗',q:[
-    {text:'Is there visible rust, bubbling paint, or corrosion on the body?',hint:'Check door edges, wheel arches, and underbody. Rust from inside out = structural problem.',icon:'🔴',pol:'biy',sev:'c',ns:'Rust is hard to fake-miss. Shine a flashlight on the arches.',yl:'Yes — I see rust or corrosion',ys:'Major structural concern',nl:'No — body looks clean',ns_:'Good sign'},
-    {text:'Are there dents, mismatched paint, or signs of accident repair?',hint:'View panels from a low angle in sunlight. Paint variations = accident repair.',icon:'🎨',pol:'biy',sev:'w',ns:'Run your hand along panels — bumps or ripples mean filler was used.',yl:'Yes — dents or mismatched paint',ys:'Likely prior accident',nl:'No — panels look straight and consistent',ns_:''},
-    {text:'Do all doors, hood, and trunk close properly with even gap lines?',hint:'Uneven gaps of >5mm between panels usually means frame damage or poor repair.',icon:'🚪',pol:'bin',sev:'c',ns:'Open and close each panel firmly — should feel solid, not floppy.',yl:'Yes — everything aligns and closes well',ys:'',nl:'No — gaps are uneven or panels don\'t close right',ns_:'Frame or accident damage possible'},
-    {text:'Are all headlights, taillights, and signals working?',hint:'Turn on ignition (no start). Walk around and check all four corners plus hazards.',icon:'💡',pol:'bin',sev:'w',ns:'Ask the seller to toggle lights while you walk around.',yl:'Yes — all lights work',ys:'',nl:'No — some lights are broken or missing',ns_:'Minor but adds up fast at the shop'},
-    {text:'Are all four tires evenly worn with decent tread depth?',hint:'Uneven inner vs outer wear = alignment or suspension issues.',icon:'🛞',pol:'bin',sev:'w',ns:'Kneel down and compare tread depth on inner vs outer edges.',yl:'Yes — even tread on all four',ys:'',nl:'No — uneven wear or bald spots',ns_:'Alignment or suspension issue'},
+    {text:'Is there visible rust, bubbling paint, or corrosion on the body?',hint:'Check door edges, wheel arches, underbody. Inside-out rust = structural problem.',pol:'biy',sev:'c',ns:'Rust is hard to miss if you look. Flashlight on the arches.',yl:'Yes — I see rust or corrosion',ys:'Major structural concern',nl:'No — body looks clean',ns_:'Good sign'},
+    {text:'Are there dents, mismatched paint, or signs of accident repair?',hint:'Low angle, natural light. Paint shade variation between panels = accident history.',pol:'biy',sev:'w',ns:'Run your hand along panels — bumps or ripples = filler used.',yl:'Yes — dents or mismatched paint visible',ys:'Likely prior accident',nl:'No — panels look straight and consistent',ns_:''},
+    {text:'Do all doors, hood, and trunk close properly with even gap lines?',hint:'Gaps >5mm between panels = frame damage or poor bodywork.',pol:'bin',sev:'c',ns:'Open and close each firmly — should feel solid, not floppy.',yl:'Yes — everything aligns and closes properly',ys:'',nl:'No — gaps are uneven or panels don\'t close right',ns_:'Frame or accident damage possible'},
+    {text:'Are all headlights, taillights, and signals working?',hint:'Turn on ignition (no start). Walk all four corners, check hazards too.',pol:'bin',sev:'w',ns:'Ask seller to toggle lights while you walk around.',yl:'Yes — all lights work',ys:'',nl:'No — some lights broken or missing',ns_:'Small now, costly later'},
+    {text:'Are all four tires evenly worn with decent tread depth?',hint:'Uneven inner vs outer wear = alignment or suspension problem.',pol:'bin',sev:'w',ns:'Kneel down — compare tread on inner vs outer edges.',yl:'Yes — even tread on all four',ys:'',nl:'No — uneven wear or bald spots',ns_:'Alignment or suspension issue'},
   ]},
   {id:'int',label:'Interior',icon:'💺',q:[
-    {text:'Does the interior smell musty, moldy, or damp — even with AC on?',hint:'Flood-damaged cars smell like it. Musty = trapped moisture. Check under floor mats.',icon:'👃',pol:'biy',sev:'c',ns:'Lift the floor mats and check for waterline stains or wet carpet.',yl:'Yes — there\'s a musty or wet smell',ys:'Possible flood damage',nl:'No — smells normal or clean',ns_:'Good sign'},
-    {text:'Do the seats, dashboard, and headliner look intact with no major damage?',hint:'Heavy wear, cracked dash, or sagging headliner = high use or neglect.',icon:'💺',pol:'bin',sev:'i',ns:'Press the seat foam — sags too low = worn out from heavy use.',yl:'Yes — interior looks intact',ys:'',nl:'No — visible damage or excessive wear',ns_:'Negotiating point'},
-    {text:'Do all warning lights (check engine, oil, ABS) clear 3 seconds after startup?',hint:'Any light that stays on after warmup = active fault code stored in ECU.',icon:'⚠️',pol:'bin',sev:'c',ns:'Start engine, wait 10 seconds. If any light stays lit, it\'s flagging a real issue.',yl:'Yes — all lights clear after startup',ys:'ECU is happy',nl:'No — one or more warning lights stay on',ns_:'Active fault code — investigate before buying'},
-    {text:'Is the air conditioning cold on all fan speed settings?',hint:'Weak or warm AC = low refrigerant or compressor issue. Cost: ₱5K–₱15K.',icon:'❄️',pol:'bin',sev:'w',ns:'Run AC on max cold for 2 minutes — should blow noticeably cold air.',yl:'Yes — AC is cold on all settings',ys:'',nl:'No — AC is warm, weak, or inconsistent',ns_:'Regas or compressor repair needed'},
-    {text:'Do the power windows, locks, and side mirrors all function?',hint:'Each electric function costs ₱3K–₱10K individually to fix if broken.',icon:'🪟',pol:'bin',sev:'i',ns:'Test each window button individually. Note any that are slow or unresponsive.',yl:'Yes — all functions work',ys:'',nl:'No — some features are broken',ns_:'Electrical issue or owner neglect'},
+    {text:'Does the interior smell musty, moldy, or damp — even with AC running?',hint:'Flood cars smell like it. Musty = trapped moisture. Check under floor mats.',pol:'biy',sev:'c',ns:'Lift floor mats. Look for waterline stains or wet carpet.',yl:'Yes — musty or wet smell inside',ys:'Possible flood damage',nl:'No — smells clean or neutral',ns_:'Good sign'},
+    {text:'Do the seats, dashboard, and headliner look intact with no major damage?',hint:'Cracked dash, sagging headliner, torn seats = high use or neglect.',pol:'bin',sev:'i',ns:'Press seat foam — sags too low = worn out from heavy use.',yl:'Yes — interior looks intact',ys:'',nl:'No — visible damage or heavy wear',ns_:'Negotiating point'},
+    {text:'Do all warning lights clear 3 seconds after startup?',hint:'Any light staying on = active ECU fault code. Non-negotiable to check.',pol:'bin',sev:'c',ns:'Start engine, wait 10 sec. Persistent light = real fault.',yl:'Yes — all lights clear after startup',ys:'ECU is clean',nl:'No — one or more lights stay on',ns_:'Active fault code — investigate before buying'},
+    {text:'Is the air conditioning cold on all fan speed settings?',hint:'Weak AC = low refrigerant or bad compressor. Cost: ₱5K–₱15K.',pol:'bin',sev:'w',ns:'Run AC 2 minutes on max cold — should be noticeably cold.',yl:'Yes — AC is cold on all settings',ys:'',nl:'No — warm, weak, or inconsistent AC',ns_:'Regas or compressor repair needed'},
+    {text:'Do all power windows, locks, and side mirrors function?',hint:'Each broken function: ₱3K–₱10K individually to fix.',pol:'bin',sev:'i',ns:'Test each window button individually. Note slow or unresponsive ones.',yl:'Yes — all electrical functions work',ys:'',nl:'No — some features are broken',ns_:'Electrical issue or neglect'},
   ]},
   {id:'eng',label:'Engine',icon:'⚙️',q:[
-    {text:'Is the engine oil dark, gritty, or below the minimum level on the dipstick?',hint:'Pull the dipstick — clean oil is amber/honey. Gritty black = skipped oil changes. Milky = coolant leak.',icon:'🛢️',pol:'biy',sev:'c',ns:'Yellow-handled dipstick. Rub a drop between your fingers — grit means neglect.',yl:'Yes — oil is dark, gritty, or at wrong level',ys:'Neglected maintenance',nl:'No — oil looks clean and at correct level',ns_:'Well maintained'},
-    {text:'Does the engine produce any knocking, ticking, or rattling sounds?',hint:'Knocking = bearing wear. Ticking = valve train. Both are expensive. Listen at idle and 2,000 RPM.',icon:'👂',pol:'biy',sev:'c',ns:'Turn off the radio and AC, then just listen for 30 uninterrupted seconds.',yl:'Yes — I hear knocking or unusual noises',ys:'Likely internal engine damage',nl:'No — engine sounds smooth',ns_:''},
-    {text:'Is there colored smoke coming from the exhaust after the engine warms up?',hint:'Blue = oil burn (piston rings/valves). White = coolant leak (head gasket). Black = fuel-rich mix.',icon:'💨',pol:'biy',sev:'c',ns:'Rev the engine lightly and have someone watch the exhaust pipe.',yl:'Yes — colored smoke from exhaust',ys:'Serious internal issue',nl:'No — just normal water vapor when cold',ns_:'Normal'},
-    {text:'Is the engine bay free of oil leaks, coolant stains, and cracked belts?',hint:'Any wet stains, rainbow spots, or crust deposits = active leak. Cracked belts = ticking time bomb.',icon:'🔩',pol:'bin',sev:'c',ns:'Look under the car after it\'s parked — any puddle or stain is suspicious.',yl:'Yes — engine bay looks dry and intact',ys:'Engine bay looking good',nl:'No — I see leaks, stains, or damaged parts',ns_:'Needs immediate repair'},
+    {text:'Is the engine oil dark, gritty, or below minimum on the dipstick?',hint:'Dipstick check: amber = healthy. Black grit = skipped changes. Milky = coolant in oil.',pol:'biy',sev:'c',ns:'Yellow-handled dipstick. Rub a drop between fingers — grit = neglect.',yl:'Yes — oil is dark, gritty, or at wrong level',ys:'Neglected maintenance',nl:'No — oil is clean and at correct level',ns_:'Properly maintained'},
+    {text:'Does the engine produce knocking, ticking, or rattling sounds?',hint:'Knocking = bearing wear (expensive). Ticking = valve train. Both = walk away.',pol:'biy',sev:'c',ns:'Radio off, AC off. Just listen for 30 seconds at idle.',yl:'Yes — unusual noises from the engine',ys:'Likely internal damage',nl:'No — engine sounds smooth and quiet',ns_:''},
+    {text:'Is there colored smoke from the exhaust after engine warms up?',hint:'Blue = oil burn. White = coolant leak (head gasket). Black = fuel mix issue.',pol:'biy',sev:'c',ns:'Rev lightly, someone watches the exhaust pipe.',yl:'Yes — colored smoke from exhaust',ys:'Serious internal issue',nl:'No smoke or just brief water vapor when cold',ns_:'Normal'},
+    {text:'Is the engine bay free of oil leaks, coolant stains, and cracked belts?',hint:'Wet spots, rainbow stains, crusty deposits = active leaks. Cracked belts = failure coming.',pol:'bin',sev:'c',ns:'Check under the parked car too — any puddle is suspicious.',yl:'Yes — engine bay looks dry and intact',ys:'Looks good under the hood',nl:'No — leaks, stains, or damaged parts visible',ns_:'Needs repair before buying'},
   ]},
   {id:'drv',label:'Test Drive',icon:'🛣️',q:[
-    {text:'Does the transmission shift smoothly without jerking, slipping, or grinding?',hint:'AT: no jerky transitions between gears. MT: clutch should not slip or squeal. Slipping = rebuild time.',icon:'⚙️',pol:'bin',sev:'c',ns:'Accelerate from 0 to 60 kph — any unusual RPM spike without speed change = transmission slip.',yl:'Yes — shifts are smooth and clean',ys:'',nl:'No — hesitation, slipping, or grinding felt',ns_:'Transmission issue — expensive to repair'},
-    {text:'Does the car pull to one side when braking or driving straight?',hint:'Pulling when braking = warped rotor or stuck caliper. Drifting at cruise = alignment or suspension.',icon:'🛑',pol:'biy',sev:'c',ns:'On a flat road, hold the wheel loosely and brake gently — should track perfectly straight.',yl:'Yes — pulls to one side',ys:'Brakes or suspension problem',nl:'No — brakes and tracking are straight',ns_:'Good handling'},
-    {text:'Are there vibrations or shaking in the steering wheel or seat at highway speed?',hint:'Vibration at 60–80 kph = wheel balance. Constant vibration = engine mounts, driveshaft, or CV joints.',icon:'〰️',pol:'biy',sev:'w',ns:'Try cruising at 80 kph if possible — vibrations amplify at higher speeds.',yl:'Yes — noticeable vibrations while driving',ys:'Balancing or CV joint issue',nl:'No — ride is smooth',ns_:''},
-    {text:'Does the car start reliably and idle without surging or hunting?',hint:'Rough idle = fuel injector, idle control valve, or MAF sensor. Cold start is the best test.',icon:'🔑',pol:'bin',sev:'w',ns:'Let it idle for 3 minutes without AC — watch the RPM gauge for irregular movement.',yl:'Yes — starts clean and idles smoothly',ys:'',nl:'No — rough idle, surging, or stalling',ns_:'Fuel system or sensor issue'},
+    {text:'Does the transmission shift smoothly without jerking, slipping, or grinding?',hint:'AT: no jerky transitions. MT: no clutch slip or squeal. Slipping = rebuild time.',pol:'bin',sev:'c',ns:'0–60 kph acceleration: RPM spike without speed change = slip.',yl:'Yes — smooth clean shifts',ys:'Transmission is solid',nl:'No — hesitation, slip, or grinding felt',ns_:'Transmission issue — expensive'},
+    {text:'Does the car pull to one side when braking or driving straight?',hint:'Pull when braking = warped rotor or stuck caliper. Drifting = alignment/suspension.',pol:'biy',sev:'c',ns:'Flat road, loose grip, gentle brake — should track dead straight.',yl:'Yes — pulls to one side',ys:'Brake or suspension issue',nl:'No — tracks and brakes straight',ns_:'Good handling'},
+    {text:'Are there vibrations or shaking at highway speed?',hint:'Vibration at 60–80 kph = wheel balance. Constant = engine mounts, CV joints.',pol:'biy',sev:'w',ns:'80 kph cruise — vibrations amplify with speed.',yl:'Yes — vibrations while driving',ys:'Wheel or drivetrain issue',nl:'No — smooth and stable',ns_:''},
+    {text:'Does the car start reliably and idle without surging?',hint:'Rough idle = injector, IAC, or MAF sensor. Cold start is the real test.',pol:'bin',sev:'w',ns:'Idle 3 min without AC — watch RPM for irregular movement.',yl:'Yes — starts clean and idles smoothly',ys:'',nl:'No — rough idle, surge, or stalling',ns_:'Fuel system issue'},
   ]},
   {id:'doc',label:'Documents',icon:'📄',q:[
-    {text:'Does the OR/CR match the car\'s chassis number, plate, and engine number?',hint:'Chassis (VIN) is on the dashboard base or door jamb. Engine number is on the block. Mismatch = carnap risk.',icon:'📋',pol:'bin',sev:'c',ns:'This is non-negotiable. Mismatched documents = illegal transfer. Do NOT proceed.',yl:'Yes — all numbers match the documents',ys:'Documents check out',nl:'No — there are mismatches or missing documents',ns_:'Walk away. Seriously.'},
-    {text:'Is the OR/CR current, unaltered, and free from erasures?',hint:'Corrections or whiteout on docs = possible forgery. Expired registration = seller\'s problem to fix.',icon:'🧾',pol:'bin',sev:'c',ns:'Check the printing — blurry text, different fonts, or altered dates are red flags.',yl:'Yes — docs are clean and current',ys:'',nl:'No — docs are expired, altered, or look suspicious',ns_:'Legal risk — verify authenticity before proceeding'},
-    {text:'Is the car free from any outstanding bank loan or chattel mortgage?',hint:'A car with an unpaid bank loan can be legally repossessed FROM YOU after you buy it.',icon:'🏦',pol:'bin',sev:'c',ns:'Ask directly. If the seller hesitates or changes the subject, assume there\'s a lien.',yl:'Yes — confirmed no outstanding loan',ys:'Clear title',nl:'No — there\'s an active loan or they won\'t confirm',ns_:'Financial risk — get written clearance before buying'},
-    {text:'Are there service records or maintenance receipts available?',hint:'No records on a high-mileage car = red flag. Responsible owners keep receipts.',icon:'📒',pol:'bin',sev:'i',ns:'Ask if they have any casa or auto shop receipts, even just recent ones.',yl:'Yes — they have some maintenance records',ys:'Responsible owner',nl:'No records or receipts available',ns_:'Minor flag on high-mileage cars'},
+    {text:'Does the OR/CR match the chassis, plate, and engine number on the car?',hint:'VIN is on dashboard base or door jamb. Engine number stamped on block. Mismatch = carnap risk.',pol:'bin',sev:'c',ns:'Non-negotiable. Mismatched docs = illegal transfer. Do not proceed.',yl:'Yes — all numbers match',ys:'Documents check out',nl:'No — mismatches or missing documents',ns_:'Walk away immediately.'},
+    {text:'Is the OR/CR current, clean, and free from erasures or alterations?',hint:'Whiteout, altered dates, different fonts = possible forgery.',pol:'bin',sev:'c',ns:'Check print quality — blur, corrections, or odd fonts are red flags.',yl:'Yes — docs are clean and current',ys:'',nl:'No — expired, altered, or suspicious docs',ns_:'Legal risk — verify before proceeding'},
+    {text:'Is the car confirmed free from any outstanding bank loan or chattel mortgage?',hint:'Car with unpaid bank loan can be repossessed from YOU after purchase.',pol:'bin',sev:'c',ns:'Seller hesitates = assume there\'s a lien. Ask for written clearance.',yl:'Yes — confirmed no outstanding loan',ys:'Clear title',nl:'No — active loan or seller won\'t confirm',ns_:'Financial risk — get written clearance first'},
+    {text:'Are there service records or maintenance receipts available?',hint:'No receipts on high-mileage car = red flag. Responsible owners keep records.',pol:'bin',sev:'i',ns:'Ask for any casa or shop receipts — even recent ones.',yl:'Yes — maintenance records available',ys:'Responsible owner',nl:'No records available',ns_:'Minor flag on high-mileage cars'},
   ]},
 ];
 const TOTAL=SECS.reduce((s,sec)=>s+sec.q.length,0);
 
-const CARS={
-  carmudi:[
-    {e:'🚗',m:'2020 Toyota Vios 1.3 XLE',meta:['AT','52,000 km','Gasoline','Sedan'],p:'₱598,000',cond:'2nd Hand',coding:'Wed',tags:[{c:'tg',t:'Low KM'}]},
-    {e:'🚙',m:'2022 Mitsubishi Xpander GLS',meta:['AT','28,000 km','Gasoline','MPV'],p:'₱1,098,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'ty',t:'Negotiable'}]},
-    {e:'⚡',m:'2023 BYD Atto 3 Extended',meta:['AT','5,000 km','Electric','SUV'],p:'₱1,790,000',cond:'Brand New',coding:'Fri',tags:[{c:'tb_',t:'Electric'}]},
-    {e:'🚜',m:'2018 Honda Jazz RS CVT',meta:['CVT','88,000 km','Gasoline','Hatchback'],p:'₱420,000',cond:'2nd Hand',coding:'Mon',tags:[{c:'tr',t:'High KM'}]},
-    {e:'🛻',m:'2021 Ford Ranger Wildtrak 4x4',meta:['AT','41,000 km','Diesel','Pickup'],p:'₱1,250,000',cond:'2nd Hand',coding:'Tue',tags:[{c:'tg',t:'4x4'}]},
-    {e:'🚗',m:'2019 Suzuki Ciaz GL',meta:['MT','66,000 km','Gasoline','Sedan'],p:'₱345,000',cond:'2nd Hand',coding:'Thu',tags:[]},
-  ],
-  autodeal:[
-    {e:'🚗',m:'2023 Toyota Corolla Altis V',meta:['AT','12,000 km','Gasoline','Sedan'],p:'₱1,348,000',cond:'Brand New',coding:'Fri',tags:[{c:'tg',t:'Casa Maintained'}]},
-    {e:'🚙',m:'2021 Hyundai Tucson 2.0 GL',meta:['AT','35,000 km','Gasoline','SUV'],p:'₱998,000',cond:'2nd Hand',coding:'Mon',tags:[{c:'ty',t:'Price Drop'}]},
-    {e:'🌿',m:'2022 Toyota Corolla Cross HEV',meta:['CVT','22,000 km','Hybrid','SUV'],p:'₱1,398,000',cond:'2nd Hand',coding:'Wed',tags:[{c:'tb_',t:'Hybrid'}]},
-    {e:'🛻',m:'2022 Mitsubishi Strada GLS 4x2',meta:['AT','30,000 km','Diesel','Pickup'],p:'₱1,088,000',cond:'2nd Hand',coding:'Tue',tags:[]},
-    {e:'🚗',m:'2020 Honda City RS Turbo',meta:['CVT','48,000 km','Gasoline','Sedan'],p:'₱688,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'tg',t:'Turbo'}]},
-  ],
-  allcars:[
-    {e:'🚗',m:'2017 Toyota Vios 1.3 J',meta:['MT','112,000 km','Gasoline','Sedan'],p:'₱278,000',cond:'2nd Hand',coding:'Mon',tags:[{c:'tr',t:'High KM'}]},
-    {e:'⚡',m:'2024 MG ZS EV Magnify',meta:['AT','3,000 km','Electric','SUV'],p:'₱1,398,000',cond:'Brand New',coding:'Fri',tags:[{c:'tb_',t:'Electric'},{c:'tg',t:'Low KM'}]},
-    {e:'🚐',m:'2019 Toyota Hi-Ace Commuter',meta:['MT','78,000 km','Diesel','Van'],p:'₱878,000',cond:'2nd Hand',coding:'Wed',tags:[]},
-    {e:'🚙',m:'2021 Kia Stonic 1.4 EX',meta:['AT','32,000 km','Gasoline','SUV'],p:'₱748,000',cond:'2nd Hand',coding:'Tue',tags:[{c:'ty',t:'Negotiable'}]},
-    {e:'🏎️',m:'2020 Subaru BRZ 2.0 AT',meta:['AT','55,000 km','Gasoline','Sports'],p:'₱1,188,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'tg',t:'Sports'}]},
-  ]
-};
-
-const MECHS={
-  pms:[
-    {e:'🛢️',n:'Autozone PMS Center',l:'Ortigas, Pasig · 1.3 km',r:'★ 4.9 · 218 reviews',q:'"These guys swap your oil faster than you can say Castrol."',s:['Oil & Filter Change','Engine Flush','Spark Plugs','Air Filter','Brake Fluid']},
-    {e:'🔩',n:'Car Care Philippines',l:'Kapitolyo, Pasig · 2.1 km',r:'★ 4.7 · 165 reviews',q:'"Your car\'s official spa day. Without the aromatherapy."',s:['PMS Package','Battery Check','Tire Rotation','Coolant Flush']},
-    {e:'⚙️',n:'Pit Stop Auto Service',l:'Mandaluyong · 3.4 km',r:'★ 4.6 · 88 reviews',q:'"Named after F1. Works on your Vios anyway. Full respect."',s:['Full PMS','Timing Belt','Differential Oil','Transmission Flush']},
-  ],
-  repair:[
-    {e:'🔧',n:'Mang Totoy\'s Garage',l:'BGC, Taguig · 2.5 km',r:'★ 4.8 · 134 reviews',q:'"Open since 1987. Fixed cars that hadn\'t been invented yet somehow."',s:['Engine Overhaul','Transmission Rebuild','Suspension','Electrical Diagnosis']},
-    {e:'🚗',n:'SpeedShop Manila',l:'Quezon City · 4.1 km',r:'★ 4.5 · 210 reviews',q:'"They fix brakes so well you\'ll miss the old terrifying ones."',s:['Brake Overhaul','AC Repair','Exhaust System','Body & Paint']},
-    {e:'🛠️',n:'German Auto Works',l:'Makati City · 5.2 km',r:'★ 4.9 · 72 reviews',q:'"They\'re fluent in check engine light. That\'s a real language here."',s:['European Cars','OBD2 Diagnostics','AC Compressor','Head Gasket']},
-  ],
-  inspection:[
-    {e:'🔍',n:'KarCheck Pasig',l:'Pasig City · 0.8 km',r:'★ 4.9 · 62 reviews',q:'"Think of them as Kundoktor, but physically present and holding a flashlight."',s:['Pre-Purchase Inspection','Full Vehicle Report','Road Test','Flood Check']},
-    {e:'📋',n:'AutoCheck PH',l:'Quezon City · 3.8 km',r:'★ 4.7 · 109 reviews',q:'"They\'ve talked buyers out of lemons since 2014. Absolute legends."',s:['Used Car Assessment','VIN Check','Chassis Inspection','Engine Scan']},
-    {e:'🏆',n:'Casa Inspection Plus',l:'Alabang · 8.1 km',r:'★ 4.6 · 95 reviews',q:'"Certified by people certified by other certified people. Very official."',s:['Certified Report','Accident History','Odometer Verification','Market Value']},
-  ],
-  other:[
-    {e:'🎨',n:'AutoGlow Detailing',l:'San Juan · 2.0 km',r:'★ 4.8 · 177 reviews',q:'"Makes your second-hand find look first-hand fancy."',s:['Ceramic Coating','Paint Correction','Interior Deep Clean','Odor Removal']},
-    {e:'💡',n:'Car Audio & Accessories Hub',l:'Pasig City · 1.5 km',r:'★ 4.4 · 93 reviews',q:'"A dashcam is the cheapest lawyer you\'ll ever hire."',s:['Dashcam Install','Android Head Unit','Alarm System','Window Tint']},
-    {e:'📸',n:'Mobile Car Photography PH',l:'Makati · 4.3 km',r:'★ 4.7 · 41 reviews',q:'"Sell for 15% more just by not using your bathroom mirror selfie cam."',s:['Listing Photos','360° Walkaround Video','Before/After Shots']},
-  ]
-};
-
 /* ================================================================
    STATE
 ================================================================ */
-const ST={sec:0,q:0,ans:{},dealer:'carmudi',mech:'pms'};
+const ST={ans:{},dealer:'carmudi',mechTab:'all',currentBookMech:null};
 
 /* ================================================================
    NAVIGATION
@@ -489,125 +947,365 @@ const ST={sec:0,q:0,ans:{},dealer:'carmudi',mech:'pms'};
 function go(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const navS=['s-home','s-listings','s-result','s-mechanics','s-report'];
-  document.getElementById('bnav').style.display=navS.includes(id)?'flex':'none';
-  ['nav-home','nav-listings','nav-mech'].forEach(n=>document.getElementById(n)?.classList.remove('active'));
-  const nm={'s-home':'nav-home','s-listings':'nav-listings','s-mechanics':'nav-mech'};
-  if(nm[id]) document.getElementById(nm[id]).classList.add('active');
-  document.getElementById(id).scrollTop=0;
+  window.scrollTo(0,0);
+}
+
+/* ================================================================
+   FEATURE SLIDER
+================================================================ */
+let sliderIdx=0;
+function initSlider(){
+  const track=document.getElementById('fslider-track');
+  const cards=track.querySelectorAll('.fcard');
+  const dots=document.getElementById('fslider-dots');
+  dots.innerHTML=[...cards].map((_,i)=>`<div class="fdot${i===0?' active':''}" onclick="goSlide(${i})"></div>`).join('');
+  function updateSlider(){
+    const wrap=document.getElementById('fslider-wrap');
+    const w=wrap.offsetWidth;
+    const cw=320+16;
+    const offset=24+sliderIdx*cw;
+    const maxOffset=cw*cards.length-(w-48);
+    track.style.transform=`translateX(-${Math.min(offset,Math.max(0,offset))}px)`;
+    dots.querySelectorAll('.fdot').forEach((d,i)=>d.classList.toggle('active',i===sliderIdx));
+  }
+  window.goSlide=(i)=>{sliderIdx=i;updateSlider();};
+  setInterval(()=>{sliderIdx=(sliderIdx+1)%cards.length;updateSlider();},4000);
+  updateSlider();
 }
 
 /* ================================================================
    LISTINGS
 ================================================================ */
-function setDealer(d,el){ST.dealer=d;document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderCars();}
-function qfClick(el,v){
-  if(v==='all'){document.querySelectorAll('#qf .chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');}
-  else{document.querySelector('#qf .chip').classList.remove('active');el.classList.toggle('active');}
+function setDealer(d,el){
+  ST.dealer=d;
+  ['carmudi','autodeal','allcars'].forEach(x=>{document.getElementById('dt-'+x).classList.remove('active');});
+  el.classList.add('active');
   renderCars();
 }
-function renderCars(){
-  const cars=CARS[ST.dealer]||[];
-  const dn={carmudi:'Carmudi',autodeal:'AutoDeal',allcars:'AllCars'}[ST.dealer];
-  document.getElementById('lcount').innerHTML=`<strong>${cars.length} cars</strong> found · ${dn}`;
-  document.getElementById('clist').innerHTML=cars.map(c=>`
-    <div class="ccard fi" onclick="showToast('Opening listing…')">
-      <div class="cthumb">${c.e}
-        <div class="ctb-l">${c.tags.map(t=>`<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
-        <div class="ctb-r"><span class="tag ty">${c.cond}</span></div>
-      </div>
-      <div class="cinfo">
-        <div class="cmake">${c.m}</div>
-        <div class="cmeta">${c.meta.map(m=>`<span>${m}</span>`).join('')}<span>Coding: ${c.coding}</span></div>
-        <div class="cprow">
-          <div class="cprice">${c.p}</div>
-          <div class="ccta">
-            <button class="btn bs bsm" onclick="event.stopPropagation();startInsp()">🔍 Inspect</button>
-            <button class="btn bp bsm" onclick="event.stopPropagation();showToast('Opening listing…')">View</button>
-          </div>
-        </div>
-      </div>
-    </div>`).join('');
-}
-function openF(){document.getElementById('dov').classList.add('show');document.getElementById('fdrawer').classList.add('show');}
-function closeF(){document.getElementById('dov').classList.remove('show');document.getElementById('fdrawer').classList.remove('show');}
+function qf(el){el.classList.toggle('active');renderCars();}
 function ft(el){el.classList.toggle('active');}
 function resetF(){document.querySelectorAll('.fdrawer .chip').forEach(c=>c.classList.remove('active'));}
 function applyF(){closeF();showToast('Filters applied!');}
+function openF(){document.getElementById('dov').classList.add('show');document.getElementById('fdrawer').classList.add('show');}
+function closeF(){document.getElementById('dov').classList.remove('show');document.getElementById('fdrawer').classList.remove('show');}
 function ur(el,id,pre,suf){const v=parseInt(el.value);document.getElementById(id).textContent='Up to '+(pre==='₱'?'₱'+v.toLocaleString():v.toLocaleString()+' '+suf);}
 
+function carCardHTML(c){
+  return `<div class="car-card" onclick="showToast('Opening listing…')">
+    <div class="car-thumb">
+      <img src="${c.img}" alt="${c.m}" loading="lazy" onerror="this.style.display='none'">
+      <div class="car-thumb-overlay"></div>
+      <div class="car-thumb-badges">${c.tags.map(t=>`<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
+      <div class="car-thumb-cond"><span class="tag ty">${c.cond}</span></div>
+    </div>
+    <div class="car-info">
+      <div class="car-make">${c.m}</div>
+      <div class="car-meta">${c.meta.map(m=>`<span>${m}</span>`).join('')}<span>Coding: ${c.coding}</span></div>
+      <div class="car-price">${c.p}</div>
+      <div class="car-actions">
+        <button class="btn bs bsm" onclick="event.stopPropagation();startInsp()">🔍 Inspect</button>
+        <button class="btn bp bsm" onclick="event.stopPropagation();showToast('Opening listing…')">View</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderCars(){
+  const cars=CARS[ST.dealer]||[];
+  const dn={carmudi:'Carmudi',autodeal:'AutoDeal',allcars:'AllCars'}[ST.dealer];
+  document.getElementById('lcount').innerHTML=`<strong>${cars.length} cars</strong> on ${dn}`;
+  document.getElementById('clist').innerHTML=cars.map(carCardHTML).join('');
+}
+
+function renderHomeListings(){
+  const all=[...CARS.carmudi.slice(0,2),...CARS.autodeal.slice(0,2),...CARS.allcars.slice(0,2)];
+  document.getElementById('home-listings-grid').innerHTML=all.map(carCardHTML).join('');
+}
+
 /* ================================================================
-   INSPECTION
+   MECHANICS
 ================================================================ */
-function startInsp(){ST.sec=0;ST.q=0;ST.ans={};go('s-insp');renderQ();}
-function gIdx(){let i=0;for(let s=0;s<ST.sec;s++)i+=SECS[s].q.length;return i+ST.q;}
-function isLast(){return ST.sec===SECS.length-1&&ST.q===SECS[ST.sec].q.length-1;}
+function setMT(t,el){
+  ST.mechTab=t;
+  document.querySelectorAll('[id^="mt-"]').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderMechs();
+}
 
-function renderQ(){
-  const sec=SECS[ST.sec];
-  const q=sec.q[ST.q];
-  const gi=gIdx();
-  document.getElementById('isname').textContent=sec.label;
-  document.getElementById('icnt').textContent=`${gi+1} / ${TOTAL}`;
-  document.getElementById('pf').style.width=`${(gi/TOTAL)*100}%`;
-  document.getElementById('sdrow').innerHTML=SECS.map((s,i)=>`<div class="sdot ${i<ST.sec?'done':i===ST.sec?'active':''}"></div>`).join('');
-  document.getElementById('qslbl').textContent=`${sec.label} · Q${ST.q+1} of ${sec.q.length}`;
-  document.getElementById('qicn').textContent=q.icon;
-  document.getElementById('qtxt').textContent=q.text;
-  document.getElementById('qhint').textContent=q.hint;
+function mechCardHTML(m, category){
+  const svcs=m.s.map(s=>`<span class="schip">✓ ${s}</span>`).join('');
+  return `<div class="mech-card">
+    <div class="mech-photo">
+      <img src="${m.img}" alt="${m.n}" loading="lazy" onerror="this.style.display='none'">
+      <div class="mech-photo-overlay"></div>
+      <div class="mech-photo-info">
+        <div class="mech-photo-name">${m.n}</div>
+        <div class="mech-photo-loc">📍 ${m.l}</div>
+      </div>
+    </div>
+    <div class="mech-body">
+      <div class="mech-rating">${m.r}</div>
+      <div class="mquip">${m.q}</div>
+      <div class="msvcs">${svcs}</div>
+      <button class="btn bp" onclick="openBookModal('${m.n}',${JSON.stringify(m.s).replace(/"/g,"'")})">📅 &nbsp;Book Appointment</button>
+    </div>
+  </div>`;
+}
 
+function renderMechs(){
+  let mechs=[];
+  if(ST.mechTab==='all'){
+    mechs=[...MECHS.pms,...MECHS.repair,...MECHS.inspection,...MECHS.other];
+  } else {
+    mechs=MECHS[ST.mechTab]||[];
+  }
+  document.getElementById('mlist').innerHTML=mechs.map(m=>mechCardHTML(m,ST.mechTab)).join('');
+}
+
+/* ================================================================
+   BOOKING MODAL
+================================================================ */
+function openBookModal(name, svcs){
+  document.getElementById('book-mech-name').textContent='at '+name;
+  const sel=document.getElementById('book-service');
+  sel.innerHTML=svcs.map(s=>`<option>${s}</option>`).join('');
+  const today=new Date().toISOString().split('T')[0];
+  document.getElementById('book-date').min=today;
+  document.getElementById('book-modal').classList.add('show');
+}
+function closeBookModal(e){
+  if(!e||e.target===document.getElementById('book-modal'))
+    document.getElementById('book-modal').classList.remove('show');
+}
+function submitBooking(){
+  document.getElementById('book-modal').classList.remove('show');
+  showToast('Booking confirmed! You\'ll receive a confirmation shortly.');
+}
+function openSendModal(){document.getElementById('send-modal').classList.add('show');}
+function closeSendModal(e){
+  if(!e||e.target===document.getElementById('send-modal'))
+    document.getElementById('send-modal').classList.remove('show');
+}
+function submitSend(){
+  document.getElementById('send-modal').classList.remove('show');
+  showToast('Report sent to mechanic!');
+}
+
+/* ================================================================
+   INSPECTION — STACKED FLOW
+================================================================ */
+function startInsp(){
+  ST.ans={};
+  go('s-insp');
+  buildInspectionUI();
+}
+
+function buildInspectionUI(){
+  // Sidebar nav
+  const snavEl=document.getElementById('snav-items');
+  snavEl.innerHTML=SECS.map((sec,si)=>`
+    <div class="snav-item" id="snav-${si}" onclick="jumpToSection(${si})">
+      <span class="sni">${sec.icon}</span>
+      <span>${sec.label}</span>
+      <span class="sncount" id="sncount-${si}">0/${sec.q.length}</span>
+    </div>`).join('');
+
+  // Mobile nav
+  document.getElementById('insp-topnav').innerHTML=SECS.map((sec,si)=>`
+    <div class="insp-nav-chip" id="topnav-${si}" onclick="jumpToSection(${si})">
+      ${sec.icon} ${sec.label}
+    </div>`).join('');
+
+  // Build main area
+  const main=document.getElementById('insp-main');
+  main.innerHTML='';
+  SECS.forEach((sec,si)=>{
+    const secDiv=document.createElement('div');
+    secDiv.id=`sec-block-${si}`;
+    secDiv.style.marginBottom='40px';
+    secDiv.innerHTML=`
+      <div class="insp-section-header" id="ish-${si}">
+        <div class="ish-left">
+          <h2>${sec.icon} ${sec.label}</h2>
+          <p>${sec.q.length} checks · takes ~2 min</p>
+        </div>
+        <div class="insp-progress-mini">
+          <div class="ipm-num" id="secprog-${si}">0</div>
+          <div class="ipm-label">of ${sec.q.length} done</div>
+        </div>
+      </div>
+      <div class="prog-bar-full"><div class="prog-bar-fill" id="secbar-${si}" style="width:0%"></div></div>
+      <div class="q-stack" id="qstack-${si}"></div>`;
+    main.appendChild(secDiv);
+
+    // Build questions for this section
+    const stack=secDiv.querySelector(`#qstack-${si}`);
+    sec.q.forEach((q,qi)=>{
+      const item=buildQItem(si,qi,q,sec);
+      stack.appendChild(item);
+      if(qi>0) item.classList.add('unanswered-upcoming');
+    });
+  });
+
+  // Finish button
+  const finDiv=document.createElement('div');
+  finDiv.id='finish-wrap';
+  finDiv.className='finish-wrap';
+  finDiv.innerHTML='<button class="btn bp" onclick="finishInsp()">✅ &nbsp;Get My Verdict</button>';
+  main.appendChild(finDiv);
+
+  updateInspNav();
+  updateProgress();
+}
+
+function buildQItem(si,qi,q,sec){
   const isBIY=q.pol==='biy';
-  const k=`${ST.sec}-${ST.q}`;
-  const sa=ST.ans[k];
-  // yes button class: if biy → yes=bad(ayb), if bin → yes=good(ayg)
-  // no button class: if biy → no=bad-but-good-answer(anb), if bin → no=good-but-bad(ang)
   const yc=isBIY?'ayb':'ayg';
   const nc=isBIY?'anb':'ang';
   const yi=isBIY?'❌':'✅';
   const ni_=isBIY?'✅':'❌';
+  const photoUrl=(Q_PHOTOS[sec.id]||[])[qi]||'';
 
-  document.getElementById('agroup').innerHTML=`
-    <button class="abtn ${yc} ${sa==='yes'?'selected':''}" onclick="pickAns('yes')">
-      <div class="adot">${yi}</div>
-      <div class="atext">${q.yl}${q.ys?`<div class="asub">${q.ys}</div>`:''}</div>
-    </button>
-    <button class="abtn ${nc} ${sa==='no'?'selected':''}" onclick="pickAns('no')">
-      <div class="adot">${ni_}</div>
-      <div class="atext">${q.nl}${q.ns_?`<div class="asub">${q.ns_}</div>`:''}</div>
-    </button>
-    <button class="abtn ans_ ${sa==='notsure'?'selected':''}" onclick="pickAns('notsure')">
-      <div class="adot">🔦</div>
-      <div class="atext">Not sure / can't check<div class="asub">${q.ns}</div></div>
-    </button>`;
-
-  document.getElementById('finrow').style.display=isLast()?'block':'none';
-  const br=document.getElementById('backrow');
-  br.innerHTML=gi===0
-    ?'<button class="btn bg_" onclick="go(\'s-home\')">← Exit Inspection</button>'
-    :'<button class="btn bg_" onclick="inspBack()">← Previous Question</button>';
-  document.getElementById('ibody').scrollTop=0;
+  const item=document.createElement('div');
+  item.className='q-item';
+  item.id=`qi-${si}-${qi}`;
+  item.innerHTML=`
+    ${photoUrl?`<div class="q-photo"><img src="${photoUrl}" alt="Reference" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="q-photo-overlay"></div><div class="q-photo-label">Visual Reference</div></div>`:''}
+    <div class="q-body">
+      <div class="q-num">${sec.label} · Check ${qi+1}</div>
+      <div class="q-text">${q.text}</div>
+      <div class="q-hint">${q.hint}</div>
+      <div class="q-answers" id="qa-${si}-${qi}">
+        <button class="ans-btn ${yc}" onclick="pickAns(${si},${qi},'yes',this)">
+          <div class="ans-dot">${yi}</div>
+          <div><div>${q.yl}</div>${q.ys?`<div class="ans-sub">${q.ys}</div>`:''}</div>
+        </button>
+        <button class="ans-btn ${nc}" onclick="pickAns(${si},${qi},'no',this)">
+          <div class="ans-dot">${ni_}</div>
+          <div><div>${q.nl}</div>${q.ns_?`<div class="ans-sub">${q.ns_}</div>`:''}</div>
+        </button>
+        <button class="ans-btn ans_" onclick="pickAns(${si},${qi},'notsure',this)">
+          <div class="ans-dot">🔦</div>
+          <div><div>Not sure / can't check</div><div class="ans-sub">${q.ns}</div></div>
+        </button>
+      </div>
+      <div id="pill-${si}-${qi}" style="display:none"></div>
+    </div>`;
+  return item;
 }
 
-function pickAns(v){
-  const k=`${ST.sec}-${ST.q}`;
-  ST.ans[k]=v;
-  document.querySelectorAll('#agroup .abtn').forEach(b=>b.classList.remove('selected'));
-  const idx={yes:0,no:1,notsure:2}[v];
-  document.querySelectorAll('#agroup .abtn')[idx].classList.add('selected');
-  if(!isLast()){setTimeout(adv,260);}
+function pickAns(si,qi,val,btn){
+  const key=`${si}-${qi}`;
+  ST.ans[key]=val;
+
+  const sec=SECS[si];
+  const q=sec.q[qi];
+  const isBIY=q.pol==='biy';
+
+  // Apply selected class
+  const qaEl=document.getElementById(`qa-${si}-${qi}`);
+  qaEl.querySelectorAll('.ans-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+
+  // Collapse choices → show pill
+  setTimeout(()=>{
+    collapseQuestion(si,qi,val,q,isBIY);
+    unlockNextQuestion(si,qi);
+    updateProgress();
+    updateInspNav();
+  },220);
 }
 
-function adv(){
-  if(ST.q<SECS[ST.sec].q.length-1){ST.q++;}
-  else if(ST.sec<SECS.length-1){ST.sec++;ST.q=0;}
-  renderQ();
+function collapseQuestion(si,qi,val,q,isBIY){
+  const qaEl=document.getElementById(`qa-${si}-${qi}`);
+  const pillEl=document.getElementById(`pill-${si}-${qi}`);
+  qaEl.classList.add('collapsed');
+
+  let icon,label,color;
+  if(val==='yes'){
+    icon=isBIY?'❌':'✅';
+    label=q.yl;
+    color=isBIY?'#e03c3c':'#27c97e';
+  } else if(val==='no'){
+    icon=isBIY?'✅':'❌';
+    label=q.nl;
+    color=isBIY?'#27c97e':'#e03c3c';
+  } else {
+    icon='🔦';label='Not sure / can\'t check';color='#f5c400';
+  }
+
+  pillEl.style.display='block';
+  pillEl.innerHTML=`<div class="ans-selected-pill" onclick="expandQuestion(${si},${qi})" style="border-color:${color}22;background:${color}08;">
+    <span class="pill-icon">${icon}</span>
+    <span class="pill-label" style="color:${color}">${label}</span>
+    <span class="pill-edit">tap to change</span>
+  </div>`;
+
+  document.getElementById(`qi-${si}-${qi}`).classList.add('answered');
 }
 
-function inspBack(){
-  if(ST.q>0){ST.q--;}
-  else if(ST.sec>0){ST.sec--;ST.q=SECS[ST.sec].q.length-1;}
-  else{go('s-home');return;}
-  renderQ();
+function expandQuestion(si,qi){
+  const qaEl=document.getElementById(`qa-${si}-${qi}`);
+  const pillEl=document.getElementById(`pill-${si}-${qi}`);
+  qaEl.classList.remove('collapsed');
+  pillEl.style.display='none';
+  // Remove selected styling
+  qaEl.querySelectorAll('.ans-btn').forEach(b=>b.classList.remove('sel'));
+}
+
+function unlockNextQuestion(si,qi){
+  const sec=SECS[si];
+  // Next Q in same section
+  if(qi+1<sec.q.length){
+    const next=document.getElementById(`qi-${si}-${qi+1}`);
+    if(next) next.classList.remove('unanswered-upcoming');
+    // Scroll into view
+    setTimeout(()=>next?.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+    return;
+  }
+  // First Q of next section
+  if(si+1<SECS.length){
+    const next=document.getElementById(`qi-${si+1}-0`);
+    if(next){
+      next.classList.remove('unanswered-upcoming');
+      setTimeout(()=>next?.scrollIntoView({behavior:'smooth',block:'start'}),100);
+    }
+  }
+  // Show finish if all answered
+  const total=Object.keys(ST.ans).length;
+  if(total===TOTAL){
+    document.getElementById('finish-wrap').style.display='block';
+    document.getElementById('finish-wrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+}
+
+function updateProgress(){
+  let answered=Object.keys(ST.ans).length;
+  document.getElementById('sidebar-prog').style.width=`${(answered/TOTAL)*100}%`;
+  document.getElementById('sidebar-prog-label').textContent=`${answered} of ${TOTAL} answered`;
+
+  SECS.forEach((sec,si)=>{
+    let done=sec.q.filter((_,qi)=>ST.ans[`${si}-${qi}`]).length;
+    document.getElementById(`secprog-${si}`).textContent=done;
+    document.getElementById(`secbar-${si}`).style.width=`${(done/sec.q.length)*100}%`;
+    document.getElementById(`sncount-${si}`).textContent=`${done}/${sec.q.length}`;
+  });
+}
+
+function updateInspNav(){
+  SECS.forEach((sec,si)=>{
+    let done=sec.q.filter((_,qi)=>ST.ans[`${si}-${qi}`]).length;
+    const full=done===sec.q.length;
+    const el=document.getElementById(`snav-${si}`);
+    const tel=document.getElementById(`topnav-${si}`);
+    if(el){el.classList.toggle('done',full);el.classList.toggle('active',done>0&&!full);}
+    if(tel){tel.classList.toggle('done',full);tel.classList.toggle('active',done>0&&!full);}
+  });
+}
+
+function jumpToSection(si){
+  const el=document.getElementById(`sec-block-${si}`);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function finishInsp(){computeResult();go('s-result');}
@@ -624,124 +1322,61 @@ function computeResult(){
       if(!a)return;
       answered++;
       if(a==='notsure'){unsure++;if(q.sev==='c')critUns.push({q,sec});return;}
-      const isProb=(q.pol==='biy'&&a==='yes')||(q.pol==='bin'&&a==='no');
-      if(isProb){
-        const it={q,sec};
-        if(q.sev==='c')crit.push(it);
-        else if(q.sev==='w')warn.push(it);
-        else info.push(it);
-      }
+      const isP=(q.pol==='biy'&&a==='yes')||(q.pol==='bin'&&a==='no');
+      if(isP){const it={q,sec};if(q.sev==='c')crit.push(it);else if(q.sev==='w')warn.push(it);else info.push(it);}
     });
   });
-
   const ur=answered>0?unsure/answered:0;
-  let decision,riskLevel,headline,subtext;
-
-  if(ur>=0.6){
-    decision='unsure';riskLevel='unknown';
-    headline='INCONCLUSIVE';
-    subtext=`You marked ${unsure} out of ${answered} questions as "not sure." That's not an inspection — that's hope. You need a mechanic's eyes on this car.`;
-  } else if(crit.length>=3){
-    decision='avoid';riskLevel='high';
-    headline='AVOID';
-    subtext='Three or more critical failures. The repair bill will exceed any savings from negotiating. This car will become someone else\'s problem — don\'t let it be yours.';
-  } else if(crit.length===2){
-    decision='avoid';riskLevel='high';
-    headline='AVOID';
-    subtext='Two critical red flags is one too many. Each could be thousands of pesos alone. Combined, it\'s a financial trap.';
-  } else if(crit.length===1&&(warn.length>=2||critUns.length>=1)){
-    decision='negotiate';riskLevel='medium';
-    headline='NEGOTIATE HARD';
-    subtext='One confirmed critical issue plus additional concerns. Use each finding as leverage. The asking price needs to come down — or walk.';
-  } else if(crit.length===1){
-    decision='negotiate';riskLevel='medium';
-    headline='NEGOTIATE';
-    subtext='One critical issue found. It\'s fixable, but that repair cost should absolutely be deducted from the asking price. Don\'t pay full price.';
-  } else if(warn.length>=3){
-    decision='negotiate';riskLevel='medium';
-    headline='NEGOTIATE';
-    subtext='No critical failures, but these warning signs add up fast. Small problems become big bills over time — factor them into your offer.';
-  } else if(warn.length>0||info.length>0||critUns.length>0){
-    decision='buy';riskLevel='low';
-    headline='BUY';
-    subtext='Car checks out on the important stuff. A few minor things to note. Still worth having a mechanic give it a quick once-over before signing.';
-  } else {
-    decision='buy';riskLevel='low';
-    headline='BUY';
-    subtext='Solid inspection across all five sections. This one\'s looking good. Recommend a quick mechanic check before handover — just to be sure.';
-  }
-
-  renderResult(decision,riskLevel,headline,subtext,crit,warn,info,critUns,ur,unsure,answered);
+  let decision,riskLevel,hl,st;
+  if(ur>=0.6){decision='uns';riskLevel='unknown';hl='INCONCLUSIVE';st=`You tapped "not sure" on ${unsure}/${answered} checks. That's honesty — but it's not enough to buy a car on. Get a mechanic to do a proper inspection.`;}
+  else if(crit.length>=3){decision='avoid';riskLevel='high';hl='AVOID';st='Three or more critical failures. Walk away. The repair bill will exceed any negotiated savings — and then some.';}
+  else if(crit.length===2){decision='avoid';riskLevel='high';hl='AVOID';st='Two critical red flags. Each could cost tens of thousands. Together? Financial trap. Don\'t get attached.';}
+  else if(crit.length===1&&(warn.length>=2||critUns.length>=1)){decision='neg';riskLevel='medium';hl='NEGOTIATE HARD';st='One critical issue plus additional concerns. Every finding is leverage. Push the price down — or walk.';}
+  else if(crit.length===1){decision='neg';riskLevel='medium';hl='NEGOTIATE';st='One critical issue found. It\'s fixable, but that repair cost should come straight off the asking price.';}
+  else if(warn.length>=3){decision='neg';riskLevel='medium';hl='NEGOTIATE';st='No critical failures, but these warnings stack up into real money. Factor every one into your offer.';}
+  else if(warn.length>0||info.length>0||critUns.length>0){decision='buy';riskLevel='low';hl='BUY';st='Car checks out on the important stuff. Minor items to note. Quick mechanic verify before you sign.';}
+  else{decision='buy';riskLevel='low';hl='BUY';st='Solid across all five sections. This one\'s looking good. Still recommend a mechanic once-over before handover.';}
+  renderResult(decision,riskLevel,hl,st,crit,warn,info,critUns,ur,unsure,answered);
   renderReport(decision);
 }
 
 function renderResult(d,rl,hl,st,crit,warn,info,critUns,ur,unsure,answered){
-  const vc={buy:'vbuy',negotiate:'vneg',avoid:'vavoid',unsure:'vuns'}[d];
-  const icons={buy:'✅',negotiate:'💬',avoid:'🚫',unsure:'🤔'};
+  const vc={buy:'vc-buy',neg:'vc-neg',avoid:'vc-avoid',uns:'vc-uns'}[d];
+  const icons={buy:'✅',neg:'💬',avoid:'🚫',uns:'🤔'};
   const riskCls={low:'low',medium:'medium',high:'high',unknown:'medium'}[rl];
 
   let issues='';
-  if(crit.length+warn.length+info.length+critUns.length===0&&d!=='unsure'){
-    issues='<div style="padding:14px;font-size:13px;color:var(--green)">✅ No issues detected across all sections.</div>';
+  if(!crit.length&&!warn.length&&!info.length&&!critUns.length&&d!=='uns'){
+    issues='<div style="padding:12px 0;font-size:13px;color:var(--grn)">✅ No issues detected across all sections.</div>';
   } else {
-    issues=[
-      ...crit.map(i=>`<div class="irow"><div class="idot crit"></div><div class="ic"><div class="it">${i.q.text}</div><div class="is">${i.sec.label} · Critical issue</div></div></div>`),
-      ...critUns.map(i=>`<div class="irow"><div class="idot warn"></div><div class="ic"><div class="it">Unverified: ${i.q.text}</div><div class="is">${i.sec.label} · Needs verification</div></div></div>`),
-      ...warn.map(i=>`<div class="irow"><div class="idot warn"></div><div class="ic"><div class="it">${i.q.text}</div><div class="is">${i.sec.label} · Warning</div></div></div>`),
-      ...info.map(i=>`<div class="irow"><div class="idot info"></div><div class="ic"><div class="it">${i.q.text}</div><div class="is">${i.sec.label} · Minor</div></div></div>`),
-    ].join('');
+    issues=[...crit.map(i=>`<div class="irow"><div class="idot crit"></div><div class="ic"><div class="it">${i.q.text}</div><div class="is">${i.sec.label} · Critical</div></div></div>`),
+    ...critUns.map(i=>`<div class="irow"><div class="idot warn"></div><div class="ic"><div class="it">Unverified: ${i.q.text}</div><div class="is">${i.sec.label} · Needs verification</div></div></div>`),
+    ...warn.map(i=>`<div class="irow"><div class="idot warn"></div><div class="ic"><div class="it">${i.q.text}</div><div class="is">${i.sec.label} · Warning</div></div></div>`),
+    ...info.map(i=>`<div class="irow"><div class="idot info"></div><div class="ic"><div class="it">${i.q.text}</div><div class="is">${i.sec.label} · Minor</div></div></div>`)].join('');
   }
-
   let unsBlock='';
-  if(ur>=0.6){
-    unsBlock=`<div class="unscard">
-      <h3>🤔 TOO MANY UNKNOWNS</h3>
-      <p>You tapped "not sure" on ${unsure} of ${answered} checks (${Math.round(ur*100)}%). That's not a bad thing — it means you're honest. But it also means this car hasn't been properly inspected yet. Don't make a buying decision based on guesses.</p>
-      <button class="btn bp" onclick="go('s-mechanics')">📅 Book a Mechanic Instead</button>
-    </div>`;
-  } else if(unsure>0){
-    unsBlock=`<div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--rsm);padding:13px 15px;font-size:13px;color:var(--t2);line-height:1.5">
-      💡 <strong style="color:var(--text)">Heads up:</strong> You had ${unsure} "not sure" answer${unsure>1?'s':''}. A quick mechanic check can confirm the items you couldn't verify.
-    </div>`;
-  }
+  if(ur>=0.6){unsBlock=`<div class="unscard"><h3>🤔 TOO MANY UNKNOWNS</h3><p>You marked ${unsure} of ${answered} checks as "not sure" (${Math.round(ur*100)}%). Honest — but not enough to make a buying decision. This car needs a real mechanic inspection.</p><button class="btn bp" onclick="go('s-mechanics')">📅 Book a Mechanic Instead</button></div>`;}
+  else if(unsure>0){unsBlock=`<div class="rcard" style="border-color:rgba(245,196,0,.2);background:linear-gradient(135deg,rgba(245,196,0,.05),transparent);">💡 <strong>Heads up:</strong> You had ${unsure} "not sure" answer${unsure>1?'s':''} — a mechanic can verify those.</div>`;}
 
-  document.getElementById('rc').innerHTML=`
+  document.getElementById('result-layout').innerHTML=`
+    <button class="btn bg_ btn-inline" style="width:auto;min-height:40px;font-size:13px;margin-bottom:28px;" onclick="go('s-home')">← Back to Home</button>
     <div class="${vc}">
-      <div class="rhero">
-        <div class="rvbadge">${icons[d]}</div>
-        <div class="rvtxt">${hl}</div>
-        <p class="rsub">${st}</p>
+      <div class="result-verdict-block">
+        <div class="rvb-badge">${icons[d]}</div>
+        <div class="rvb-text">${hl}</div>
+        <p class="rvb-sub">${st}</p>
       </div>
-      <div class="rbody">
-        <div class="riskcard"><span>🛡️</span><span class="rlbl">Overall Risk Level</span><span class="rval ${riskCls}">${rl.charAt(0).toUpperCase()+rl.slice(1)}</span></div>
+      <div class="result-cards">
+        <div class="rcard"><div class="rcard-title">Overall Risk</div><div class="risk-row_"><span>🛡️</span><span class="risk-lbl">Risk Level</span><span class="risk-val ${riskCls}">${rl.charAt(0).toUpperCase()+rl.slice(1)}</span></div></div>
         ${unsBlock}
-        <div class="icard">
-          <div class="ichead">Findings <span style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:12px;color:var(--t2)">${crit.length+warn.length+info.length} issue(s)</span></div>
-          ${issues}
+        <div class="rcard"><div class="rcard-title">Findings <span style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:13px;color:var(--tx2)">${crit.length+warn.length+info.length} issue(s)</span></div>${issues}</div>
+        <div class="result-actions">
+          <button class="btn bp" onclick="go('s-mechanics')">🔧 &nbsp;Find a Mechanic</button>
+          <button class="btn bs" onclick="go('s-report')">📋 &nbsp;Full Inspection Report</button>
+          <button class="btn bg_" onclick="startInsp()">🔄 &nbsp;Start New Inspection</button>
         </div>
-        <button class="btn bp" onclick="go('s-mechanics')">🔧 &nbsp;Find a Mechanic</button>
-        <button class="btn bs" onclick="go('s-report')">📋 &nbsp;View Full Report</button>
-        <button class="btn bg_" onclick="startInsp()">🔄 &nbsp;Start New Inspection</button>
       </div>
     </div>`;
-}
-
-/* ================================================================
-   MECHANICS
-================================================================ */
-function setMT(t,el){ST.mech=t;document.querySelectorAll('.mtab').forEach(m=>m.classList.remove('active'));el.classList.add('active');renderMechs();}
-function renderMechs(){
-  document.getElementById('mlist').innerHTML=(MECHS[ST.mech]||[]).map(m=>`
-    <div class="mcard fi">
-      <div class="mtop"><div class="mavt">${m.e}</div><div class="minfo"><div class="mn">${m.n}</div><div class="ml">📍 ${m.l}</div><div class="mr">${m.r}</div></div></div>
-      <div class="mquip">${m.q}</div>
-      <div class="msvcs">${m.s.map(s=>`<span class="schip">✓ ${s}</span>`).join('')}</div>
-      <div class="macts">
-        <button class="btn bp bsm" onclick="showToast('Opening contacts…')">📞 Call</button>
-        <button class="btn bs bsm" onclick="showToast('Opening map…')">📍 Directions</button>
-        <button class="btn bg_ bsm" onclick="showToast('Booking coming soon')">📅 Book</button>
-      </div>
-    </div>`).join('');
 }
 
 /* ================================================================
@@ -750,26 +1385,19 @@ function renderMechs(){
 function renderReport(decision){
   const now=new Date();
   document.getElementById('repdate').textContent=`Inspected ${now.toLocaleDateString('en-PH',{month:'long',day:'numeric',year:'numeric'})}`;
-  const tc={buy:'tg',negotiate:'ty',avoid:'tr',unsure:'tb_'}[decision]||'ty';
-  const tl={buy:'BUY',negotiate:'NEGOTIATE',avoid:'AVOID',unsure:'INCONCLUSIVE'}[decision];
+  const tc={buy:'tg',neg:'ty',avoid:'tr',uns:'tb_'}[decision]||'ty';
+  const tl={buy:'BUY',neg:'NEGOTIATE',avoid:'AVOID',uns:'INCONCLUSIVE'}[decision];
   document.getElementById('repvtag').innerHTML=`<span class="tag ${tc}">${tl}</span>`;
   document.getElementById('rcsecs').innerHTML=SECS.map((sec,si)=>{
-    const problems=sec.q.filter((q,qi)=>{
-      const a=ST.ans[`${si}-${qi}`];
-      return a&&((q.pol==='biy'&&a==='yes')||(q.pol==='bin'&&a==='no'));
-    }).length;
+    const probs=sec.q.filter((q,qi)=>{const a=ST.ans[`${si}-${qi}`];return a&&((q.pol==='biy'&&a==='yes')||(q.pol==='bin'&&a==='no'));}).length;
     const qa=sec.q.map((q,qi)=>{
       const a=ST.ans[`${si}-${qi}`]||'—';
       let rc='ns';
       if(a==='yes')rc=q.pol==='biy'?'yb':'yg';
       else if(a==='no')rc=q.pol==='biy'?'nb':'ng';
-      const lbl=a==='notsure'?'Unsure':a==='—'?'—':a.charAt(0).toUpperCase()+a.slice(1);
-      return `<div class="rqrow"><div class="rq">${q.text}</div><div class="ra ${rc}">${lbl}</div></div>`;
+      return `<div class="rqrow"><div class="rq">${q.text}</div><div class="ra ${rc}">${a==='notsure'?'Unsure':a==='—'?'—':a.charAt(0).toUpperCase()+a.slice(1)}</div></div>`;
     }).join('');
-    return `<div class="rsec">
-      <div class="rshead"><div class="rsh-l"><span style="font-size:19px">${sec.icon}</span><span class="rstitle">${sec.label}</span></div><span class="tag ${problems>0?'tr':'tg'}">${problems>0?problems+' issue(s)':'Clear'}</span></div>
-      <div class="rsqa">${qa}</div>
-    </div>`;
+    return `<div class="rsec"><div class="rsec-head"><div class="rsec-title"><span>${sec.icon}</span>${sec.label}</div><span class="tag ${probs>0?'tr':'tg'}">${probs>0?probs+' issue(s)':'Clear'}</span></div><div class="rsec-qa">${qa}</div></div>`;
   }).join('');
 }
 
@@ -777,14 +1405,15 @@ function renderReport(decision){
    TOAST
 ================================================================ */
 let tt;
-function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2300);}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2500);}
 
 /* ================================================================
    INIT
 ================================================================ */
+initSlider();
 renderCars();
+renderHomeListings();
 renderMechs();
-go('s-home');
 </script>
 </body>
 </html>
