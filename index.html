@@ -8,632 +8,588 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
 <style>
+/* ─── TOKENS ─── */
 :root{
   --bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--bg4:#222;
-  --border:#272727;--border2:#333;
+  --bd:#272727;--bd2:#333;
   --y:#f5c400;--ydim:rgba(245,196,0,.10);--ymid:rgba(245,196,0,.22);
-  --org:#f07322;
   --red:#e03c3c;--rdim:rgba(224,60,60,.10);--rmid:rgba(224,60,60,.22);
   --grn:#27c97e;--gdim:rgba(39,201,126,.10);--gmid:rgba(39,201,126,.22);
-  --blu:#4f9ef8;--bdim:rgba(79,158,248,.10);
+  --blu:#4f9ef8;--bdim2:rgba(79,158,248,.10);
   --tx:#f0efe8;--tx2:#888;--tx3:#444;
   --r:14px;--rsm:9px;
-  --maxw:1400px;
+  --mw:1400px;
+  --hh:58px; /* header height */
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html{background:var(--bg);}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100dvh;overflow-x:hidden;}
+html,body{height:100%;background:var(--bg);}
+body{font-family:'DM Sans',sans-serif;color:var(--tx);overflow:hidden;} /* home: no scroll */
+body.scrollable{overflow:auto;}
 .bb{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em;}
 button,a{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:none;color:inherit;text-decoration:none;}
-::-webkit-scrollbar{width:0;height:0;}
 img{display:block;width:100%;height:100%;object-fit:cover;}
+::-webkit-scrollbar{width:0;height:0;}
 
-/* ── SCREENS ── */
-.screen{display:none;min-height:100dvh;flex-direction:column;}
+/* ─── SCREENS ─── */
+.screen{display:none;height:100dvh;flex-direction:column;}
 .screen.active{display:flex;}
-.page-body{flex:1;overflow-y:auto;}
 
-/* ── SITE HEADER ── */
-.site-header{
+/* ─── HEADER ─── */
+.hdr{
   position:fixed;top:0;left:0;right:0;z-index:200;
-  background:rgba(10,10,10,.88);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  padding:0 24px;height:60px;
+  height:var(--hh);
+  background:rgba(10,10,10,.9);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--bd);
   display:flex;align-items:center;justify-content:space-between;
-  max-width:100%;
+  padding:0 24px;
 }
-.header-logo{display:flex;align-items:center;gap:9px;cursor:pointer;}
-.logo-mark{width:34px;height:34px;background:var(--y);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
-.logo-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.1em;}
-.logo-name em{color:var(--y);font-style:normal;}
-.header-nav{display:flex;align-items:center;gap:6px;}
-.hnav-btn{padding:8px 16px;border-radius:var(--rsm);font-size:13px;font-weight:600;color:var(--tx2);transition:color .15s;}
-.hnav-btn:hover{color:var(--tx);}
-.hnav-btn.primary{background:var(--y);color:#111;padding:9px 18px;}
+.hdr-logo{display:flex;align-items:center;gap:9px;cursor:pointer;}
+.hdr-mark{width:32px;height:32px;background:var(--y);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.hdr-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.1em;}
+.hdr-name em{color:var(--y);font-style:normal;}
+.hdr-nav{display:flex;align-items:center;gap:4px;}
+.hn{padding:8px 14px;border-radius:var(--rsm);font-size:13px;font-weight:600;color:var(--tx2);transition:color .15s;}
+.hn:hover{color:var(--tx);}
+.hn.primary{background:var(--y);color:#111;padding:8px 18px;}
 
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:var(--rsm);font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;padding:0 22px;min-height:52px;transition:opacity .15s,transform .1s;cursor:pointer;border:none;width:100%;}
+/* ─── BUTTONS ─── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:var(--rsm);font-weight:600;font-size:15px;padding:0 22px;min-height:50px;transition:opacity .15s,transform .1s;cursor:pointer;border:none;width:100%;}
 .btn:active{transform:scale(.97);opacity:.88;}
 .bp{background:var(--y);color:#111;}
-.bs{background:var(--bg3);color:var(--tx);border:1px solid var(--border);}
-.bg_{background:transparent;color:var(--tx2);border:1px solid var(--border);}
+.bs{background:var(--bg3);color:var(--tx);border:1px solid var(--bd);}
+.bg_{background:transparent;color:var(--tx2);border:1px solid var(--bd);}
 .bsm{min-height:40px;font-size:13px;padding:0 16px;border-radius:8px;width:auto;}
-.btn-inline{width:auto;}
 
-/* ── TAGS ── */
+/* ─── TAGS ─── */
 .tag{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
 .ty{background:var(--ydim);color:var(--y);}
 .tr{background:var(--rdim);color:var(--red);}
 .tg{background:var(--gdim);color:var(--grn);}
-.tb_{background:var(--bdim);color:var(--blu);}
+.tb_{background:var(--bdim2);color:var(--blu);}
 
-/* ── CHIP ── */
-.chip{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:var(--rsm);font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:var(--bg3);color:var(--tx2);transition:all .15s;white-space:nowrap;}
+/* ─── CHIP ─── */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:var(--rsm);font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--bd);background:var(--bg3);color:var(--tx2);transition:all .15s;white-space:nowrap;}
 .chip:hover,.chip.active{border-color:var(--y);background:var(--ydim);color:var(--y);}
 
-/* ── TOAST ── */
-.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rsm);padding:12px 20px;font-size:13px;color:var(--tx);z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;}
+/* ─── TOAST ─── */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--bg3);border:1px solid var(--bd2);border-radius:var(--rsm);padding:12px 20px;font-size:13px;color:var(--tx);z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-/* ── MODAL ── */
+/* ─── MODAL ─── */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;opacity:0;pointer-events:none;transition:opacity .2s;display:flex;align-items:flex-end;justify-content:center;}
 .modal-bg.show{opacity:1;pointer-events:all;}
-.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:20px 20px 0 0;width:100%;max-width:560px;padding:24px 24px 40px;transform:translateY(40px);transition:transform .3s cubic-bezier(.4,0,.2,1);}
+.modal-box{background:var(--bg2);border:1px solid var(--bd2);border-radius:20px 20px 0 0;width:100%;max-width:560px;padding:24px 24px 40px;transform:translateY(40px);transition:transform .3s cubic-bezier(.4,0,.2,1);}
 .modal-bg.show .modal-box{transform:translateY(0);}
-.modal-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 20px;}
+.modal-handle{width:40px;height:4px;background:var(--bd2);border-radius:2px;margin:0 auto 20px;}
 .modal-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.05em;margin-bottom:18px;}
-.form-group{margin-bottom:16px;}
-.form-label{font-size:12px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;}
-.form-input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--rsm);padding:13px 15px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
-.form-input:focus{border-color:var(--y);}
-.form-input option{background:var(--bg3);}
-.modal-actions{display:flex;gap:10px;margin-top:20px;}
+.fg{margin-bottom:16px;}
+.fl{font-size:12px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px;}
+.fi{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--rsm);padding:13px 15px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
+.fi:focus{border-color:var(--y);}
+.fi option{background:var(--bg3);}
+.modal-acts{display:flex;gap:10px;margin-top:20px;}
 
-/* ── PAGE WRAPPER ── */
-.pw{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-
-/* ════════════════════════════════════════
-   HOME SCREEN
-════════════════════════════════════════ */
-#s-home{padding-top:60px;}
-
-/* HERO */
-.hero{
-  position:relative;height:80vh;min-height:520px;max-height:800px;
-  overflow:hidden;display:flex;align-items:flex-end;
+/* ════════════════════════════════════
+   HOME — FULL SCREEN, NO SCROLL
+════════════════════════════════════ */
+#s-home{
+  position:relative;
+  height:100dvh;
+  overflow:hidden;
 }
-.hero-img{position:absolute;inset:0;}
-.hero-img img{object-position:center 30%;}
-.hero-gradient{
-  position:absolute;inset:0;
-  background:linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,.7) 35%, rgba(10,10,10,.1) 70%, transparent 100%);
+
+/* hero bg */
+.home-bg{position:absolute;inset:0;z-index:0;}
+.home-bg img{object-position:center 35%;}
+.home-grad{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,.75) 30%, rgba(10,10,10,.2) 65%, transparent 100%),
+    linear-gradient(to right, rgba(10,10,10,.5) 0%, transparent 60%);
 }
-.hero-content{
+
+/* content layer */
+.home-content{
   position:relative;z-index:2;
-  width:100%;text-align:center;
-  padding:0 24px 56px;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:0 32px 40px;
+  padding-top:var(--hh);
+  max-width:760px;
 }
-.hero-eyebrow{
+@media(max-width:600px){.home-content{padding:0 20px 32px;padding-top:var(--hh);}}
+
+.home-eyebrow{
   font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--y);margin-bottom:14px;
+  color:var(--y);margin-bottom:12px;
 }
-.hero-title{
+.home-title{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(52px,9vw,110px);
-  line-height:.95;letter-spacing:.04em;
-  margin-bottom:18px;
+  font-size:clamp(48px,8vw,96px);
+  line-height:.95;letter-spacing:.03em;
+  margin-bottom:14px;
 }
-.hero-title em{color:var(--y);font-style:normal;}
-.hero-sub{
-  font-size:clamp(15px,2.5vw,19px);color:rgba(240,239,232,.7);
-  max-width:560px;margin:0 auto 36px;line-height:1.55;font-weight:300;
+.home-title em{color:var(--y);font-style:normal;}
+.home-sub{
+  font-size:clamp(14px,1.8vw,17px);
+  color:rgba(240,239,232,.65);
+  max-width:460px;
+  line-height:1.6;
+  font-weight:300;
+  margin-bottom:28px;
 }
-.hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.hero-cta-row .btn{width:auto;min-width:200px;}
-.hero-scroll-hint{
-  position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
-  font-size:11px;color:var(--tx2);letter-spacing:.1em;text-transform:uppercase;
-  display:flex;flex-direction:column;align-items:center;gap:6px;
+
+/* ── FEATURE SLIDER (no photos) ── */
+.fslider{
+  margin-bottom:28px;
+  position:relative;
+  overflow:hidden;
+  /* fade edges */
+  mask-image:linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
 }
-.scroll-arrow{width:1px;height:32px;background:linear-gradient(to bottom,var(--y),transparent);}
-
-/* FEATURE SLIDER */
-.feature-slider-section{padding:48px 0 32px;overflow:hidden;}
-.section-eyebrow{text-align:center;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--y);margin-bottom:10px;}
-.section-title{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,52px);letter-spacing:.04em;margin-bottom:6px;}
-.section-sub{text-align:center;font-size:14px;color:var(--tx2);max-width:480px;margin:0 auto 36px;line-height:1.5;}
-
-.fslider-track-wrap{position:relative;overflow:hidden;}
-.fslider-track{display:flex;gap:16px;transition:transform .5s cubic-bezier(.4,0,.2,1);padding:0 24px 24px;}
-.fcard{
-  flex-shrink:0;width:320px;height:220px;border-radius:var(--r);overflow:hidden;
-  position:relative;cursor:pointer;border:1px solid var(--border);
+.fslider-inner{
+  display:flex;
+  gap:10px;
+  transition:transform .55s cubic-bezier(.4,0,.2,1);
 }
-.fcard-img{position:absolute;inset:0;}
-.fcard-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.3) 60%,transparent 100%);}
-.fcard-content{position:absolute;bottom:0;left:0;right:0;padding:18px;}
-.fcard-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--y);margin-bottom:6px;}
-.fcard-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;margin-bottom:5px;}
-.fcard-desc{font-size:12px;color:rgba(240,239,232,.65);line-height:1.4;}
+.fslide{
+  flex-shrink:0;
+  width:260px;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:var(--r);
+  padding:16px 18px;
+  cursor:default;
+  transition:border-color .2s;
+}
+.fslide.current{border-color:rgba(245,196,0,.35);background:rgba(245,196,0,.06);}
+.fslide-num{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--y);text-transform:uppercase;margin-bottom:8px;}
+.fslide-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;margin-bottom:5px;}
+.fslide-desc{font-size:12px;color:rgba(240,239,232,.55);line-height:1.45;}
 
-.fslider-dots{display:flex;gap:7px;justify-content:center;margin-top:4px;}
-.fdot{width:24px;height:3px;border-radius:2px;background:var(--border2);cursor:pointer;transition:background .2s,width .2s;}
-.fdot.active{background:var(--y);width:36px;}
+/* ── SLIDER DOTS ── */
+.fslider-dots{display:flex;gap:6px;margin-bottom:20px;}
+.fdot{width:20px;height:3px;border-radius:2px;background:rgba(255,255,255,.2);cursor:pointer;transition:background .2s,width .2s;}
+.fdot.active{background:var(--y);width:32px;}
 
-/* CTA SECTION */
-.cta-section{padding:48px 24px;text-align:center;border-top:1px solid var(--border);}
-.cta-section h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);letter-spacing:.04em;margin-bottom:12px;}
-.cta-section p{font-size:14px;color:var(--tx2);max-width:400px;margin:0 auto 28px;line-height:1.6;}
-.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-.cta-btns .btn{width:auto;min-width:180px;}
+/* ── HOME CTA ROW ── */
+.home-cta{display:flex;gap:10px;flex-wrap:wrap;}
+.home-cta .btn{width:auto;min-width:0;flex:1;max-width:240px;}
+@media(max-width:480px){.home-cta .btn{max-width:100%;flex:1 1 100%;}}
 
-/* LISTINGS PREVIEW */
-.listings-preview{padding:48px 0;border-top:1px solid var(--border);}
-
-/* SITE FOOTER */
-.site-footer{padding:32px 24px;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--tx3);}
-
-/* ════════════════════════════════════════
-   INNER PAGE LAYOUT
-════════════════════════════════════════ */
-.inner-page{padding-top:60px;}
+/* ════════════════════════════════════
+   INNER PAGES (scrollable)
+════════════════════════════════════ */
+.inner-page{
+  height:100dvh;
+  overflow:hidden;
+}
+.inner-page .page-scroll{
+  flex:1;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  padding-top:var(--hh);
+}
 .page-header{
-  padding:40px 24px 32px;
-  border-bottom:1px solid var(--border);
-  text-align:center;
+  padding:36px 24px 28px;
+  border-bottom:1px solid var(--bd);
   background:linear-gradient(180deg,rgba(245,196,0,.04) 0%,transparent 100%);
 }
-.page-header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);letter-spacing:.05em;margin-bottom:8px;}
-.page-header p{font-size:14px;color:var(--tx2);max-width:480px;margin:0 auto;line-height:1.55;}
+.page-header h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,5vw,58px);letter-spacing:.05em;margin-bottom:7px;}
+.page-header p{font-size:13.5px;color:var(--tx2);max-width:480px;line-height:1.55;}
 
-/* ════════════════════════════════════════
-   RESPONSIVE CARD GRID
-════════════════════════════════════════ */
+/* RESPONSIVE CARD GRID */
 .card-grid{
-  display:grid;
-  gap:16px;
-  padding:24px;
-  max-width:var(--maxw);
-  margin:0 auto;
-  /* default mobile */
+  display:grid;gap:16px;padding:20px 24px;
+  max-width:var(--mw);margin:0 auto;
   grid-template-columns:1fr;
 }
 @media(min-width:540px){.card-grid{grid-template-columns:repeat(2,1fr);}}
 @media(min-width:900px){.card-grid{grid-template-columns:repeat(3,1fr);}}
 @media(min-width:1200px){.card-grid{grid-template-columns:repeat(4,1fr);}}
 
-/* ════════════════════════════════════════
-   FILTER BAR — GRID, NOT SCROLL
-════════════════════════════════════════ */
-.filter-wrap{
-  max-width:var(--maxw);margin:0 auto;
-  padding:20px 24px 0;
-}
-.filter-section{margin-bottom:16px;}
-.filter-row-label{font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;}
-.filter-grid{display:flex;flex-wrap:wrap;gap:7px;}
+/* FILTER GRID (no horizontal scroll) */
+.filter-wrap{max-width:var(--mw);margin:0 auto;padding:18px 24px 0;}
+.fg-section{margin-bottom:14px;}
+.fg-label{font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;}
+.fg-row{display:flex;flex-wrap:wrap;gap:7px;}
 
 /* DRAWER */
 .dov{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:300;opacity:0;pointer-events:none;transition:opacity .2s;}
 .dov.show{opacity:1;pointer-events:all;}
-.fdrawer{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border2);border-radius:20px 20px 0 0;z-index:301;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:90dvh;overflow-y:auto;padding-bottom:32px;}
+.fdrawer{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--bd2);border-radius:20px 20px 0 0;z-index:301;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:90dvh;overflow-y:auto;padding-bottom:32px;}
 .fdrawer.show{transform:translateY(0);}
-.dh{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:12px auto 0;}
-.dhead{display:flex;align-items:center;justify-content:space-between;padding:16px 24px 14px;}
+.dh{width:40px;height:4px;background:var(--bd2);border-radius:2px;margin:12px auto 0;}
+.dhead{display:flex;align-items:center;justify-content:space-between;padding:16px 24px 12px;}
 .dhead h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.05em;}
-.dbody{padding:0 24px 20px;display:flex;flex-direction:column;gap:20px;}
-.fg-label{font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px;}
-.fchips{display:flex;flex-wrap:wrap;gap:7px;}
-input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:var(--bg4);border-radius:2px;outline:none;margin-top:9px;}
+.dbody{padding:0 24px 20px;display:flex;flex-direction:column;gap:18px;}
+input[type=range]{width:100%;-webkit-appearance:none;height:4px;background:var(--bg4);border-radius:2px;outline:none;margin-top:9px;}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--y);cursor:pointer;border:2px solid #111;}
 .rrow{display:flex;justify-content:space-between;font-size:12px;color:var(--tx2);margin-top:6px;}
 
-/* ════════════════════════════════════════
-   CAR LISTING CARD
-════════════════════════════════════════ */
-.car-card{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r);overflow:hidden;cursor:pointer;
-  transition:border-color .2s,transform .2s;
-  display:flex;flex-direction:column;
-}
-.car-card:hover{border-color:var(--border2);transform:translateY(-2px);}
-.car-thumb{height:180px;background:var(--bg3);position:relative;overflow:hidden;}
+/* CAR CARD */
+.car-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s;display:flex;flex-direction:column;}
+.car-card:hover{border-color:var(--bd2);transform:translateY(-2px);}
+.car-thumb{height:170px;background:var(--bg3);position:relative;overflow:hidden;}
 .car-thumb img{object-position:center;}
-.car-thumb-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);}
-.car-thumb-badges{position:absolute;top:12px;left:12px;display:flex;flex-wrap:wrap;gap:5px;}
-.car-thumb-cond{position:absolute;top:12px;right:12px;}
-.car-info{padding:14px;flex:1;display:flex;flex-direction:column;}
+.car-tov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%);}
+.car-tbadges{position:absolute;top:11px;left:11px;display:flex;gap:5px;}
+.car-tcond{position:absolute;top:11px;right:11px;}
+.car-info{padding:13px;flex:1;display:flex;flex-direction:column;}
 .car-make{font-weight:700;font-size:15px;margin-bottom:4px;line-height:1.3;}
-.car-meta{display:flex;flex-wrap:wrap;gap:3px 10px;font-size:11px;color:var(--tx2);margin-bottom:12px;}
-.car-meta span::before{content:'·';margin-right:5px;opacity:.35;}
+.car-meta{display:flex;flex-wrap:wrap;gap:2px 9px;font-size:11px;color:var(--tx2);margin-bottom:10px;}
+.car-meta span::before{content:'·';margin-right:4px;opacity:.3;}
 .car-meta span:first-child::before{display:none;}
-.car-price{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--y);letter-spacing:.04em;margin-bottom:12px;margin-top:auto;}
-.car-actions{display:flex;gap:8px;}
+.car-price{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--y);letter-spacing:.04em;margin-bottom:10px;margin-top:auto;}
+.car-acts{display:flex;gap:7px;}
 
-/* ════════════════════════════════════════
-   MECHANIC CARD
-════════════════════════════════════════ */
-.mech-card{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r);overflow:hidden;
-  transition:border-color .2s,transform .2s;
-}
-.mech-card:hover{border-color:var(--border2);transform:translateY(-2px);}
-.mech-photo{height:160px;background:var(--bg3);position:relative;overflow:hidden;}
+/* MECH CARD */
+.mech-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;}
+.mech-card:hover{border-color:var(--bd2);transform:translateY(-2px);}
+.mech-photo{height:155px;background:var(--bg3);position:relative;overflow:hidden;}
 .mech-photo img{object-position:center;}
-.mech-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 55%);}
-.mech-photo-info{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;}
-.mech-photo-name{font-weight:700;font-size:15px;margin-bottom:2px;}
-.mech-photo-loc{font-size:12px;color:rgba(240,239,232,.6);}
-.mech-body{padding:14px;}
-.mech-rating{font-size:13px;color:var(--y);font-weight:600;margin-bottom:8px;}
-.mquip{font-size:12px;color:var(--tx2);font-style:italic;line-height:1.5;margin-bottom:12px;padding:9px 11px;background:var(--bg3);border-radius:8px;}
-.msvcs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
-.schip{background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:500;padding:4px 10px;color:var(--tx2);}
+.mech-pov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 55%);}
+.mech-pinfo{position:absolute;bottom:0;left:0;right:0;padding:11px 13px;}
+.mech-pname{font-weight:700;font-size:15px;margin-bottom:2px;}
+.mech-ploc{font-size:12px;color:rgba(240,239,232,.6);}
+.mech-body{padding:13px;}
+.mech-rating{font-size:13px;color:var(--y);font-weight:600;margin-bottom:7px;}
+.mquip{font-size:12px;color:var(--tx2);font-style:italic;line-height:1.5;margin-bottom:11px;padding:8px 11px;background:var(--bg3);border-radius:8px;}
+.msvcs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+.schip{background:var(--bg3);border:1px solid var(--bd);border-radius:20px;font-size:11px;font-weight:500;padding:4px 9px;color:var(--tx2);}
 
-/* ════════════════════════════════════════
-   INSPECTION SCREEN
-════════════════════════════════════════ */
-#s-insp{padding-top:60px;}
-.insp-layout{display:flex;max-width:900px;margin:0 auto;min-height:calc(100dvh - 60px);}
+/* ════════════════════════════════════
+   INSPECTION — FIXED CHROME, SCROLL QUESTIONS
+════════════════════════════════════ */
+#s-insp{overflow:hidden;height:100dvh;}
 
-/* Section nav sidebar (desktop) */
-.insp-sidenav{
-  width:200px;flex-shrink:0;
-  padding:28px 16px;
-  border-right:1px solid var(--border);
-  position:sticky;top:60px;height:calc(100dvh - 60px);
+/* Layout: fixed sidebar + scrollable main */
+.insp-wrap{
+  display:flex;
+  height:100dvh;
+  padding-top:var(--hh);
+}
+
+/* Sidebar */
+.insp-side{
+  width:190px;flex-shrink:0;
+  border-right:1px solid var(--bd);
+  display:flex;flex-direction:column;
+  padding:20px 14px;
   overflow-y:auto;
+  height:100%;
 }
-@media(max-width:700px){.insp-sidenav{display:none;}}
-.snav-title{font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
-.snav-item{
-  display:flex;align-items:center;gap:9px;
-  padding:10px 12px;border-radius:var(--rsm);
-  font-size:13px;font-weight:500;color:var(--tx2);
-  cursor:pointer;transition:all .15s;margin-bottom:4px;
-  border:1px solid transparent;
-}
+@media(max-width:700px){.insp-side{display:none;}}
+.insp-side-title{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;}
+.snav{display:flex;flex-direction:column;gap:3px;}
+.snav-item{display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:var(--rsm);font-size:13px;font-weight:500;color:var(--tx2);cursor:pointer;transition:all .15s;border:1px solid transparent;}
 .snav-item:hover{background:var(--bg3);color:var(--tx);}
-.snav-item.active{background:var(--ydim);border-color:rgba(245,196,0,.25);color:var(--y);}
+.snav-item.active{background:var(--ydim);border-color:rgba(245,196,0,.22);color:var(--y);}
 .snav-item.done{color:var(--grn);}
-.snav-item .sni{font-size:16px;}
-.snav-item .sncount{margin-left:auto;font-size:10px;color:var(--tx3);}
+.snav-item .si{font-size:15px;flex-shrink:0;}
+.snav-item .sc{margin-left:auto;font-size:10px;color:var(--tx3);}
+.insp-side-prog{margin-top:auto;padding-top:18px;border-top:1px solid var(--bd);}
+.ispb{height:3px;background:var(--bg3);border-radius:2px;margin-bottom:6px;}
+.ispbf{height:100%;background:var(--y);border-radius:2px;transition:width .3s;}
+.ispl{font-size:11px;color:var(--tx2);}
+.insp-side-exit{margin-top:14px;}
 
-/* Mobile section nav */
+/* Main area: header fixed, questions scroll */
+.insp-main-wrap{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;
+  height:100%;
+  overflow:hidden;
+}
+
+/* Mobile section nav (sticky inside main wrap) */
 .insp-topnav{
   display:none;
-  overflow-x:auto;padding:12px 18px;
-  gap:8px;border-bottom:1px solid var(--border);
-  background:var(--bg);position:sticky;top:60px;z-index:10;
+  overflow-x:auto;gap:7px;padding:11px 16px;
+  border-bottom:1px solid var(--bd);
+  background:var(--bg);
+  flex-shrink:0;
 }
 @media(max-width:700px){.insp-topnav{display:flex;}}
 .insp-topnav::-webkit-scrollbar{display:none;}
-.insp-nav-chip{
-  flex-shrink:0;display:flex;align-items:center;gap:6px;
-  padding:8px 14px;border-radius:var(--rsm);font-size:12px;font-weight:600;
-  border:1.5px solid var(--border);background:var(--bg3);color:var(--tx2);
-  cursor:pointer;transition:all .15s;
+.itnc{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:var(--rsm);font-size:12px;font-weight:600;border:1.5px solid var(--bd);background:var(--bg3);color:var(--tx2);cursor:pointer;transition:all .15s;}
+.itnc.active{border-color:var(--y);background:var(--ydim);color:var(--y);}
+.itnc.done{border-color:rgba(39,201,126,.3);background:var(--gdim);color:var(--grn);}
+
+/* Sticky section header inside main */
+.insp-section-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 22px;
+  border-bottom:1px solid var(--bd);
+  background:var(--bg2);
+  flex-shrink:0;
+  position:relative;
+  z-index:5;
 }
-.insp-nav-chip.active{border-color:var(--y);background:var(--ydim);color:var(--y);}
-.insp-nav-chip.done{border-color:rgba(39,201,126,.3);background:var(--gdim);color:var(--grn);}
+@media(max-width:700px){.insp-section-bar{padding:12px 16px;}}
+.isb-left h2{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;margin-bottom:2px;}
+@media(max-width:700px){.isb-left h2{font-size:20px;}}
+.isb-left p{font-size:12px;color:var(--tx2);}
+.isb-right{text-align:right;flex-shrink:0;}
+.isb-count{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--y);}
+.isb-label{font-size:10px;color:var(--tx2);}
+.insp-global-prog{height:2px;background:var(--bg3);flex-shrink:0;}
+.insp-global-fill{height:100%;background:var(--y);transition:width .3s;}
 
-/* Main question area */
-.insp-main{flex:1;overflow-y:auto;padding:28px 24px;min-width:0;}
-@media(max-width:700px){.insp-main{padding:18px;};}
-
-.insp-section-header{
-  margin-bottom:24px;
-  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+/* SCROLLABLE QUESTION AREA */
+.insp-q-scroll{
+  flex:1;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  padding:20px 22px 60px;
+  scroll-behavior:smooth;
 }
-.ish-left h2{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.04em;margin-bottom:4px;}
-.ish-left p{font-size:13px;color:var(--tx2);}
-.insp-progress-mini{text-align:right;}
-.ipm-num{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--y);}
-.ipm-label{font-size:11px;color:var(--tx2);}
-.prog-bar-full{height:3px;background:var(--bg3);border-radius:2px;margin-bottom:28px;}
-.prog-bar-fill{height:100%;background:var(--y);border-radius:2px;transition:width .35s ease;}
+@media(max-width:700px){.insp-q-scroll{padding:16px 14px 60px;}}
 
-/* QUESTION STACK */
-.q-stack{display:flex;flex-direction:column;gap:14px;}
+/* QUESTION ITEM */
 .q-item{
-  background:var(--bg2);border:1px solid var(--border);
+  background:var(--bg2);border:1px solid var(--bd);
   border-radius:var(--r);overflow:hidden;
-  transition:border-color .2s;
+  margin-bottom:12px;
+  transition:border-color .2s,opacity .3s;
 }
-.q-item.answered{border-color:var(--border2);}
-.q-item.unanswered-upcoming{opacity:.45;pointer-events:none;}
+.q-item.answered{border-color:var(--bd2);opacity:.55;}
+.q-item.answered:hover{opacity:1;cursor:pointer;}
+.q-item.upcoming{opacity:.3;pointer-events:none;}
 
 /* Photo reference */
-.q-photo{height:180px;position:relative;overflow:hidden;flex-shrink:0;}
-@media(max-width:700px){.q-photo{height:140px;}}
-.q-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 60%);}
-.q-photo-label{position:absolute;bottom:10px;left:14px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,239,232,.6);}
+.q-photo{height:160px;position:relative;overflow:hidden;}
+@media(max-width:700px){.q-photo{height:130px;}}
+.q-photo-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 60%);}
+.q-photo-lbl{position:absolute;bottom:9px;left:13px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,239,232,.55);}
 
 /* Question body */
-.q-body{padding:16px 18px 18px;}
-@media(max-width:700px){.q-body{padding:14px 15px 15px;}}
+.q-body{padding:15px 17px 17px;}
+@media(max-width:700px){.q-body{padding:13px 14px 15px;}}
 .q-num{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
-.q-text{font-size:17px;font-weight:500;line-height:1.45;margin-bottom:9px;}
+.q-text{font-size:17px;font-weight:500;line-height:1.45;margin-bottom:8px;}
 @media(max-width:700px){.q-text{font-size:15px;}}
-.q-hint{font-size:12px;color:var(--tx2);line-height:1.5;padding:9px 12px;background:var(--bg3);border-radius:8px;border-left:2px solid var(--border2);margin-bottom:16px;}
+.q-hint{font-size:12px;color:var(--tx2);line-height:1.5;padding:9px 12px;background:var(--bg3);border-radius:8px;border-left:2px solid var(--bd2);margin-bottom:14px;}
 
-/* Answer choices */
-.q-answers{display:flex;flex-direction:column;gap:8px;}
-.q-answers.collapsed{display:none;}
-.ans-btn{
-  display:flex;align-items:center;gap:12px;
-  padding:13px 15px;border-radius:var(--rsm);
-  border:1.5px solid var(--border);background:var(--bg3);
-  color:var(--tx);font-size:14px;font-weight:500;
-  cursor:pointer;transition:all .15s;text-align:left;width:100%;
-}
-.ans-btn:active{transform:scale(.98);}
-.ans-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1.5px solid var(--border);}
-.ans-sub{font-size:11px;opacity:.55;margin-top:1px;}
+/* Answers */
+.q-choices{display:flex;flex-direction:column;gap:7px;}
+.q-choices.hidden{display:none;}
+.achoice{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);color:var(--tx);font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;text-align:left;width:100%;}
+.achoice:active{transform:scale(.98);}
+.adot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1.5px solid var(--bd);}
+.asub{font-size:11px;opacity:.5;margin-top:1px;}
+/* context-aware */
+.achoice.ayb .adot{background:var(--rdim);border-color:rgba(224,60,60,.3);}
+.achoice.ayg .adot{background:var(--gdim);border-color:rgba(39,201,126,.3);}
+.achoice.anb .adot{background:var(--gdim);border-color:rgba(39,201,126,.3);}
+.achoice.ang .adot{background:var(--rdim);border-color:rgba(224,60,60,.3);}
+.achoice.ans_{color:var(--tx2);}.achoice.ans_ .adot{background:var(--ydim);border-color:rgba(245,196,0,.3);}
+.achoice.sel.ayb{border-color:var(--red);background:rgba(224,60,60,.07);}
+.achoice.sel.ayg{border-color:var(--grn);background:rgba(39,201,126,.07);}
+.achoice.sel.anb{border-color:var(--grn);background:rgba(39,201,126,.07);}
+.achoice.sel.ang{border-color:var(--red);background:rgba(224,60,60,.07);}
+.achoice.sel.ans_{border-color:var(--y);background:rgba(245,196,0,.07);}
 
-/* Context-aware colors */
-.ans-btn.ayb .ans-dot{background:var(--rdim);border-color:rgba(224,60,60,.3);}
-.ans-btn.ayg .ans-dot{background:var(--gdim);border-color:rgba(39,201,126,.3);}
-.ans-btn.anb .ans-dot{background:var(--gdim);border-color:rgba(39,201,126,.3);}
-.ans-btn.ang .ans-dot{background:var(--rdim);border-color:rgba(224,60,60,.3);}
-.ans-btn.ans_ .ans-dot{background:var(--ydim);border-color:rgba(245,196,0,.3);}
-.ans-btn.sel.ayb{border-color:var(--red);background:rgba(224,60,60,.06);}
-.ans-btn.sel.ayg{border-color:var(--grn);background:rgba(39,201,126,.06);}
-.ans-btn.sel.anb{border-color:var(--grn);background:rgba(39,201,126,.06);}
-.ans-btn.sel.ang{border-color:var(--red);background:rgba(224,60,60,.06);}
-.ans-btn.sel.ans_{border-color:var(--y);background:rgba(245,196,0,.06);}
+/* Collapsed pill */
+.ans-pill{display:none;align-items:center;gap:10px;padding:11px 14px;border-radius:var(--rsm);font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--bd2);transition:border-color .15s;}
+.ans-pill:hover{border-color:var(--y);}
+.ans-pill.show{display:flex;}
+.ap-icon{font-size:14px;flex-shrink:0;}
+.ap-label{flex:1;}
+.ap-edit{font-size:11px;color:var(--tx3);}
 
-/* Selected answer pill (shown when collapsed) */
-.ans-selected-pill{
-  display:flex;align-items:center;gap:10px;
-  padding:11px 14px;border-radius:var(--rsm);
-  font-size:13px;font-weight:500;cursor:pointer;
-  border:1.5px solid var(--border2);
-  transition:border-color .15s;
-}
-.ans-selected-pill:hover{border-color:var(--y);}
-.ans-selected-pill .pill-icon{font-size:14px;}
-.ans-selected-pill .pill-label{flex:1;}
-.ans-selected-pill .pill-edit{font-size:11px;color:var(--tx3);}
+/* Finish */
+.finish-row{display:none;padding:8px 0 24px;}
 
-.finish-wrap{padding:24px 0;display:none;}
-
-/* ════════════════════════════════════════
+/* ════════════════════════════════════
    RESULT SCREEN
-════════════════════════════════════════ */
-#s-result{padding-top:60px;}
-.result-layout{max-width:700px;margin:0 auto;padding:40px 24px;}
-@media(max-width:600px){.result-layout{padding:24px 18px;}}
-
-.result-verdict-block{text-align:center;margin-bottom:36px;}
-.rvb-badge{display:inline-flex;align-items:center;justify-content:center;width:90px;height:90px;border-radius:50%;font-size:38px;margin-bottom:18px;}
-.vc-buy .rvb-badge{background:var(--gdim);border:2px solid var(--grn);}
-.vc-neg .rvb-badge{background:var(--ydim);border:2px solid var(--y);}
-.vc-avoid .rvb-badge{background:var(--rdim);border:2px solid var(--red);}
-.vc-uns .rvb-badge{background:var(--bdim);border:2px solid var(--blu);}
-.rvb-text{font-family:'Bebas Neue',sans-serif;font-size:64px;line-height:1;margin-bottom:10px;}
-.vc-buy .rvb-text{color:var(--grn);}
-.vc-neg .rvb-text{color:var(--y);}
-.vc-avoid .rvb-text{color:var(--red);}
-.vc-uns .rvb-text{color:var(--blu);}
-.rvb-sub{font-size:15px;color:var(--tx2);max-width:340px;margin:0 auto;line-height:1.6;}
-
-.result-cards{display:flex;flex-direction:column;gap:14px;}
-.rcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;}
-.rcard-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.05em;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
-.risk-row_{display:flex;align-items:center;gap:10px;}
+════════════════════════════════════ */
+#s-result{overflow:hidden;}
+#s-result .page-scroll{padding-bottom:48px;}
+.result-wrap{max-width:700px;margin:0 auto;padding:36px 24px;}
+@media(max-width:600px){.result-wrap{padding:22px 16px;}}
+.rv-block{text-align:center;margin-bottom:32px;}
+.rvbadge{display:inline-flex;align-items:center;justify-content:center;width:86px;height:86px;border-radius:50%;font-size:36px;margin-bottom:16px;}
+.vc-buy .rvbadge{background:var(--gdim);border:2px solid var(--grn);}
+.vc-neg .rvbadge{background:var(--ydim);border:2px solid var(--y);}
+.vc-avoid .rvbadge{background:var(--rdim);border:2px solid var(--red);}
+.vc-uns .rvbadge{background:var(--bdim2);border:2px solid var(--blu);}
+.rvtxt{font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:1;margin-bottom:9px;}
+.vc-buy .rvtxt{color:var(--grn);}
+.vc-neg .rvtxt{color:var(--y);}
+.vc-avoid .rvtxt{color:var(--red);}
+.vc-uns .rvtxt{color:var(--blu);}
+.rvsub{font-size:14px;color:var(--tx2);max-width:340px;margin:0 auto;line-height:1.6;}
+.rcards{display:flex;flex-direction:column;gap:12px;}
+.rcard{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:17px;}
+.rcard-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.05em;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
+.risk-row{display:flex;align-items:center;gap:10px;}
 .risk-lbl{font-size:13px;color:var(--tx2);flex:1;}
 .risk-val{font-weight:700;font-size:14px;}
 .risk-val.low{color:var(--grn);}
 .risk-val.medium{color:var(--y);}
 .risk-val.high{color:var(--red);}
-.irow{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);}
+.irow{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd);}
 .irow:last-child{border-bottom:none;}
-.idot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.idot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;}
 .idot.crit{background:var(--red);}
 .idot.warn{background:var(--y);}
 .idot.info{background:var(--blu);}
 .ic .it{font-size:13px;font-weight:500;line-height:1.4;}
 .ic .is{font-size:11px;color:var(--tx2);margin-top:2px;}
-.unscard{background:linear-gradient(135deg,var(--bdim),rgba(79,158,248,.03));border:1px solid rgba(79,158,248,.25);border-radius:var(--r);padding:20px;}
-.unscard h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;margin-bottom:6px;color:var(--blu);}
-.unscard p{font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:16px;}
-.result-actions{display:flex;flex-direction:column;gap:10px;}
+.unscard{background:linear-gradient(135deg,var(--bdim2),rgba(79,158,248,.03));border:1px solid rgba(79,158,248,.25);border-radius:var(--r);padding:18px;}
+.unscard h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;margin-bottom:5px;color:var(--blu);}
+.unscard p{font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:14px;}
+.result-acts{display:flex;flex-direction:column;gap:9px;}
 
-/* ════════════════════════════════════════
+/* ════════════════════════════════════
    REPORT SCREEN
-════════════════════════════════════════ */
-#s-report{padding-top:60px;}
-.report-layout{max-width:800px;margin:0 auto;padding:32px 24px;}
-.report-meta-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;display:flex;align-items:center;gap:16px;margin-bottom:24px;}
-.rcar-icon{font-size:40px;}
-.rcar-info .rname{font-weight:700;font-size:16px;}
-.rcar-info .rdate{font-size:13px;color:var(--tx2);margin-top:3px;}
-.rsecs{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;}
-.rsec{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
-.rsec-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;}
-.rsec-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.05em;display:flex;align-items:center;gap:8px;}
-.rsec-qa{border-top:1px solid var(--border);}
-.rqrow{display:flex;align-items:flex-start;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--border);gap:12px;}
+════════════════════════════════════ */
+#s-report{overflow:hidden;}
+#s-report .page-scroll{padding-bottom:48px;}
+.report-wrap{max-width:800px;margin:0 auto;padding:28px 24px;}
+.rep-meta{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+.rep-icon{font-size:38px;}
+.rep-name{font-weight:700;font-size:15px;}
+.rep-date{font-size:12px;color:var(--tx2);margin-top:3px;}
+.rsecs{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.rsec{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;}
+.rsec-head{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;}
+.rsec-title{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.05em;display:flex;align-items:center;gap:7px;}
+.rsec-qa{border-top:1px solid var(--bd);}
+.rqrow{display:flex;align-items:flex-start;justify-content:space-between;padding:10px 15px;border-bottom:1px solid var(--bd);gap:10px;}
 .rqrow:last-child{border-bottom:none;}
-.rq{font-size:12.5px;color:var(--tx2);flex:1;line-height:1.4;}
-.ra{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.rq{font-size:12px;color:var(--tx2);flex:1;line-height:1.4;}
+.ra{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;}
 .ra.yb{background:var(--rdim);color:var(--red);}
 .ra.yg{background:var(--gdim);color:var(--grn);}
 .ra.nb{background:var(--gdim);color:var(--grn);}
 .ra.ng{background:var(--rdim);color:var(--red);}
 .ra.ns{background:var(--ydim);color:var(--y);}
-.report-notes-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:24px;}
-.rnotes-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.05em;margin-bottom:16px;}
-textarea.ni{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--rsm);padding:13px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:13px;resize:none;min-height:80px;outline:none;line-height:1.5;}
+.rep-notes{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:16px;margin-bottom:20px;}
+.rep-notes-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.05em;margin-bottom:12px;}
+textarea.ni{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--rsm);padding:12px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:13px;resize:none;min-height:76px;outline:none;line-height:1.5;}
 textarea.ni:focus{border-color:var(--y);}
 textarea.ni::placeholder{color:var(--tx3);}
-.photo-row{display:flex;gap:10px;margin-top:14px;}
-.pph{flex:1;aspect-ratio:1;max-width:90px;background:var(--bg3);border:1.5px dashed var(--border);border-radius:var(--rsm);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:20px;color:var(--tx3);cursor:pointer;}
+.prow{display:flex;gap:9px;margin-top:12px;}
+.pph{flex:1;max-width:80px;aspect-ratio:1;background:var(--bg3);border:1.5px dashed var(--bd);border-radius:var(--rsm);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:18px;color:var(--tx3);cursor:pointer;}
 .pph small{font-size:9px;color:var(--tx3);}
-.send-mech-row{background:linear-gradient(135deg,var(--ydim),rgba(245,196,0,.04));border:1px solid rgba(245,196,0,.2);border-radius:var(--r);padding:18px;margin-bottom:24px;}
-.smr-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.04em;margin-bottom:5px;}
-.smr-sub{font-size:13px;color:var(--tx2);margin-bottom:14px;line-height:1.5;}
-.report-actions{display:flex;flex-direction:column;gap:10px;}
+.send-mech{background:linear-gradient(135deg,var(--ydim),rgba(245,196,0,.04));border:1px solid rgba(245,196,0,.2);border-radius:var(--r);padding:17px;margin-bottom:20px;}
+.sm-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;margin-bottom:4px;}
+.sm-sub{font-size:13px;color:var(--tx2);margin-bottom:12px;line-height:1.5;}
+.sm-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.sm-btns .btn{flex:1;min-width:160px;width:auto;}
+.rep-actions{display:flex;flex-direction:column;gap:9px;}
 
-@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
-.fade-in{animation:slideDown .28s ease forwards;}
+/* ─── MECHANICS SCREEN ─── */
+#s-mechanics{overflow:hidden;}
+
+/* ─── LISTINGS SCREEN ─── */
+#s-listings{overflow:hidden;}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.fi{animation:slideUp .28s ease forwards;}
 </style>
 </head>
 <body>
 
-<!-- SITE HEADER (fixed, all screens) -->
-<header class="site-header" id="site-header">
-  <div class="header-logo" onclick="go('s-home')">
-    <div class="logo-mark">🔍</div>
-    <div class="logo-name">KUN<em>DOKTOR</em></div>
+<!-- FIXED HEADER -->
+<header class="hdr" id="hdr">
+  <div class="hdr-logo" onclick="go('s-home')">
+    <div class="hdr-mark">🔍</div>
+    <div class="hdr-name">KUN<em>DOKTOR</em></div>
   </div>
-  <nav class="header-nav">
-    <button class="hnav-btn" onclick="go('s-listings')">Listings</button>
-    <button class="hnav-btn" onclick="go('s-mechanics')">Mechanics</button>
-    <button class="hnav-btn primary btn" style="width:auto" onclick="startInsp()">Inspect a Car</button>
+  <nav class="hdr-nav">
+    <button class="hn" onclick="go('s-listings')">Listings</button>
+    <button class="hn" onclick="go('s-mechanics')">Mechanics</button>
+    <button class="hn primary btn" style="width:auto;" onclick="startInsp()">Inspect a Car</button>
   </nav>
 </header>
 
-<!-- ════════ HOME ════════ -->
+<!-- ══════════ HOME ══════════ -->
 <div id="s-home" class="screen active">
-  <div class="page-body">
+  <!-- BG photo -->
+  <div class="home-bg">
+    <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1800&q=80&auto=format&fit=crop" alt="" loading="eager">
+  </div>
+  <div class="home-grad"></div>
 
-    <!-- HERO -->
-    <div class="hero">
-      <div class="hero-img">
-        <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1600&q=80&auto=format&fit=crop" alt="Mechanic under car lift" loading="eager">
-      </div>
-      <div class="hero-gradient"></div>
-      <div class="hero-content">
-        <div class="hero-eyebrow">Your street-smart car companion</div>
-        <h1 class="hero-title">YOU KNOW<br>YOUR <em>CARS</em>.<br>WE GOT YOUR BACK.</h1>
-        <p class="hero-sub">Got a car in mind? Already standing next to one? Run a proper inspection, know exactly what you're dealing with, and we'll find you the right mechanic to assist — not handle — the rest.</p>
-        <div class="hero-cta-row">
-          <button class="btn bp" onclick="startInsp()">🔍 &nbsp;Inspect a Car Now</button>
-          <button class="btn bg_" onclick="go('s-listings')">Browse Listings</button>
-        </div>
-      </div>
-      <div class="hero-scroll-hint">
-        <span>Scroll</span>
-        <div class="scroll-arrow"></div>
-      </div>
-    </div>
+  <!-- Content -->
+  <div class="home-content">
+    <div class="home-eyebrow">Your street-smart car companion</div>
+    <h1 class="home-title">YOU KNOW<br>YOUR <em>CARS</em>.<br>WE GOT YOUR BACK.</h1>
+    <p class="home-sub">Got a car in mind? Already standing next to one? Run a proper inspection and we'll bring in the right mechanic to assist — you stay in charge.</p>
 
     <!-- FEATURE SLIDER -->
-    <section class="feature-slider-section">
-      <div class="section-eyebrow">What Kundoktor does</div>
-      <h2 class="section-title">YOUR ASSISTANT.<br>NOT YOUR BABYSITTER.</h2>
-      <p class="section-sub">You call the shots. We just make sure you have every bit of information before you do.</p>
-      <div class="fslider-track-wrap" id="fslider-wrap">
-        <div class="fslider-track" id="fslider-track">
-          <div class="fcard">
-            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
-            <div class="fcard-grad"></div>
-            <div class="fcard-content">
-              <div class="fcard-label">01 · Core Feature</div>
-              <div class="fcard-title">GUIDED INSPECTION</div>
-              <div class="fcard-desc">5 sections. 20 questions. Photo references. You walk through it — we tell you what to look for.</div>
-            </div>
-          </div>
-          <div class="fcard">
-            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
-            <div class="fcard-grad"></div>
-            <div class="fcard-content">
-              <div class="fcard-label">02 · Smart Verdict</div>
-              <div class="fcard-title">BUY / NEGOTIATE / AVOID</div>
-              <div class="fcard-desc">No wishy-washy scores. We read your answers and give you a real decision, not a disclaimer.</div>
-            </div>
-          </div>
-          <div class="fcard">
-            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
-            <div class="fcard-grad"></div>
-            <div class="fcard-content">
-              <div class="fcard-label">03 · Mechanic Network</div>
-              <div class="fcard-title">FIND YOUR MECHANIC</div>
-              <div class="fcard-desc">PMS, repairs, or pre-buy inspection. Find a trusted shop and book directly through Kundoktor.</div>
-            </div>
-          </div>
-          <div class="fcard">
-            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1563237023-b1e970526dcb?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
-            <div class="fcard-grad"></div>
-            <div class="fcard-content">
-              <div class="fcard-label">04 · Listings</div>
-              <div class="fcard-title">BROWSE REAL LISTINGS</div>
-              <div class="fcard-desc">Carmudi, AutoDeal, AllCars — all in one place. Filter by brand, type, price, and coding day.</div>
-            </div>
-          </div>
-          <div class="fcard">
-            <div class="fcard-img"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=640&q=80&auto=format&fit=crop" alt="" loading="lazy"></div>
-            <div class="fcard-grad"></div>
-            <div class="fcard-content">
-              <div class="fcard-label">05 · Reports</div>
-              <div class="fcard-title">INSPECTION REPORTS</div>
-              <div class="fcard-desc">Every answer, every finding — saved. Send your report straight to any mechanic you book.</div>
-            </div>
-          </div>
+    <div class="fslider" id="fslider">
+      <div class="fslider-inner" id="fslider-inner">
+        <div class="fslide">
+          <div class="fslide-num">01 · Inspection</div>
+          <div class="fslide-title">GUIDED CAR CHECK</div>
+          <div class="fslide-desc">5 sections, photo references, real questions. Know exactly what to look at.</div>
+        </div>
+        <div class="fslide">
+          <div class="fslide-num">02 · Smart Verdict</div>
+          <div class="fslide-title">BUY / NEGOTIATE / AVOID</div>
+          <div class="fslide-desc">No vague scores. We read your answers and give you a straight decision.</div>
+        </div>
+        <div class="fslide">
+          <div class="fslide-num">03 · Mechanics</div>
+          <div class="fslide-title">FIND YOUR MECHANIC</div>
+          <div class="fslide-desc">PMS, repairs, pre-buy inspection. Book a trusted shop in minutes.</div>
+        </div>
+        <div class="fslide">
+          <div class="fslide-num">04 · Listings</div>
+          <div class="fslide-title">BROWSE REAL LISTINGS</div>
+          <div class="fslide-desc">Carmudi, AutoDeal, AllCars in one place. Filter and inspect before you commit.</div>
+        </div>
+        <div class="fslide">
+          <div class="fslide-num">05 · Reports</div>
+          <div class="fslide-title">INSPECTION REPORTS</div>
+          <div class="fslide-desc">Every finding saved and shareable. Send it straight to your mechanic.</div>
         </div>
       </div>
-      <div class="fslider-dots" id="fslider-dots"></div>
-    </section>
+    </div>
+    <div class="fslider-dots" id="fslider-dots"></div>
 
-    <!-- CTA STRIP -->
-    <section class="cta-section">
-      <h2>ALREADY FOUND<br>A CAR?</h2>
-      <p>Don't sign anything yet. Run an inspection in 5 minutes and know exactly what you're buying into.</p>
-      <div class="cta-btns">
-        <button class="btn bp" onclick="startInsp()">🔍 Start Inspection</button>
-        <button class="btn bg_" onclick="go('s-mechanics')">Find a Mechanic</button>
-      </div>
-    </section>
-
-    <!-- LISTINGS PREVIEW -->
-    <section class="listings-preview">
-      <div style="max-width:var(--maxw);margin:0 auto;padding:0 24px 24px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-        <div>
-          <div class="section-eyebrow" style="text-align:left">From Carmudi · AutoDeal · AllCars</div>
-          <h2 class="section-title" style="text-align:left;margin-bottom:0">RECENT LISTINGS</h2>
-        </div>
-        <button class="btn bg_ btn-inline" style="width:auto" onclick="go('s-listings')">View All Listings →</button>
-      </div>
-      <div class="card-grid" id="home-listings-grid"></div>
-    </section>
-
-    <footer class="site-footer">© 2025 Kundoktor · Know before you buy.</footer>
+    <!-- CTA -->
+    <div class="home-cta">
+      <button class="btn bp" onclick="startInsp()">🔍 &nbsp;Inspect a Car</button>
+      <button class="btn bg_" onclick="go('s-listings')">Browse Listings</button>
+      <button class="btn bg_" onclick="go('s-mechanics')">Find a Mechanic</button>
+    </div>
   </div>
 </div>
 
-<!-- ════════ LISTINGS ════════ -->
+<!-- ══════════ LISTINGS ══════════ -->
 <div id="s-listings" class="screen inner-page">
-  <div class="page-body">
+  <div class="page-scroll">
     <div class="page-header">
       <h1>CAR LISTINGS</h1>
-      <p>Browse from Carmudi, AutoDeal, and AllCars. Filter to find exactly what you need — then inspect before you commit.</p>
+      <p>Browse Carmudi, AutoDeal, and AllCars. Filter to find your match — then inspect before you commit.</p>
     </div>
-    <!-- Dealer tabs -->
-    <div style="max-width:var(--maxw);margin:0 auto;padding:20px 24px 0;display:flex;gap:8px;flex-wrap:wrap;">
+    <div style="max-width:var(--mw);margin:0 auto;padding:16px 24px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
       <div class="chip active" id="dt-carmudi" onclick="setDealer('carmudi',this)">🟠 Carmudi</div>
       <div class="chip" id="dt-autodeal" onclick="setDealer('autodeal',this)">🔵 AutoDeal</div>
       <div class="chip" id="dt-allcars" onclick="setDealer('allcars',this)">🟢 AllCars</div>
-      <div style="margin-left:auto">
-        <button class="btn bg_ bsm btn-inline" onclick="openF()">⚡ All Filters</button>
-      </div>
+      <div style="margin-left:auto"><button class="btn bg_ bsm" onclick="openF()">⚡ More Filters</button></div>
     </div>
-    <!-- Inline filter grid -->
     <div class="filter-wrap">
-      <div class="filter-section">
-        <div class="filter-row-label">Condition</div>
-        <div class="filter-grid">
+      <div class="fg-section">
+        <div class="fg-label">Condition</div>
+        <div class="fg-row">
           <div class="chip active" onclick="qf(this)">All</div>
           <div class="chip" onclick="qf(this)">✨ Brand New</div>
           <div class="chip" onclick="qf(this)">🔄 Second Hand</div>
         </div>
       </div>
-      <div class="filter-section">
-        <div class="filter-row-label">Transmission & Fuel</div>
-        <div class="filter-grid">
+      <div class="fg-section">
+        <div class="fg-label">Transmission & Fuel</div>
+        <div class="fg-row">
           <div class="chip active" onclick="qf(this)">All</div>
           <div class="chip" onclick="qf(this)">⚙️ Automatic</div>
           <div class="chip" onclick="qf(this)">🔩 Manual</div>
@@ -644,9 +600,9 @@ textarea.ni::placeholder{color:var(--tx3);}
           <div class="chip" onclick="qf(this)">🪨 Diesel</div>
         </div>
       </div>
-      <div class="filter-section">
-        <div class="filter-row-label">Body Type</div>
-        <div class="filter-grid">
+      <div class="fg-section">
+        <div class="fg-label">Body Type</div>
+        <div class="fg-row">
           <div class="chip" onclick="qf(this)">🚗 Sedan</div>
           <div class="chip" onclick="qf(this)">🚙 SUV</div>
           <div class="chip" onclick="qf(this)">🛻 Pickup</div>
@@ -656,7 +612,7 @@ textarea.ni::placeholder{color:var(--tx3);}
         </div>
       </div>
     </div>
-    <div style="max-width:var(--maxw);margin:0 auto;padding:14px 24px 4px;font-size:13px;color:var(--tx2);" id="lcount"></div>
+    <div id="lcount" style="max-width:var(--mw);margin:0 auto;padding:12px 24px 2px;font-size:13px;color:var(--tx2);"></div>
     <div class="card-grid" id="clist"></div>
     <div style="height:40px;"></div>
   </div>
@@ -666,61 +622,74 @@ textarea.ni::placeholder{color:var(--tx3);}
 <div class="dov" id="dov" onclick="closeF()"></div>
 <div class="fdrawer" id="fdrawer">
   <div class="dh"></div>
-  <div class="dhead"><h3>ADVANCED FILTERS</h3><button class="btn bg_ bsm btn-inline" onclick="resetF()">Reset</button></div>
+  <div class="dhead"><h3>ADVANCED FILTERS</h3><button class="btn bg_ bsm" style="width:auto" onclick="resetF()">Reset</button></div>
   <div class="dbody">
-    <div><div class="fg-label">Brand</div><div class="fchips"><div class="chip" onclick="ft(this)">Toyota</div><div class="chip" onclick="ft(this)">Honda</div><div class="chip" onclick="ft(this)">Mitsubishi</div><div class="chip" onclick="ft(this)">Suzuki</div><div class="chip" onclick="ft(this)">Ford</div><div class="chip" onclick="ft(this)">Hyundai</div><div class="chip" onclick="ft(this)">Nissan</div><div class="chip" onclick="ft(this)">Kia</div><div class="chip" onclick="ft(this)">BYD</div><div class="chip" onclick="ft(this)">Tesla</div><div class="chip" onclick="ft(this)">Subaru</div><div class="chip" onclick="ft(this)">MG</div></div></div>
+    <div><div class="fg-label">Brand</div><div class="fg-row" style="gap:7px"><div class="chip" onclick="ft(this)">Toyota</div><div class="chip" onclick="ft(this)">Honda</div><div class="chip" onclick="ft(this)">Mitsubishi</div><div class="chip" onclick="ft(this)">Suzuki</div><div class="chip" onclick="ft(this)">Ford</div><div class="chip" onclick="ft(this)">Hyundai</div><div class="chip" onclick="ft(this)">Nissan</div><div class="chip" onclick="ft(this)">Kia</div><div class="chip" onclick="ft(this)">BYD</div><div class="chip" onclick="ft(this)">Tesla</div><div class="chip" onclick="ft(this)">Subaru</div><div class="chip" onclick="ft(this)">MG</div></div></div>
     <div><div class="fg-label">Price Range</div><input type="range" min="0" max="5000000" step="50000" value="2500000" oninput="ur(this,'pval','₱','')"><div class="rrow"><span>₱0</span><span id="pval">Up to ₱2,500,000</span><span>₱5M+</span></div></div>
     <div><div class="fg-label">Max Mileage</div><input type="range" min="0" max="200000" step="5000" value="100000" oninput="ur(this,'mval','','km')"><div class="rrow"><span>0 km</span><span id="mval">Up to 100,000 km</span><span>200k+</span></div></div>
-    <div><div class="fg-label">Coding Day (MMDA)</div><div class="fchips"><div class="chip active" onclick="ft(this)">Any</div><div class="chip" onclick="ft(this)">Mon</div><div class="chip" onclick="ft(this)">Tue</div><div class="chip" onclick="ft(this)">Wed</div><div class="chip" onclick="ft(this)">Thu</div><div class="chip" onclick="ft(this)">Fri</div></div></div>
+    <div><div class="fg-label">Coding Day (MMDA)</div><div class="fg-row" style="gap:7px"><div class="chip active" onclick="ft(this)">Any</div><div class="chip" onclick="ft(this)">Mon</div><div class="chip" onclick="ft(this)">Tue</div><div class="chip" onclick="ft(this)">Wed</div><div class="chip" onclick="ft(this)">Thu</div><div class="chip" onclick="ft(this)">Fri</div></div></div>
     <button class="btn bp" onclick="applyF()">Apply Filters</button>
   </div>
 </div>
 
-<!-- ════════ INSPECTION ════════ -->
+<!-- ══════════ INSPECTION ══════════ -->
 <div id="s-insp" class="screen">
-  <div class="page-body">
-    <div class="insp-layout">
-      <!-- Sidebar (desktop) -->
-      <aside class="insp-sidenav" id="insp-sidenav">
-        <div class="snav-title">Sections</div>
-        <div id="snav-items"></div>
-        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);">
-          <div style="font-size:12px;color:var(--tx3);margin-bottom:6px;">Progress</div>
-          <div class="prog-bar-full"><div class="prog-bar-fill" id="sidebar-prog" style="width:0%"></div></div>
-          <div style="font-size:12px;color:var(--tx2);" id="sidebar-prog-label"></div>
-        </div>
-        <div style="margin-top:16px;">
-          <button class="btn bg_" style="font-size:13px;min-height:40px;" onclick="go('s-home')">← Exit</button>
-        </div>
-      </aside>
+  <div class="insp-wrap">
+    <!-- Sidebar (desktop) -->
+    <aside class="insp-side" id="insp-side">
+      <div class="insp-side-title">Sections</div>
+      <div class="snav" id="snav"></div>
+      <div class="insp-side-prog">
+        <div class="ispb"><div class="ispbf" id="ispbf" style="width:0%"></div></div>
+        <div class="ispl" id="ispl">0 of 20 answered</div>
+      </div>
+      <div class="insp-side-exit">
+        <button class="btn bg_" style="font-size:13px;min-height:40px;" onclick="go('s-home')">← Exit</button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="insp-main-wrap">
       <!-- Mobile top nav -->
       <div class="insp-topnav" id="insp-topnav"></div>
-      <!-- Main question area -->
-      <main class="insp-main" id="insp-main">
-        <!-- Sections rendered here -->
-      </main>
+
+      <!-- Section bar (current section info + global progress) -->
+      <div class="insp-section-bar" id="isb">
+        <div class="isb-left">
+          <h2 id="isb-title">Exterior</h2>
+          <p id="isb-sub">5 checks</p>
+        </div>
+        <div class="isb-right">
+          <div class="isb-count" id="isb-count">0/20</div>
+          <div class="isb-label">answered</div>
+        </div>
+      </div>
+      <div class="insp-global-prog"><div class="insp-global-fill" id="igf" style="width:0%"></div></div>
+
+      <!-- SCROLLABLE QUESTIONS -->
+      <div class="insp-q-scroll" id="insp-q-scroll"></div>
     </div>
   </div>
 </div>
 
-<!-- ════════ RESULT ════════ -->
+<!-- ══════════ RESULT ══════════ -->
 <div id="s-result" class="screen inner-page">
-  <div class="page-body">
-    <div class="result-layout" id="result-layout"></div>
+  <div class="page-scroll">
+    <div class="result-wrap" id="result-wrap"></div>
   </div>
 </div>
 
-<!-- ════════ MECHANICS ════════ -->
+<!-- ══════════ MECHANICS ══════════ -->
 <div id="s-mechanics" class="screen inner-page">
-  <div class="page-body">
+  <div class="page-scroll">
     <div class="page-header">
       <h1>FIND A MECHANIC</h1>
-      <p>Vetted shops for every need. Book a slot — they assist, you decide.</p>
+      <p>Vetted shops across Metro Manila. Book a slot — they assist, you decide.</p>
     </div>
-    <div style="max-width:var(--maxw);margin:0 auto;padding:20px 24px 0;">
-      <div class="filter-section">
-        <div class="filter-row-label">Service Type</div>
-        <div class="filter-grid">
+    <div style="max-width:var(--mw);margin:0 auto;padding:16px 24px 0;">
+      <div class="fg-section">
+        <div class="fg-label">Service Type</div>
+        <div class="fg-row">
           <div class="chip active" id="mt-all" onclick="setMT('all',this)">All Services</div>
           <div class="chip" id="mt-pms" onclick="setMT('pms',this)">🛢️ PMS</div>
           <div class="chip" id="mt-repair" onclick="setMT('repair',this)">🔧 Car Repairs</div>
@@ -734,40 +703,36 @@ textarea.ni::placeholder{color:var(--tx3);}
   </div>
 </div>
 
-<!-- ════════ REPORT ════════ -->
+<!-- ══════════ REPORT ══════════ -->
 <div id="s-report" class="screen inner-page">
-  <div class="page-body">
-    <div class="report-layout">
-      <button class="btn bg_ btn-inline" style="width:auto;min-height:40px;font-size:13px;margin-bottom:24px;" onclick="go('s-result')">← Back to Verdict</button>
-      <div class="report-meta-card">
-        <div class="rcar-icon">🚗</div>
-        <div class="rcar-info">
-          <div class="rname">Vehicle Inspection Report</div>
-          <div class="rdate" id="repdate"></div>
-        </div>
+  <div class="page-scroll">
+    <div class="report-wrap">
+      <button class="btn bg_" style="width:auto;min-height:38px;font-size:13px;margin-bottom:22px;" onclick="go('s-result')">← Back to Verdict</button>
+      <div class="rep-meta">
+        <div class="rep-icon">🚗</div>
+        <div><div class="rep-name">Vehicle Inspection Report</div><div class="rep-date" id="repdate"></div></div>
         <div id="repvtag" style="margin-left:auto"></div>
       </div>
       <div class="rsecs" id="rcsecs"></div>
-      <!-- SEND TO MECHANIC -->
-      <div class="send-mech-row">
-        <div class="smr-title">📤 SEND TO YOUR MECHANIC</div>
-        <div class="smr-sub">Already booked a mechanic? Send them this report before your visit so they know exactly what to look at — no need to explain from scratch.</div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <button class="btn bp btn-inline" style="width:auto;flex:1;min-width:180px;" onclick="openSendModal()">Send Report to Mechanic</button>
-          <button class="btn bg_ btn-inline" style="width:auto;flex:1;min-width:160px;" onclick="showToast('Copied share link!')">Copy Share Link</button>
+      <div class="send-mech">
+        <div class="sm-title">📤 SEND TO YOUR MECHANIC</div>
+        <div class="sm-sub">Already booked? Send this report ahead — they'll know exactly what to check before you even arrive.</div>
+        <div class="sm-btns">
+          <button class="btn bp" onclick="openSendModal()">Send to Mechanic</button>
+          <button class="btn bg_" onclick="showToast('Share link copied!')">Copy Share Link</button>
         </div>
       </div>
-      <div class="report-notes-section">
-        <div class="rnotes-title">NOTES & PHOTOS</div>
+      <div class="rep-notes">
+        <div class="rep-notes-title">NOTES & PHOTOS</div>
         <textarea class="ni" placeholder="e.g. Seller was evasive about the engine knock. Floor mats suspiciously thick..."></textarea>
-        <div class="photo-row">
+        <div class="prow">
           <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
           <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
           <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
           <div class="pph" onclick="showToast('Camera access needed')">📷<small>Add</small></div>
         </div>
       </div>
-      <div class="report-actions">
+      <div class="rep-actions">
         <button class="btn bp" onclick="showToast('Report saved!')">💾 &nbsp;Save Report</button>
       </div>
     </div>
@@ -775,65 +740,34 @@ textarea.ni::placeholder{color:var(--tx3);}
 </div>
 
 <!-- BOOKING MODAL -->
-<div class="modal-bg" id="book-modal" onclick="closeBookModal(event)">
+<div class="modal-bg" id="book-modal" onclick="closeModal('book-modal',event)">
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title">BOOK AN APPOINTMENT</div>
-    <div id="book-mech-name" style="font-size:14px;color:var(--tx2);margin-bottom:18px;"></div>
-    <div class="form-group">
-      <div class="form-label">Select a Service</div>
-      <select class="form-input" id="book-service"></select>
-    </div>
-    <div class="form-group">
-      <div class="form-label">Preferred Date</div>
-      <input type="date" class="form-input" id="book-date">
-    </div>
-    <div class="form-group">
-      <div class="form-label">Preferred Time</div>
-      <select class="form-input" id="book-time">
-        <option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option>
-        <option>11:00 AM</option><option>1:00 PM</option><option>2:00 PM</option>
-        <option>3:00 PM</option><option>4:00 PM</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <div class="form-label">Your Name</div>
-      <input type="text" class="form-input" placeholder="e.g. Juan dela Cruz">
-    </div>
-    <div class="modal-actions">
+    <div id="bk-mech" style="font-size:13px;color:var(--tx2);margin-bottom:16px;"></div>
+    <div class="fg"><div class="fl">Select a Service</div><select class="fi" id="bk-svc"></select></div>
+    <div class="fg"><div class="fl">Preferred Date</div><input type="date" class="fi" id="bk-date"></div>
+    <div class="fg"><div class="fl">Preferred Time</div><select class="fi" id="bk-time"><option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option></select></div>
+    <div class="fg"><div class="fl">Your Name</div><input type="text" class="fi" placeholder="e.g. Juan dela Cruz"></div>
+    <div class="modal-acts">
       <button class="btn bp" onclick="submitBooking()">Confirm Booking</button>
-      <button class="btn bg_ btn-inline" style="width:auto;padding:0 20px;" onclick="closeBookModal()">Cancel</button>
+      <button class="btn bg_" style="width:auto;padding:0 20px;" onclick="closeModal('book-modal')">Cancel</button>
     </div>
   </div>
 </div>
 
-<!-- SEND REPORT MODAL -->
-<div class="modal-bg" id="send-modal" onclick="closeSendModal(event)">
+<!-- SEND MODAL -->
+<div class="modal-bg" id="send-modal" onclick="closeModal('send-modal',event)">
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title">SEND REPORT TO MECHANIC</div>
-    <p style="font-size:13px;color:var(--tx2);margin-bottom:20px;line-height:1.55;">Your booked mechanic will receive a full breakdown of your inspection results so they can prep before your visit.</p>
-    <div class="form-group">
-      <div class="form-label">Select Mechanic</div>
-      <select class="form-input">
-        <option>KarCheck Pasig — Pasig City</option>
-        <option>AutoCheck PH — Quezon City</option>
-        <option>Mang Totoy's Garage — BGC</option>
-        <option>SpeedShop Manila — QC</option>
-        <option>Other (enter email below)</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <div class="form-label">Or Enter Mechanic's Email</div>
-      <input type="email" class="form-input" placeholder="mechanic@shop.com">
-    </div>
-    <div class="form-group">
-      <div class="form-label">Add a Note (optional)</div>
-      <textarea class="ni" placeholder="e.g. Engine knocking on cold start, please check..." style="min-height:60px;margin-top:0;"></textarea>
-    </div>
-    <div class="modal-actions">
+    <p style="font-size:13px;color:var(--tx2);margin-bottom:18px;line-height:1.55">Your mechanic will receive a full breakdown of your inspection so they can prep before your visit.</p>
+    <div class="fg"><div class="fl">Select Mechanic</div><select class="fi"><option>KarCheck Pasig</option><option>AutoCheck PH</option><option>Mang Totoy's Garage</option><option>SpeedShop Manila</option><option>Other (enter email)</option></select></div>
+    <div class="fg"><div class="fl">Or Enter Email</div><input type="email" class="fi" placeholder="mechanic@shop.com"></div>
+    <div class="fg"><div class="fl">Add a Note (optional)</div><textarea class="ni" placeholder="e.g. Engine knock on cold start, please check..." style="min-height:56px;"></textarea></div>
+    <div class="modal-acts">
       <button class="btn bp" onclick="submitSend()">Send Report</button>
-      <button class="btn bg_ btn-inline" style="width:auto;padding:0 20px;" onclick="closeSendModal()">Cancel</button>
+      <button class="btn bg_" style="width:auto;padding:0 20px;" onclick="closeModal('send-modal')">Cancel</button>
     </div>
   </div>
 </div>
@@ -841,14 +775,14 @@ textarea.ni::placeholder{color:var(--tx3);}
 <div class="toast" id="toast"></div>
 
 <script>
-/* ================================================================
+/* ════════════════════════════════════
    DATA
-================================================================ */
-const CARS = {
+════════════════════════════════════ */
+const CARS={
   carmudi:[
     {img:'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600&q=70&auto=format&fit=crop',m:'2020 Toyota Vios 1.3 XLE',meta:['AT','52,000 km','Gasoline','Sedan'],p:'₱598,000',cond:'2nd Hand',coding:'Wed',tags:[{c:'tg',t:'Low KM'}]},
     {img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=70&auto=format&fit=crop',m:'2022 Mitsubishi Xpander GLS',meta:['AT','28,000 km','Gasoline','MPV'],p:'₱1,098,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'ty',t:'Negotiable'}]},
-    {img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=70&auto=format&fit=crop',m:'2023 BYD Atto 3 Extended',meta:['AT','5,000 km','Electric','SUV'],p:'₱1,790,000',cond:'Brand New',coding:'Fri',tags:[{c:'tb_',t:'Electric'}]},
+    {img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=70&auto=format&fit=crop',m:'2023 BYD Atto 3',meta:['AT','5,000 km','Electric','SUV'],p:'₱1,790,000',cond:'Brand New',coding:'Fri',tags:[{c:'tb_',t:'Electric'}]},
     {img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=70&auto=format&fit=crop',m:'2020 Honda Jazz RS CVT',meta:['CVT','88,000 km','Gasoline','Hatchback'],p:'₱420,000',cond:'2nd Hand',coding:'Mon',tags:[{c:'tr',t:'High KM'}]},
     {img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&q=70&auto=format&fit=crop',m:'2021 Ford Ranger Wildtrak 4x4',meta:['AT','41,000 km','Diesel','Pickup'],p:'₱1,250,000',cond:'2nd Hand',coding:'Tue',tags:[{c:'tg',t:'4x4'}]},
     {img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=70&auto=format&fit=crop',m:'2019 Suzuki Ciaz GL',meta:['MT','66,000 km','Gasoline','Sedan'],p:'₱345,000',cond:'2nd Hand',coding:'Thu',tags:[]},
@@ -857,130 +791,131 @@ const CARS = {
     {img:'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=600&q=70&auto=format&fit=crop',m:'2023 Toyota Corolla Altis V',meta:['AT','12,000 km','Gasoline','Sedan'],p:'₱1,348,000',cond:'Brand New',coding:'Fri',tags:[{c:'tg',t:'Casa Maintained'}]},
     {img:'https://images.unsplash.com/photo-1616789916345-a3c5db57dcf4?w=600&q=70&auto=format&fit=crop',m:'2021 Hyundai Tucson 2.0 GL',meta:['AT','35,000 km','Gasoline','SUV'],p:'₱998,000',cond:'2nd Hand',coding:'Mon',tags:[{c:'ty',t:'Price Drop'}]},
     {img:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=70&auto=format&fit=crop',m:'2022 Toyota Corolla Cross HEV',meta:['CVT','22,000 km','Hybrid','SUV'],p:'₱1,398,000',cond:'2nd Hand',coding:'Wed',tags:[{c:'tb_',t:'Hybrid'}]},
-    {img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70&auto=format&fit=crop',m:'2022 Mitsubishi Strada GLS',meta:['AT','30,000 km','Diesel','Pickup'],p:'₱1,088,000',cond:'2nd Hand',coding:'Tue',tags:[]},
     {img:'https://images.unsplash.com/photo-1567818735868-e71b99932e29?w=600&q=70&auto=format&fit=crop',m:'2020 Honda City RS Turbo',meta:['CVT','48,000 km','Gasoline','Sedan'],p:'₱688,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'tg',t:'Turbo'}]},
+    {img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=70&auto=format&fit=crop',m:'2020 Subaru BRZ 2.0 AT',meta:['AT','55,000 km','Gasoline','Sports'],p:'₱1,188,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'tg',t:'Sports'}]},
   ],
   allcars:[
     {img:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=70&auto=format&fit=crop',m:'2017 Toyota Vios 1.3 J',meta:['MT','112,000 km','Gasoline','Sedan'],p:'₱278,000',cond:'2nd Hand',coding:'Mon',tags:[{c:'tr',t:'High KM'}]},
-    {img:'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=70&auto=format&fit=crop',m:'2024 MG ZS EV Magnify',meta:['AT','3,000 km','Electric','SUV'],p:'₱1,398,000',cond:'Brand New',coding:'Fri',tags:[{c:'tb_',t:'Electric'},{c:'tg',t:'Low KM'}]},
-    {img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=70&auto=format&fit=crop',m:'2019 Toyota Hi-Ace Commuter',meta:['MT','78,000 km','Diesel','Van'],p:'₱878,000',cond:'2nd Hand',coding:'Wed',tags:[]},
+    {img:'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=70&auto=format&fit=crop',m:'2024 MG ZS EV',meta:['AT','3,000 km','Electric','SUV'],p:'₱1,398,000',cond:'Brand New',coding:'Fri',tags:[{c:'tb_',t:'Electric'},{c:'tg',t:'Low KM'}]},
+    {img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=70&auto=format&fit=crop',m:"2019 Toyota Hi-Ace Commuter",meta:['MT','78,000 km','Diesel','Van'],p:'₱878,000',cond:'2nd Hand',coding:'Wed',tags:[]},
     {img:'https://images.unsplash.com/photo-1571127236794-81c0bbfe1ce3?w=600&q=70&auto=format&fit=crop',m:'2021 Kia Stonic 1.4 EX',meta:['AT','32,000 km','Gasoline','SUV'],p:'₱748,000',cond:'2nd Hand',coding:'Tue',tags:[{c:'ty',t:'Negotiable'}]},
-    {img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=70&auto=format&fit=crop',m:'2020 Subaru BRZ 2.0 AT',meta:['AT','55,000 km','Gasoline','Sports'],p:'₱1,188,000',cond:'2nd Hand',coding:'Thu',tags:[{c:'tg',t:'Sports'}]},
   ]
 };
 
-const MECHS = {
+const MECHS={
   pms:[
-    {img:'https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600&q=70&auto=format&fit=crop',n:'Autozone PMS Center',l:'Ortigas, Pasig · 1.3 km',r:'★ 4.9 · 218 reviews',q:'"Oil swapped faster than you can say Castrol."',s:['Oil & Filter Change','Engine Flush','Spark Plugs','Air Filter','Brake Fluid']},
-    {img:'https://images.unsplash.com/photo-1590928052159-81d55e63281d?w=600&q=70&auto=format&fit=crop',n:"Car Care Philippines",l:'Kapitolyo, Pasig · 2.1 km',r:'★ 4.7 · 165 reviews',q:'"Your car\'s official spa day. No cucumber slices though."',s:['PMS Package','Battery Check','Tire Rotation','Coolant Flush']},
-    {img:'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=70&auto=format&fit=crop',n:'Pit Stop Auto Service',l:'Mandaluyong · 3.4 km',r:'★ 4.6 · 88 reviews',q:'"Named after F1. Services your Vios anyway. Respect."',s:['Full PMS','Timing Belt','Differential Oil','Transmission Flush']},
+    {img:'https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600&q=70&auto=format&fit=crop',n:'Autozone PMS Center',l:'Ortigas, Pasig · 1.3 km',r:'★ 4.9 · 218',q:'"Oil swapped faster than you can say Castrol."',s:['Oil & Filter Change','Engine Flush','Spark Plugs','Air Filter']},
+    {img:'https://images.unsplash.com/photo-1590928052159-81d55e63281d?w=600&q=70&auto=format&fit=crop',n:'Car Care Philippines',l:'Kapitolyo, Pasig · 2.1 km',r:'★ 4.7 · 165',q:'"Your car\'s official spa day. No cucumber slices though."',s:['PMS Package','Battery Check','Tire Rotation','Coolant Flush']},
+    {img:'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=70&auto=format&fit=crop',n:'Pit Stop Auto Service',l:'Mandaluyong · 3.4 km',r:'★ 4.6 · 88',q:'"Named after F1. Services your Vios anyway. Respect."',s:['Full PMS','Timing Belt','Differential Oil','Transmission Flush']},
   ],
   repair:[
-    {img:'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&q=70&auto=format&fit=crop',n:"Mang Totoy's Garage",l:'BGC, Taguig · 2.5 km',r:'★ 4.8 · 134 reviews',q:'"Open since 1987. Fixed cars that hadn\'t been invented yet."',s:['Engine Overhaul','Transmission Rebuild','Suspension','Electrical Diagnosis']},
-    {img:'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=70&auto=format&fit=crop',n:'SpeedShop Manila',l:'Quezon City · 4.1 km',r:'★ 4.5 · 210 reviews',q:'"They fix brakes so well you\'ll miss the terrifying ones."',s:['Brake Overhaul','AC Repair','Exhaust System','Body & Paint']},
-    {img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70&auto=format&fit=crop',n:'German Auto Works',l:'Makati City · 5.2 km',r:'★ 4.9 · 72 reviews',q:'"Fluent in check engine light. It\'s a real language here."',s:['European Cars','OBD2 Diagnostics','AC Compressor','Head Gasket']},
+    {img:'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&q=70&auto=format&fit=crop',n:"Mang Totoy's Garage",l:'BGC, Taguig · 2.5 km',r:'★ 4.8 · 134',q:'"Open since 1987. Fixed cars that hadn\'t been invented yet."',s:['Engine Overhaul','Transmission Rebuild','Suspension','Electrical Diagnosis']},
+    {img:'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=70&auto=format&fit=crop',n:'SpeedShop Manila',l:'Quezon City · 4.1 km',r:'★ 4.5 · 210',q:'"Fix brakes so well you\'ll miss the terrifying ones."',s:['Brake Overhaul','AC Repair','Exhaust','Body & Paint']},
+    {img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=70&auto=format&fit=crop',n:'German Auto Works',l:'Makati · 5.2 km',r:'★ 4.9 · 72',q:'"Fluent in check engine light. Real language here."',s:['European Cars','OBD2 Diagnostics','AC Compressor','Head Gasket']},
   ],
   inspection:[
-    {img:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=70&auto=format&fit=crop',n:'KarCheck Pasig',l:'Pasig City · 0.8 km',r:'★ 4.9 · 62 reviews',q:'"Kundoktor, but physically present with a flashlight."',s:['Pre-Purchase Inspection','Full Vehicle Report','Road Test','Flood Check']},
-    {img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70&auto=format&fit=crop',n:'AutoCheck PH',l:'Quezon City · 3.8 km',r:'★ 4.7 · 109 reviews',q:'"They\'ve talked buyers out of lemons since 2014."',s:['Used Car Assessment','VIN Check','Chassis Inspection','Engine Scan']},
-    {img:'https://images.unsplash.com/photo-1563237023-b1e970526dcb?w=600&q=70&auto=format&fit=crop',n:'Casa Inspection Plus',l:'Alabang · 8.1 km',r:'★ 4.6 · 95 reviews',q:'"Certified by people who are certified by other certified people."',s:['Certified Report','Accident History','Odometer Verification','Market Value']},
+    {img:'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=70&auto=format&fit=crop',n:'KarCheck Pasig',l:'Pasig City · 0.8 km',r:'★ 4.9 · 62',q:'"Kundoktor but physically present, with a flashlight."',s:['Pre-Purchase Inspection','Full Report','Road Test','Flood Check']},
+    {img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70&auto=format&fit=crop',n:'AutoCheck PH',l:'Quezon City · 3.8 km',r:'★ 4.7 · 109',q:'"Talked buyers out of lemons since 2014. Legends."',s:['Used Car Assessment','VIN Check','Chassis Inspection','Engine Scan']},
+    {img:'https://images.unsplash.com/photo-1563237023-b1e970526dcb?w=600&q=70&auto=format&fit=crop',n:'Casa Inspection Plus',l:'Alabang · 8.1 km',r:'★ 4.6 · 95',q:'"Certified by people certified by other certified people."',s:['Certified Report','Accident History','Odometer Verification','Market Value']},
   ],
   other:[
-    {img:'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&q=70&auto=format&fit=crop',n:'AutoGlow Detailing',l:'San Juan · 2.0 km',r:'★ 4.8 · 177 reviews',q:'"Makes your second-hand find look suspiciously brand new."',s:['Ceramic Coating','Paint Correction','Interior Deep Clean','Odor Removal']},
-    {img:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=70&auto=format&fit=crop',n:'Car Audio & Accessories Hub',l:'Pasig City · 1.5 km',r:'★ 4.4 · 93 reviews',q:'"A dashcam is the cheapest lawyer you\'ll ever hire."',s:['Dashcam Install','Android Head Unit','Alarm System','Window Tint']},
+    {img:'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&q=70&auto=format&fit=crop',n:'AutoGlow Detailing',l:'San Juan · 2.0 km',r:'★ 4.8 · 177',q:'"Makes your second-hand find look suspiciously brand new."',s:['Ceramic Coating','Paint Correction','Interior Deep Clean','Odor Removal']},
+    {img:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=70&auto=format&fit=crop',n:'Car Audio & Accessories Hub',l:'Pasig City · 1.5 km',r:'★ 4.4 · 93',q:'"A dashcam is the cheapest lawyer you\'ll hire."',s:['Dashcam Install','Android Head Unit','Alarm System','Window Tint']},
   ]
 };
 
-/* Question photo references by section + index */
-const Q_PHOTOS = {
-  ext:['https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1502161254119-b460ec4c4e35?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=60&auto=format&fit=crop'],
-  int:['https://images.unsplash.com/photo-1541348263662-e068662d82af?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&q=60&auto=format&fit=crop'],
-  eng:['https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&q=60&auto=format&fit=crop'],
-  drv:['https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1611416517780-eff380e09f7e?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=60&auto=format&fit=crop'],
-  doc:['https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=60&auto=format&fit=crop','https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=60&auto=format&fit=crop'],
+/* Photo refs per section+question */
+const QPHOTOS={
+  ext:['https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1502161254119-b460ec4c4e35?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=55&auto=format&fit=crop'],
+  int:['https://images.unsplash.com/photo-1541348263662-e068662d82af?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1526726538690-5cbf956ae2fd?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&q=55&auto=format&fit=crop'],
+  eng:['https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&q=55&auto=format&fit=crop'],
+  drv:['https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1611416517780-eff380e09f7e?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=55&auto=format&fit=crop'],
+  doc:['https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=55&auto=format&fit=crop','https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=55&auto=format&fit=crop'],
 };
 
 const SECS=[
   {id:'ext',label:'Exterior',icon:'🚗',q:[
-    {text:'Is there visible rust, bubbling paint, or corrosion on the body?',hint:'Check door edges, wheel arches, underbody. Inside-out rust = structural problem.',pol:'biy',sev:'c',ns:'Rust is hard to miss if you look. Flashlight on the arches.',yl:'Yes — I see rust or corrosion',ys:'Major structural concern',nl:'No — body looks clean',ns_:'Good sign'},
-    {text:'Are there dents, mismatched paint, or signs of accident repair?',hint:'Low angle, natural light. Paint shade variation between panels = accident history.',pol:'biy',sev:'w',ns:'Run your hand along panels — bumps or ripples = filler used.',yl:'Yes — dents or mismatched paint visible',ys:'Likely prior accident',nl:'No — panels look straight and consistent',ns_:''},
-    {text:'Do all doors, hood, and trunk close properly with even gap lines?',hint:'Gaps >5mm between panels = frame damage or poor bodywork.',pol:'bin',sev:'c',ns:'Open and close each firmly — should feel solid, not floppy.',yl:'Yes — everything aligns and closes properly',ys:'',nl:'No — gaps are uneven or panels don\'t close right',ns_:'Frame or accident damage possible'},
-    {text:'Are all headlights, taillights, and signals working?',hint:'Turn on ignition (no start). Walk all four corners, check hazards too.',pol:'bin',sev:'w',ns:'Ask seller to toggle lights while you walk around.',yl:'Yes — all lights work',ys:'',nl:'No — some lights broken or missing',ns_:'Small now, costly later'},
-    {text:'Are all four tires evenly worn with decent tread depth?',hint:'Uneven inner vs outer wear = alignment or suspension problem.',pol:'bin',sev:'w',ns:'Kneel down — compare tread on inner vs outer edges.',yl:'Yes — even tread on all four',ys:'',nl:'No — uneven wear or bald spots',ns_:'Alignment or suspension issue'},
+    {t:'Is there visible rust, bubbling paint, or corrosion on the body?',h:'Check door edges, wheel arches, underbody. Inside-out rust = structural problem.',pol:'biy',sev:'c',ns:'Hard to miss. Shine a flashlight on the arches.',yl:'Yes — I see rust or corrosion',ys:'Major structural concern',nl:'No — body looks clean',ns_:'Good sign'},
+    {t:'Are there dents, mismatched paint, or signs of accident repair?',h:'Low angle, natural light. Paint shade variation between panels = accident history.',pol:'biy',sev:'w',ns:'Run your hand along panels — bumps or ripples = filler.',yl:'Yes — dents or mismatched paint',ys:'Likely prior accident',nl:'No — panels look straight and consistent',ns_:''},
+    {t:'Do all doors, hood, and trunk close properly with even gap lines?',h:'Gaps >5mm between panels = frame damage or poor bodywork.',pol:'bin',sev:'c',ns:'Open and close each firmly — should feel solid, not floppy.',yl:'Yes — everything aligns and closes well',ys:'',nl:'No — gaps are uneven or panels don\'t close right',ns_:'Frame or accident damage possible'},
+    {t:'Are all headlights, taillights, and signals working?',h:'Ignition on (no start). Walk all four corners, check hazards.',pol:'bin',sev:'w',ns:'Ask seller to toggle lights while you walk around.',yl:'Yes — all lights work',ys:'',nl:'No — some broken or missing',ns_:'Small now, costly later'},
+    {t:'Are all four tires evenly worn with decent tread?',h:'Uneven inner vs outer wear = alignment or suspension problem.',pol:'bin',sev:'w',ns:'Kneel down and compare inner vs outer tread edges.',yl:'Yes — even tread on all four',ys:'',nl:'No — uneven wear or bald spots',ns_:'Alignment or suspension issue'},
   ]},
   {id:'int',label:'Interior',icon:'💺',q:[
-    {text:'Does the interior smell musty, moldy, or damp — even with AC running?',hint:'Flood cars smell like it. Musty = trapped moisture. Check under floor mats.',pol:'biy',sev:'c',ns:'Lift floor mats. Look for waterline stains or wet carpet.',yl:'Yes — musty or wet smell inside',ys:'Possible flood damage',nl:'No — smells clean or neutral',ns_:'Good sign'},
-    {text:'Do the seats, dashboard, and headliner look intact with no major damage?',hint:'Cracked dash, sagging headliner, torn seats = high use or neglect.',pol:'bin',sev:'i',ns:'Press seat foam — sags too low = worn out from heavy use.',yl:'Yes — interior looks intact',ys:'',nl:'No — visible damage or heavy wear',ns_:'Negotiating point'},
-    {text:'Do all warning lights clear 3 seconds after startup?',hint:'Any light staying on = active ECU fault code. Non-negotiable to check.',pol:'bin',sev:'c',ns:'Start engine, wait 10 sec. Persistent light = real fault.',yl:'Yes — all lights clear after startup',ys:'ECU is clean',nl:'No — one or more lights stay on',ns_:'Active fault code — investigate before buying'},
-    {text:'Is the air conditioning cold on all fan speed settings?',hint:'Weak AC = low refrigerant or bad compressor. Cost: ₱5K–₱15K.',pol:'bin',sev:'w',ns:'Run AC 2 minutes on max cold — should be noticeably cold.',yl:'Yes — AC is cold on all settings',ys:'',nl:'No — warm, weak, or inconsistent AC',ns_:'Regas or compressor repair needed'},
-    {text:'Do all power windows, locks, and side mirrors function?',hint:'Each broken function: ₱3K–₱10K individually to fix.',pol:'bin',sev:'i',ns:'Test each window button individually. Note slow or unresponsive ones.',yl:'Yes — all electrical functions work',ys:'',nl:'No — some features are broken',ns_:'Electrical issue or neglect'},
+    {t:'Does the interior smell musty, moldy, or damp — even with AC on?',h:'Flood cars smell like it. Check under floor mats for waterline stains.',pol:'biy',sev:'c',ns:'Lift floor mats. Wet carpet or waterlines = red flag.',yl:'Yes — musty or wet smell',ys:'Possible flood damage',nl:'No — smells clean or neutral',ns_:'Good sign'},
+    {t:'Do seats, dashboard, and headliner look intact with no major damage?',h:'Cracked dash, sagging headliner, torn seats = high use or neglect.',pol:'bin',sev:'i',ns:'Press seat foam — sags badly = worn out from heavy use.',yl:'Yes — interior looks intact',ys:'',nl:'No — visible damage or heavy wear',ns_:'Negotiating point'},
+    {t:'Do all warning lights clear within 3 seconds after startup?',h:'Any light staying on = active ECU fault code. Non-negotiable.',pol:'bin',sev:'c',ns:'Start engine, wait 10 sec. Persistent light = real fault.',yl:'Yes — all lights clear after startup',ys:'ECU is clean',nl:'No — one or more warning lights stay on',ns_:'Active fault code — investigate before buying'},
+    {t:'Is the air conditioning cold on all fan settings?',h:'Weak AC = low refrigerant or bad compressor. Cost ₱5K–₱15K.',pol:'bin',sev:'w',ns:'Run AC 2 min on max cold — should be noticeably cold.',yl:'Yes — AC is cold on all settings',ys:'',nl:'No — warm, weak, or inconsistent',ns_:'Regas or compressor repair needed'},
+    {t:'Do all power windows, locks, and mirrors work?',h:'Each broken function: ₱3K–₱10K individually to fix.',pol:'bin',sev:'i',ns:'Test each window button one by one.',yl:'Yes — all functions work',ys:'',nl:'No — some are broken',ns_:'Electrical issue or neglect'},
   ]},
   {id:'eng',label:'Engine',icon:'⚙️',q:[
-    {text:'Is the engine oil dark, gritty, or below minimum on the dipstick?',hint:'Dipstick check: amber = healthy. Black grit = skipped changes. Milky = coolant in oil.',pol:'biy',sev:'c',ns:'Yellow-handled dipstick. Rub a drop between fingers — grit = neglect.',yl:'Yes — oil is dark, gritty, or at wrong level',ys:'Neglected maintenance',nl:'No — oil is clean and at correct level',ns_:'Properly maintained'},
-    {text:'Does the engine produce knocking, ticking, or rattling sounds?',hint:'Knocking = bearing wear (expensive). Ticking = valve train. Both = walk away.',pol:'biy',sev:'c',ns:'Radio off, AC off. Just listen for 30 seconds at idle.',yl:'Yes — unusual noises from the engine',ys:'Likely internal damage',nl:'No — engine sounds smooth and quiet',ns_:''},
-    {text:'Is there colored smoke from the exhaust after engine warms up?',hint:'Blue = oil burn. White = coolant leak (head gasket). Black = fuel mix issue.',pol:'biy',sev:'c',ns:'Rev lightly, someone watches the exhaust pipe.',yl:'Yes — colored smoke from exhaust',ys:'Serious internal issue',nl:'No smoke or just brief water vapor when cold',ns_:'Normal'},
-    {text:'Is the engine bay free of oil leaks, coolant stains, and cracked belts?',hint:'Wet spots, rainbow stains, crusty deposits = active leaks. Cracked belts = failure coming.',pol:'bin',sev:'c',ns:'Check under the parked car too — any puddle is suspicious.',yl:'Yes — engine bay looks dry and intact',ys:'Looks good under the hood',nl:'No — leaks, stains, or damaged parts visible',ns_:'Needs repair before buying'},
+    {t:'Is the engine oil dark, gritty, or at the wrong level?',h:'Amber oil = healthy. Black grit = skipped changes. Milky = coolant in oil.',pol:'biy',sev:'c',ns:'Yellow dipstick. Rub a drop between fingers — grit = neglect.',yl:'Yes — dark, gritty, or wrong level',ys:'Neglected maintenance',nl:'No — clean and at correct level',ns_:'Well maintained'},
+    {t:'Does the engine make knocking, ticking, or rattling sounds?',h:'Knocking = bearing wear. Ticking = valve train. Both = walk away.',pol:'biy',sev:'c',ns:'Radio off, AC off. Listen for 30 seconds at idle.',yl:'Yes — unusual engine noises',ys:'Likely internal damage',nl:'No — engine sounds smooth',ns_:''},
+    {t:'Is there colored smoke from the exhaust after warmup?',h:'Blue = oil burn. White = head gasket. Black = fuel mix issue.',pol:'biy',sev:'c',ns:'Rev lightly, have someone watch the exhaust pipe.',yl:'Yes — colored smoke from exhaust',ys:'Serious internal issue',nl:'No smoke or just brief vapor when cold',ns_:'Normal'},
+    {t:'Is the engine bay free of leaks, stains, and cracked belts?',h:'Wet spots, rainbow stains, crusty deposits = active leaks.',pol:'bin',sev:'c',ns:'Also check under the parked car — puddles = suspicious.',yl:'Yes — engine bay looks dry and intact',ys:'Looking good under the hood',nl:'No — leaks, stains, or damage visible',ns_:'Needs repair before buying'},
   ]},
   {id:'drv',label:'Test Drive',icon:'🛣️',q:[
-    {text:'Does the transmission shift smoothly without jerking, slipping, or grinding?',hint:'AT: no jerky transitions. MT: no clutch slip or squeal. Slipping = rebuild time.',pol:'bin',sev:'c',ns:'0–60 kph acceleration: RPM spike without speed change = slip.',yl:'Yes — smooth clean shifts',ys:'Transmission is solid',nl:'No — hesitation, slip, or grinding felt',ns_:'Transmission issue — expensive'},
-    {text:'Does the car pull to one side when braking or driving straight?',hint:'Pull when braking = warped rotor or stuck caliper. Drifting = alignment/suspension.',pol:'biy',sev:'c',ns:'Flat road, loose grip, gentle brake — should track dead straight.',yl:'Yes — pulls to one side',ys:'Brake or suspension issue',nl:'No — tracks and brakes straight',ns_:'Good handling'},
-    {text:'Are there vibrations or shaking at highway speed?',hint:'Vibration at 60–80 kph = wheel balance. Constant = engine mounts, CV joints.',pol:'biy',sev:'w',ns:'80 kph cruise — vibrations amplify with speed.',yl:'Yes — vibrations while driving',ys:'Wheel or drivetrain issue',nl:'No — smooth and stable',ns_:''},
-    {text:'Does the car start reliably and idle without surging?',hint:'Rough idle = injector, IAC, or MAF sensor. Cold start is the real test.',pol:'bin',sev:'w',ns:'Idle 3 min without AC — watch RPM for irregular movement.',yl:'Yes — starts clean and idles smoothly',ys:'',nl:'No — rough idle, surge, or stalling',ns_:'Fuel system issue'},
+    {t:'Does the transmission shift smoothly with no jerking or slipping?',h:'AT: no jerky transitions. MT: no clutch slip. Slipping = rebuild.',pol:'bin',sev:'c',ns:'0–60 kph: RPM spike without speed change = slip.',yl:'Yes — smooth clean shifts',ys:'Transmission is solid',nl:'No — hesitation, slip, or grinding',ns_:'Transmission issue — expensive'},
+    {t:'Does the car track straight when braking or cruising?',h:'Pulling on braking = warped rotor or caliper. Drifting = alignment.',pol:'biy',sev:'c',ns:'Flat road, loose grip, gentle brake — should go dead straight.',yl:'Yes — pulls to one side',ys:'Brake or suspension issue',nl:'No — tracks and brakes straight',ns_:'Good handling'},
+    {t:'Are there vibrations or shaking at highway speed?',h:'60–80 kph vibration = wheel balance. Constant = CV joints.',pol:'biy',sev:'w',ns:'80 kph cruise — vibrations get worse with speed.',yl:'Yes — vibrations while driving',ys:'Wheel or drivetrain issue',nl:'No — smooth and stable',ns_:''},
+    {t:'Does the car start reliably and idle without surging?',h:'Rough idle = injector, IAC, or MAF sensor. Cold start is the test.',pol:'bin',sev:'w',ns:'Idle 3 min without AC — watch RPM for surging.',yl:'Yes — starts clean, idles smoothly',ys:'',nl:'No — rough idle, surge, or stalling',ns_:'Fuel system issue'},
   ]},
   {id:'doc',label:'Documents',icon:'📄',q:[
-    {text:'Does the OR/CR match the chassis, plate, and engine number on the car?',hint:'VIN is on dashboard base or door jamb. Engine number stamped on block. Mismatch = carnap risk.',pol:'bin',sev:'c',ns:'Non-negotiable. Mismatched docs = illegal transfer. Do not proceed.',yl:'Yes — all numbers match',ys:'Documents check out',nl:'No — mismatches or missing documents',ns_:'Walk away immediately.'},
-    {text:'Is the OR/CR current, clean, and free from erasures or alterations?',hint:'Whiteout, altered dates, different fonts = possible forgery.',pol:'bin',sev:'c',ns:'Check print quality — blur, corrections, or odd fonts are red flags.',yl:'Yes — docs are clean and current',ys:'',nl:'No — expired, altered, or suspicious docs',ns_:'Legal risk — verify before proceeding'},
-    {text:'Is the car confirmed free from any outstanding bank loan or chattel mortgage?',hint:'Car with unpaid bank loan can be repossessed from YOU after purchase.',pol:'bin',sev:'c',ns:'Seller hesitates = assume there\'s a lien. Ask for written clearance.',yl:'Yes — confirmed no outstanding loan',ys:'Clear title',nl:'No — active loan or seller won\'t confirm',ns_:'Financial risk — get written clearance first'},
-    {text:'Are there service records or maintenance receipts available?',hint:'No receipts on high-mileage car = red flag. Responsible owners keep records.',pol:'bin',sev:'i',ns:'Ask for any casa or shop receipts — even recent ones.',yl:'Yes — maintenance records available',ys:'Responsible owner',nl:'No records available',ns_:'Minor flag on high-mileage cars'},
+    {t:'Does the OR/CR match the chassis, plate, and engine number on the car?',h:'VIN is on dashboard base or door jamb. Mismatch = carnap risk.',pol:'bin',sev:'c',ns:'Non-negotiable. Mismatched docs = do not proceed.',yl:'Yes — all numbers match',ys:'Documents check out',nl:'No — mismatches or missing docs',ns_:'Walk away immediately.'},
+    {t:'Is the OR/CR current, clean, and free from alterations?',h:'Whiteout, altered dates, different fonts = possible forgery.',pol:'bin',sev:'c',ns:'Check print quality — blur, corrections, odd fonts = red flags.',yl:'Yes — docs are clean and current',ys:'',nl:'No — expired, altered, or suspicious',ns_:'Legal risk — verify before proceeding'},
+    {t:'Is the car free from any outstanding loan or chattel mortgage?',h:'Car with unpaid bank loan can be repossessed FROM YOU after purchase.',pol:'bin',sev:'c',ns:'Seller hesitates = assume there\'s a lien. Ask for written clearance.',yl:'Yes — confirmed no outstanding loan',ys:'Clear title',nl:'No — active loan or seller won\'t confirm',ns_:'Financial risk — get clearance first'},
+    {t:'Are service records or maintenance receipts available?',h:'No receipts on a high-mileage car = red flag.',pol:'bin',sev:'i',ns:'Ask for any casa or shop receipts, even recent ones.',yl:'Yes — maintenance records available',ys:'Responsible owner',nl:'No records available',ns_:'Minor flag on high-mileage cars'},
   ]},
 ];
 const TOTAL=SECS.reduce((s,sec)=>s+sec.q.length,0);
 
-/* ================================================================
+/* ════════════════════════════════════
    STATE
-================================================================ */
-const ST={ans:{},dealer:'carmudi',mechTab:'all',currentBookMech:null};
+════════════════════════════════════ */
+const ST={ans:{},dealer:'carmudi',mechTab:'all'};
 
-/* ================================================================
-   NAVIGATION
-================================================================ */
+/* ════════════════════════════════════
+   NAV
+════════════════════════════════════ */
 function go(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  // home: no body scroll; others: allow
+  document.body.classList.toggle('scrollable', id!=='s-home');
 }
 
-/* ================================================================
-   FEATURE SLIDER
-================================================================ */
-let sliderIdx=0;
+/* ════════════════════════════════════
+   FEATURE SLIDER (home)
+════════════════════════════════════ */
+let slIdx=0,slTimer;
 function initSlider(){
-  const track=document.getElementById('fslider-track');
-  const cards=track.querySelectorAll('.fcard');
-  const dots=document.getElementById('fslider-dots');
-  dots.innerHTML=[...cards].map((_,i)=>`<div class="fdot${i===0?' active':''}" onclick="goSlide(${i})"></div>`).join('');
-  function updateSlider(){
-    const wrap=document.getElementById('fslider-wrap');
-    const w=wrap.offsetWidth;
-    const cw=320+16;
-    const offset=24+sliderIdx*cw;
-    const maxOffset=cw*cards.length-(w-48);
-    track.style.transform=`translateX(-${Math.min(offset,Math.max(0,offset))}px)`;
-    dots.querySelectorAll('.fdot').forEach((d,i)=>d.classList.toggle('active',i===sliderIdx));
+  const slides=document.querySelectorAll('.fslide');
+  const inner=document.getElementById('fslider-inner');
+  const dotsEl=document.getElementById('fslider-dots');
+  dotsEl.innerHTML=[...slides].map((_,i)=>`<div class="fdot${i===0?' active':''}" onclick="goSlide(${i})"></div>`).join('');
+
+  function update(){
+    const W=document.getElementById('fslider').offsetWidth;
+    const sw=260+10; // card width + gap
+    // center current slide
+    const offset=Math.max(0, slIdx*sw - (W-260)/2);
+    inner.style.transform=`translateX(-${offset}px)`;
+    slides.forEach((s,i)=>s.classList.toggle('current',i===slIdx));
+    dotsEl.querySelectorAll('.fdot').forEach((d,i)=>d.classList.toggle('active',i===slIdx));
   }
-  window.goSlide=(i)=>{sliderIdx=i;updateSlider();};
-  setInterval(()=>{sliderIdx=(sliderIdx+1)%cards.length;updateSlider();},4000);
-  updateSlider();
+  window.goSlide=i=>{slIdx=i;update();};
+  clearInterval(slTimer);
+  slTimer=setInterval(()=>{slIdx=(slIdx+1)%slides.length;update();},3500);
+  update();
 }
 
-/* ================================================================
+/* ════════════════════════════════════
    LISTINGS
-================================================================ */
+════════════════════════════════════ */
 function setDealer(d,el){
   ST.dealer=d;
-  ['carmudi','autodeal','allcars'].forEach(x=>{document.getElementById('dt-'+x).classList.remove('active');});
-  el.classList.add('active');
-  renderCars();
+  ['carmudi','autodeal','allcars'].forEach(x=>document.getElementById('dt-'+x).classList.remove('active'));
+  el.classList.add('active');renderCars();
 }
 function qf(el){el.classList.toggle('active');renderCars();}
 function ft(el){el.classList.toggle('active');}
@@ -990,403 +925,290 @@ function openF(){document.getElementById('dov').classList.add('show');document.g
 function closeF(){document.getElementById('dov').classList.remove('show');document.getElementById('fdrawer').classList.remove('show');}
 function ur(el,id,pre,suf){const v=parseInt(el.value);document.getElementById(id).textContent='Up to '+(pre==='₱'?'₱'+v.toLocaleString():v.toLocaleString()+' '+suf);}
 
-function carCardHTML(c){
-  return `<div class="car-card" onclick="showToast('Opening listing…')">
-    <div class="car-thumb">
-      <img src="${c.img}" alt="${c.m}" loading="lazy" onerror="this.style.display='none'">
-      <div class="car-thumb-overlay"></div>
-      <div class="car-thumb-badges">${c.tags.map(t=>`<span class="tag ${t.c}">${t.t}</span>`).join('')}</div>
-      <div class="car-thumb-cond"><span class="tag ty">${c.cond}</span></div>
-    </div>
-    <div class="car-info">
-      <div class="car-make">${c.m}</div>
-      <div class="car-meta">${c.meta.map(m=>`<span>${m}</span>`).join('')}<span>Coding: ${c.coding}</span></div>
-      <div class="car-price">${c.p}</div>
-      <div class="car-actions">
-        <button class="btn bs bsm" onclick="event.stopPropagation();startInsp()">🔍 Inspect</button>
-        <button class="btn bp bsm" onclick="event.stopPropagation();showToast('Opening listing…')">View</button>
-      </div>
-    </div>
-  </div>`;
-}
-
+function carHTML(c){return `<div class="car-card" onclick="showToast('Opening listing…')">
+  <div class="car-thumb"><img src="${c.img}" alt="${c.m}" loading="lazy" onerror="this.style.display='none'"><div class="car-tov"></div><div class="car-tbadges">${c.tags.map(t=>`<span class="tag ${t.c}">${t.t}</span>`).join('')}</div><div class="car-tcond"><span class="tag ty">${c.cond}</span></div></div>
+  <div class="car-info"><div class="car-make">${c.m}</div><div class="car-meta">${c.meta.map(m=>`<span>${m}</span>`).join('')}<span>Coding: ${c.coding}</span></div><div class="car-price">${c.p}</div><div class="car-acts"><button class="btn bs bsm" onclick="event.stopPropagation();startInsp()">🔍 Inspect</button><button class="btn bp bsm" onclick="event.stopPropagation();showToast('Opening listing…')">View</button></div></div>
+</div>`;}
 function renderCars(){
   const cars=CARS[ST.dealer]||[];
-  const dn={carmudi:'Carmudi',autodeal:'AutoDeal',allcars:'AllCars'}[ST.dealer];
-  document.getElementById('lcount').innerHTML=`<strong>${cars.length} cars</strong> on ${dn}`;
-  document.getElementById('clist').innerHTML=cars.map(carCardHTML).join('');
+  document.getElementById('lcount').innerHTML=`<strong>${cars.length} cars</strong> · ${['Carmudi','AutoDeal','AllCars'][['carmudi','autodeal','allcars'].indexOf(ST.dealer)]}`;
+  document.getElementById('clist').innerHTML=cars.map(carHTML).join('');
 }
 
-function renderHomeListings(){
-  const all=[...CARS.carmudi.slice(0,2),...CARS.autodeal.slice(0,2),...CARS.allcars.slice(0,2)];
-  document.getElementById('home-listings-grid').innerHTML=all.map(carCardHTML).join('');
-}
-
-/* ================================================================
+/* ════════════════════════════════════
    MECHANICS
-================================================================ */
+════════════════════════════════════ */
 function setMT(t,el){
   ST.mechTab=t;
   document.querySelectorAll('[id^="mt-"]').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  renderMechs();
+  el.classList.add('active');renderMechs();
 }
-
-function mechCardHTML(m, category){
-  const svcs=m.s.map(s=>`<span class="schip">✓ ${s}</span>`).join('');
-  return `<div class="mech-card">
-    <div class="mech-photo">
-      <img src="${m.img}" alt="${m.n}" loading="lazy" onerror="this.style.display='none'">
-      <div class="mech-photo-overlay"></div>
-      <div class="mech-photo-info">
-        <div class="mech-photo-name">${m.n}</div>
-        <div class="mech-photo-loc">📍 ${m.l}</div>
-      </div>
-    </div>
-    <div class="mech-body">
-      <div class="mech-rating">${m.r}</div>
-      <div class="mquip">${m.q}</div>
-      <div class="msvcs">${svcs}</div>
-      <button class="btn bp" onclick="openBookModal('${m.n}',${JSON.stringify(m.s).replace(/"/g,"'")})">📅 &nbsp;Book Appointment</button>
-    </div>
-  </div>`;
-}
-
+function mechHTML(m){return `<div class="mech-card">
+  <div class="mech-photo"><img src="${m.img}" alt="${m.n}" loading="lazy" onerror="this.style.display='none'"><div class="mech-pov"></div><div class="mech-pinfo"><div class="mech-pname">${m.n}</div><div class="mech-ploc">📍 ${m.l}</div></div></div>
+  <div class="mech-body"><div class="mech-rating">${m.r}</div><div class="mquip">${m.q}</div><div class="msvcs">${m.s.map(s=>`<span class="schip">✓ ${s}</span>`).join('')}</div>
+  <button class="btn bp" onclick="openBookModal('${m.n.replace(/'/g,"\\'")}',${JSON.stringify(m.s).replace(/"/g,"'")})">📅 &nbsp;Book Appointment</button></div>
+</div>`;}
 function renderMechs(){
-  let mechs=[];
-  if(ST.mechTab==='all'){
-    mechs=[...MECHS.pms,...MECHS.repair,...MECHS.inspection,...MECHS.other];
-  } else {
-    mechs=MECHS[ST.mechTab]||[];
-  }
-  document.getElementById('mlist').innerHTML=mechs.map(m=>mechCardHTML(m,ST.mechTab)).join('');
+  const all=ST.mechTab==='all'?[...MECHS.pms,...MECHS.repair,...MECHS.inspection,...MECHS.other]:MECHS[ST.mechTab]||[];
+  document.getElementById('mlist').innerHTML=all.map(mechHTML).join('');
 }
 
-/* ================================================================
+/* ════════════════════════════════════
    BOOKING MODAL
-================================================================ */
-function openBookModal(name, svcs){
-  document.getElementById('book-mech-name').textContent='at '+name;
-  const sel=document.getElementById('book-service');
-  sel.innerHTML=svcs.map(s=>`<option>${s}</option>`).join('');
-  const today=new Date().toISOString().split('T')[0];
-  document.getElementById('book-date').min=today;
+════════════════════════════════════ */
+function openBookModal(name,svcs){
+  document.getElementById('bk-mech').textContent='at '+name;
+  document.getElementById('bk-svc').innerHTML=svcs.map(s=>`<option>${s}</option>`).join('');
+  document.getElementById('bk-date').min=new Date().toISOString().split('T')[0];
   document.getElementById('book-modal').classList.add('show');
 }
-function closeBookModal(e){
-  if(!e||e.target===document.getElementById('book-modal'))
-    document.getElementById('book-modal').classList.remove('show');
-}
-function submitBooking(){
-  document.getElementById('book-modal').classList.remove('show');
-  showToast('Booking confirmed! You\'ll receive a confirmation shortly.');
-}
+function closeModal(id,e){if(!e||e.target===document.getElementById(id))document.getElementById(id).classList.remove('show');}
+function submitBooking(){document.getElementById('book-modal').classList.remove('show');showToast('Booking confirmed! You\'ll hear from them shortly.');}
 function openSendModal(){document.getElementById('send-modal').classList.add('show');}
-function closeSendModal(e){
-  if(!e||e.target===document.getElementById('send-modal'))
-    document.getElementById('send-modal').classList.remove('show');
-}
-function submitSend(){
-  document.getElementById('send-modal').classList.remove('show');
-  showToast('Report sent to mechanic!');
-}
+function submitSend(){document.getElementById('send-modal').classList.remove('show');showToast('Report sent to mechanic!');}
 
-/* ================================================================
-   INSPECTION — STACKED FLOW
-================================================================ */
+/* ════════════════════════════════════
+   INSPECTION — STACKED, AUTO-SCROLL
+════════════════════════════════════ */
 function startInsp(){
   ST.ans={};
   go('s-insp');
-  buildInspectionUI();
+  buildInsp();
 }
 
-function buildInspectionUI(){
-  // Sidebar nav
-  const snavEl=document.getElementById('snav-items');
-  snavEl.innerHTML=SECS.map((sec,si)=>`
-    <div class="snav-item" id="snav-${si}" onclick="jumpToSection(${si})">
-      <span class="sni">${sec.icon}</span>
-      <span>${sec.label}</span>
-      <span class="sncount" id="sncount-${si}">0/${sec.q.length}</span>
+function buildInsp(){
+  // Build sidebar nav
+  document.getElementById('snav').innerHTML=SECS.map((sec,si)=>`
+    <div class="snav-item" id="snav-${si}" onclick="jumpSec(${si})">
+      <span class="si">${sec.icon}</span><span>${sec.label}</span>
+      <span class="sc" id="sc-${si}">0/${sec.q.length}</span>
     </div>`).join('');
 
   // Mobile nav
   document.getElementById('insp-topnav').innerHTML=SECS.map((sec,si)=>`
-    <div class="insp-nav-chip" id="topnav-${si}" onclick="jumpToSection(${si})">
-      ${sec.icon} ${sec.label}
-    </div>`).join('');
+    <div class="itnc" id="itnc-${si}" onclick="jumpSec(${si})">${sec.icon} ${sec.label}</div>`).join('');
 
-  // Build main area
-  const main=document.getElementById('insp-main');
-  main.innerHTML='';
+  // Build all questions
+  const scroll=document.getElementById('insp-q-scroll');
+  scroll.innerHTML='';
   SECS.forEach((sec,si)=>{
-    const secDiv=document.createElement('div');
-    secDiv.id=`sec-block-${si}`;
-    secDiv.style.marginBottom='40px';
-    secDiv.innerHTML=`
-      <div class="insp-section-header" id="ish-${si}">
-        <div class="ish-left">
-          <h2>${sec.icon} ${sec.label}</h2>
-          <p>${sec.q.length} checks · takes ~2 min</p>
-        </div>
-        <div class="insp-progress-mini">
-          <div class="ipm-num" id="secprog-${si}">0</div>
-          <div class="ipm-label">of ${sec.q.length} done</div>
-        </div>
-      </div>
-      <div class="prog-bar-full"><div class="prog-bar-fill" id="secbar-${si}" style="width:0%"></div></div>
-      <div class="q-stack" id="qstack-${si}"></div>`;
-    main.appendChild(secDiv);
-
-    // Build questions for this section
-    const stack=secDiv.querySelector(`#qstack-${si}`);
     sec.q.forEach((q,qi)=>{
-      const item=buildQItem(si,qi,q,sec);
-      stack.appendChild(item);
-      if(qi>0) item.classList.add('unanswered-upcoming');
+      scroll.appendChild(buildQEl(si,qi,q,sec));
+    });
+  });
+  // Add finish
+  const fin=document.createElement('div');
+  fin.className='finish-row';fin.id='finish-row';
+  fin.innerHTML='<button class="btn bp" onclick="finishInsp()">✅ &nbsp;Get My Verdict</button>';
+  scroll.appendChild(fin);
+
+  // Lock all except first
+  SECS.forEach((sec,si)=>{
+    sec.q.forEach((_,qi)=>{
+      if(si>0||qi>0) document.getElementById(`qi-${si}-${qi}`).classList.add('upcoming');
     });
   });
 
-  // Finish button
-  const finDiv=document.createElement('div');
-  finDiv.id='finish-wrap';
-  finDiv.className='finish-wrap';
-  finDiv.innerHTML='<button class="btn bp" onclick="finishInsp()">✅ &nbsp;Get My Verdict</button>';
-  main.appendChild(finDiv);
-
-  updateInspNav();
-  updateProgress();
+  updateInspUI();
+  updateSectionBar(0);
 }
 
-function buildQItem(si,qi,q,sec){
+function buildQEl(si,qi,q,sec){
   const isBIY=q.pol==='biy';
-  const yc=isBIY?'ayb':'ayg';
-  const nc=isBIY?'anb':'ang';
-  const yi=isBIY?'❌':'✅';
-  const ni_=isBIY?'✅':'❌';
-  const photoUrl=(Q_PHOTOS[sec.id]||[])[qi]||'';
+  const yc=isBIY?'ayb':'ayg', nc=isBIY?'anb':'ang';
+  const yi=isBIY?'❌':'✅', ni_=isBIY?'✅':'❌';
+  const photo=(QPHOTOS[sec.id]||[])[qi]||'';
 
-  const item=document.createElement('div');
-  item.className='q-item';
-  item.id=`qi-${si}-${qi}`;
-  item.innerHTML=`
-    ${photoUrl?`<div class="q-photo"><img src="${photoUrl}" alt="Reference" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="q-photo-overlay"></div><div class="q-photo-label">Visual Reference</div></div>`:''}
+  const el=document.createElement('div');
+  el.className='q-item';el.id=`qi-${si}-${qi}`;
+  el.innerHTML=`
+    ${photo?`<div class="q-photo"><img src="${photo}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"><div class="q-photo-ov"></div><div class="q-photo-lbl">Visual Reference</div></div>`:''}
     <div class="q-body">
-      <div class="q-num">${sec.label} · Check ${qi+1}</div>
-      <div class="q-text">${q.text}</div>
-      <div class="q-hint">${q.hint}</div>
-      <div class="q-answers" id="qa-${si}-${qi}">
-        <button class="ans-btn ${yc}" onclick="pickAns(${si},${qi},'yes',this)">
-          <div class="ans-dot">${yi}</div>
-          <div><div>${q.yl}</div>${q.ys?`<div class="ans-sub">${q.ys}</div>`:''}</div>
+      <div class="q-num">${sec.label} · Check ${qi+1} of ${sec.q.length}</div>
+      <div class="q-text">${q.t}</div>
+      <div class="q-hint">${q.h}</div>
+      <div class="q-choices" id="qc-${si}-${qi}">
+        <button class="achoice ${yc}" onclick="pickAns(${si},${qi},'yes',this)">
+          <div class="adot">${yi}</div><div><div>${q.yl}</div>${q.ys?`<div class="asub">${q.ys}</div>`:''}</div>
         </button>
-        <button class="ans-btn ${nc}" onclick="pickAns(${si},${qi},'no',this)">
-          <div class="ans-dot">${ni_}</div>
-          <div><div>${q.nl}</div>${q.ns_?`<div class="ans-sub">${q.ns_}</div>`:''}</div>
+        <button class="achoice ${nc}" onclick="pickAns(${si},${qi},'no',this)">
+          <div class="adot">${ni_}</div><div><div>${q.nl}</div>${q.ns_?`<div class="asub">${q.ns_}</div>`:''}</div>
         </button>
-        <button class="ans-btn ans_" onclick="pickAns(${si},${qi},'notsure',this)">
-          <div class="ans-dot">🔦</div>
-          <div><div>Not sure / can't check</div><div class="ans-sub">${q.ns}</div></div>
+        <button class="achoice ans_" onclick="pickAns(${si},${qi},'notsure',this)">
+          <div class="adot">🔦</div><div><div>Not sure / can't check</div><div class="asub">${q.ns}</div></div>
         </button>
       </div>
-      <div id="pill-${si}-${qi}" style="display:none"></div>
+      <div class="ans-pill" id="ap-${si}-${qi}" onclick="expandQ(${si},${qi})">
+        <span class="ap-icon" id="api-${si}-${qi}"></span>
+        <span class="ap-label" id="apl-${si}-${qi}"></span>
+        <span class="ap-edit">tap to change</span>
+      </div>
     </div>`;
-  return item;
+  return el;
 }
 
 function pickAns(si,qi,val,btn){
-  const key=`${si}-${qi}`;
-  ST.ans[key]=val;
-
-  const sec=SECS[si];
-  const q=sec.q[qi];
-  const isBIY=q.pol==='biy';
-
-  // Apply selected class
-  const qaEl=document.getElementById(`qa-${si}-${qi}`);
-  qaEl.querySelectorAll('.ans-btn').forEach(b=>b.classList.remove('sel'));
+  ST.ans[`${si}-${qi}`]=val;
+  const qc=document.getElementById(`qc-${si}-${qi}`);
+  qc.querySelectorAll('.achoice').forEach(b=>b.classList.remove('sel'));
   btn.classList.add('sel');
-
-  // Collapse choices → show pill
   setTimeout(()=>{
-    collapseQuestion(si,qi,val,q,isBIY);
-    unlockNextQuestion(si,qi);
-    updateProgress();
-    updateInspNav();
-  },220);
+    collapseQ(si,qi,val);
+    unlockNext(si,qi);
+    updateInspUI();
+    updateSectionBar(si);
+  },200);
 }
 
-function collapseQuestion(si,qi,val,q,isBIY){
-  const qaEl=document.getElementById(`qa-${si}-${qi}`);
-  const pillEl=document.getElementById(`pill-${si}-${qi}`);
-  qaEl.classList.add('collapsed');
-
-  let icon,label,color;
-  if(val==='yes'){
-    icon=isBIY?'❌':'✅';
-    label=q.yl;
-    color=isBIY?'#e03c3c':'#27c97e';
-  } else if(val==='no'){
-    icon=isBIY?'✅':'❌';
-    label=q.nl;
-    color=isBIY?'#27c97e':'#e03c3c';
-  } else {
-    icon='🔦';label='Not sure / can\'t check';color='#f5c400';
-  }
-
-  pillEl.style.display='block';
-  pillEl.innerHTML=`<div class="ans-selected-pill" onclick="expandQuestion(${si},${qi})" style="border-color:${color}22;background:${color}08;">
-    <span class="pill-icon">${icon}</span>
-    <span class="pill-label" style="color:${color}">${label}</span>
-    <span class="pill-edit">tap to change</span>
-  </div>`;
-
+function collapseQ(si,qi,val){
+  const q=SECS[si].q[qi];
+  const isBIY=q.pol==='biy';
+  const qc=document.getElementById(`qc-${si}-${qi}`);
+  const pill=document.getElementById(`ap-${si}-${qi}`);
+  const icon_el=document.getElementById(`api-${si}-${qi}`);
+  const lbl_el=document.getElementById(`apl-${si}-${qi}`);
+  qc.classList.add('hidden');
+  let icon,lbl,color;
+  if(val==='yes'){icon=isBIY?'❌':'✅';lbl=q.yl;color=isBIY?'var(--red)':'var(--grn)';}
+  else if(val==='no'){icon=isBIY?'✅':'❌';lbl=q.nl;color=isBIY?'var(--grn)':'var(--red)';}
+  else{icon='🔦';lbl='Not sure / can\'t check';color='var(--y)';}
+  icon_el.textContent=icon;
+  lbl_el.textContent=lbl;
+  lbl_el.style.color=color;
+  pill.classList.add('show');
+  pill.style.borderColor=color+'44';
+  pill.style.background=color.replace(')',',0.06)').replace('var(','')+')';
   document.getElementById(`qi-${si}-${qi}`).classList.add('answered');
 }
 
-function expandQuestion(si,qi){
-  const qaEl=document.getElementById(`qa-${si}-${qi}`);
-  const pillEl=document.getElementById(`pill-${si}-${qi}`);
-  qaEl.classList.remove('collapsed');
-  pillEl.style.display='none';
-  // Remove selected styling
-  qaEl.querySelectorAll('.ans-btn').forEach(b=>b.classList.remove('sel'));
+function expandQ(si,qi){
+  const qc=document.getElementById(`qc-${si}-${qi}`);
+  const pill=document.getElementById(`ap-${si}-${qi}`);
+  qc.classList.remove('hidden');
+  qc.querySelectorAll('.achoice').forEach(b=>b.classList.remove('sel'));
+  pill.classList.remove('show');
+  document.getElementById(`qi-${si}-${qi}`).classList.remove('answered');
+  delete ST.ans[`${si}-${qi}`];
+  updateInspUI();
 }
 
-function unlockNextQuestion(si,qi){
+function unlockNext(si,qi){
   const sec=SECS[si];
-  // Next Q in same section
-  if(qi+1<sec.q.length){
-    const next=document.getElementById(`qi-${si}-${qi+1}`);
-    if(next) next.classList.remove('unanswered-upcoming');
-    // Scroll into view
-    setTimeout(()=>next?.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
-    return;
-  }
-  // First Q of next section
-  if(si+1<SECS.length){
-    const next=document.getElementById(`qi-${si+1}-0`);
-    if(next){
-      next.classList.remove('unanswered-upcoming');
-      setTimeout(()=>next?.scrollIntoView({behavior:'smooth',block:'start'}),100);
+  let nsi=si,nqi=qi+1;
+  if(nqi>=sec.q.length){nsi++;nqi=0;}
+  if(nsi<SECS.length){
+    const nextEl=document.getElementById(`qi-${nsi}-${nqi}`);
+    if(nextEl){
+      nextEl.classList.remove('upcoming');
+      setTimeout(()=>{
+        nextEl.scrollIntoView({behavior:'smooth',block:'start'});
+      },250);
     }
   }
-  // Show finish if all answered
-  const total=Object.keys(ST.ans).length;
-  if(total===TOTAL){
-    document.getElementById('finish-wrap').style.display='block';
-    document.getElementById('finish-wrap').scrollIntoView({behavior:'smooth',block:'nearest'});
-  }
+  // Show finish if all done
+  const done=Object.keys(ST.ans).length;
+  const fr=document.getElementById('finish-row');
+  if(fr) fr.style.display=done===TOTAL?'block':'none';
 }
 
-function updateProgress(){
-  let answered=Object.keys(ST.ans).length;
-  document.getElementById('sidebar-prog').style.width=`${(answered/TOTAL)*100}%`;
-  document.getElementById('sidebar-prog-label').textContent=`${answered} of ${TOTAL} answered`;
-
-  SECS.forEach((sec,si)=>{
-    let done=sec.q.filter((_,qi)=>ST.ans[`${si}-${qi}`]).length;
-    document.getElementById(`secprog-${si}`).textContent=done;
-    document.getElementById(`secbar-${si}`).style.width=`${(done/sec.q.length)*100}%`;
-    document.getElementById(`sncount-${si}`).textContent=`${done}/${sec.q.length}`;
-  });
-}
-
-function updateInspNav(){
-  SECS.forEach((sec,si)=>{
-    let done=sec.q.filter((_,qi)=>ST.ans[`${si}-${qi}`]).length;
-    const full=done===sec.q.length;
-    const el=document.getElementById(`snav-${si}`);
-    const tel=document.getElementById(`topnav-${si}`);
-    if(el){el.classList.toggle('done',full);el.classList.toggle('active',done>0&&!full);}
-    if(tel){tel.classList.toggle('done',full);tel.classList.toggle('active',done>0&&!full);}
-  });
-}
-
-function jumpToSection(si){
-  const el=document.getElementById(`sec-block-${si}`);
+function jumpSec(si){
+  const el=document.getElementById(`qi-${si}-0`);
   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function updateSectionBar(si){
+  const sec=SECS[si];
+  document.getElementById('isb-title').textContent=sec.icon+' '+sec.label;
+  document.getElementById('isb-sub').textContent=sec.q.length+' checks';
+}
+
+function updateInspUI(){
+  let answered=Object.keys(ST.ans).length;
+  document.getElementById('ispbf').style.width=`${(answered/TOTAL)*100}%`;
+  document.getElementById('ispl').textContent=`${answered} of ${TOTAL} answered`;
+  document.getElementById('isb-count').textContent=`${answered}/${TOTAL}`;
+  document.getElementById('igf').style.width=`${(answered/TOTAL)*100}%`;
+
+  SECS.forEach((sec,si)=>{
+    const done=sec.q.filter((_,qi)=>ST.ans[`${si}-${qi}`]).length;
+    const full=done===sec.q.length;
+    document.getElementById(`sc-${si}`).textContent=`${done}/${sec.q.length}`;
+    const sn=document.getElementById(`snav-${si}`);
+    const tn=document.getElementById(`itnc-${si}`);
+    if(sn){sn.classList.toggle('done',full);sn.classList.toggle('active',done>0&&!full);}
+    if(tn){tn.classList.toggle('done',full);tn.classList.toggle('active',done>0&&!full);}
+  });
 }
 
 function finishInsp(){computeResult();go('s-result');}
 
-/* ================================================================
+/* ════════════════════════════════════
    RESULT ENGINE
-================================================================ */
+════════════════════════════════════ */
 function computeResult(){
-  let crit=[],warn=[],info=[],unsure=0,critUns=[];
-  let answered=0;
-  SECS.forEach((sec,si)=>{
-    sec.q.forEach((q,qi)=>{
-      const a=ST.ans[`${si}-${qi}`];
-      if(!a)return;
-      answered++;
-      if(a==='notsure'){unsure++;if(q.sev==='c')critUns.push({q,sec});return;}
-      const isP=(q.pol==='biy'&&a==='yes')||(q.pol==='bin'&&a==='no');
-      if(isP){const it={q,sec};if(q.sev==='c')crit.push(it);else if(q.sev==='w')warn.push(it);else info.push(it);}
-    });
-  });
+  let crit=[],warn=[],info=[],unsure=0,critUns=[];let answered=0;
+  SECS.forEach((sec,si)=>{sec.q.forEach((q,qi)=>{
+    const a=ST.ans[`${si}-${qi}`];if(!a)return;answered++;
+    if(a==='notsure'){unsure++;if(q.sev==='c')critUns.push({q,sec});return;}
+    const isP=(q.pol==='biy'&&a==='yes')||(q.pol==='bin'&&a==='no');
+    if(isP){const it={q,sec};if(q.sev==='c')crit.push(it);else if(q.sev==='w')warn.push(it);else info.push(it);}
+  });});
   const ur=answered>0?unsure/answered:0;
-  let decision,riskLevel,hl,st;
-  if(ur>=0.6){decision='uns';riskLevel='unknown';hl='INCONCLUSIVE';st=`You tapped "not sure" on ${unsure}/${answered} checks. That's honesty — but it's not enough to buy a car on. Get a mechanic to do a proper inspection.`;}
-  else if(crit.length>=3){decision='avoid';riskLevel='high';hl='AVOID';st='Three or more critical failures. Walk away. The repair bill will exceed any negotiated savings — and then some.';}
-  else if(crit.length===2){decision='avoid';riskLevel='high';hl='AVOID';st='Two critical red flags. Each could cost tens of thousands. Together? Financial trap. Don\'t get attached.';}
-  else if(crit.length===1&&(warn.length>=2||critUns.length>=1)){decision='neg';riskLevel='medium';hl='NEGOTIATE HARD';st='One critical issue plus additional concerns. Every finding is leverage. Push the price down — or walk.';}
-  else if(crit.length===1){decision='neg';riskLevel='medium';hl='NEGOTIATE';st='One critical issue found. It\'s fixable, but that repair cost should come straight off the asking price.';}
-  else if(warn.length>=3){decision='neg';riskLevel='medium';hl='NEGOTIATE';st='No critical failures, but these warnings stack up into real money. Factor every one into your offer.';}
-  else if(warn.length>0||info.length>0||critUns.length>0){decision='buy';riskLevel='low';hl='BUY';st='Car checks out on the important stuff. Minor items to note. Quick mechanic verify before you sign.';}
-  else{decision='buy';riskLevel='low';hl='BUY';st='Solid across all five sections. This one\'s looking good. Still recommend a mechanic once-over before handover.';}
-  renderResult(decision,riskLevel,hl,st,crit,warn,info,critUns,ur,unsure,answered);
-  renderReport(decision);
+  let d,rl,hl,st;
+  if(ur>=.6){d='uns';rl='unknown';hl='INCONCLUSIVE';st=`You answered "not sure" on ${unsure}/${answered} checks. That's honest — but you can't buy a car on guesses. Get a mechanic to verify the gaps.`;}
+  else if(crit.length>=3){d='avoid';rl='high';hl='AVOID';st='Three or more critical failures. The repair bill will eclipse any price savings. Walk away.';}
+  else if(crit.length===2){d='avoid';rl='high';hl='AVOID';st='Two critical red flags. Each alone is expensive. Together they\'re a trap. Don\'t get attached.';}
+  else if(crit.length===1&&(warn.length>=2||critUns.length>=1)){d='neg';rl='medium';hl='NEGOTIATE HARD';st='One critical issue plus additional concerns. Use every finding as leverage — or walk.';}
+  else if(crit.length===1){d='neg';rl='medium';hl='NEGOTIATE';st='One critical issue. Fixable — but that repair cost should come straight off the asking price.';}
+  else if(warn.length>=3){d='neg';rl='medium';hl='NEGOTIATE';st='No critical failures, but warnings stack into real money. Factor every one into your offer.';}
+  else if(warn.length>0||info.length>0||critUns.length>0){d='buy';rl='low';hl='BUY';st='Car checks out on the big stuff. Minor items to note. Quick mechanic verify before you sign.';}
+  else{d='buy';rl='low';hl='BUY';st='Solid across all five sections. Looking good. Still get a mechanic once-over before handover.';}
+  renderResult(d,rl,hl,st,crit,warn,info,critUns,ur,unsure,answered);
+  renderReport(d);
 }
 
 function renderResult(d,rl,hl,st,crit,warn,info,critUns,ur,unsure,answered){
   const vc={buy:'vc-buy',neg:'vc-neg',avoid:'vc-avoid',uns:'vc-uns'}[d];
   const icons={buy:'✅',neg:'💬',avoid:'🚫',uns:'🤔'};
-  const riskCls={low:'low',medium:'medium',high:'high',unknown:'medium'}[rl];
-
-  let issues='';
-  if(!crit.length&&!warn.length&&!info.length&&!critUns.length&&d!=='uns'){
-    issues='<div style="padding:12px 0;font-size:13px;color:var(--grn)">✅ No issues detected across all sections.</div>';
-  } else {
-    issues=[...crit.map(i=>`<div class="irow"><div class="idot crit"></div><div class="ic"><div class="it">${i.q.text}</div><div class="is">${i.sec.label} · Critical</div></div></div>`),
-    ...critUns.map(i=>`<div class="irow"><div class="idot warn"></div><div class="ic"><div class="it">Unverified: ${i.q.text}</div><div class="is">${i.sec.label} · Needs verification</div></div></div>`),
-    ...warn.map(i=>`<div class="irow"><div class="idot warn"></div><div class="ic"><div class="it">${i.q.text}</div><div class="is">${i.sec.label} · Warning</div></div></div>`),
-    ...info.map(i=>`<div class="irow"><div class="idot info"></div><div class="ic"><div class="it">${i.q.text}</div><div class="is">${i.sec.label} · Minor</div></div></div>`)].join('');
-  }
-  let unsBlock='';
-  if(ur>=0.6){unsBlock=`<div class="unscard"><h3>🤔 TOO MANY UNKNOWNS</h3><p>You marked ${unsure} of ${answered} checks as "not sure" (${Math.round(ur*100)}%). Honest — but not enough to make a buying decision. This car needs a real mechanic inspection.</p><button class="btn bp" onclick="go('s-mechanics')">📅 Book a Mechanic Instead</button></div>`;}
-  else if(unsure>0){unsBlock=`<div class="rcard" style="border-color:rgba(245,196,0,.2);background:linear-gradient(135deg,rgba(245,196,0,.05),transparent);">💡 <strong>Heads up:</strong> You had ${unsure} "not sure" answer${unsure>1?'s':''} — a mechanic can verify those.</div>`;}
-
-  document.getElementById('result-layout').innerHTML=`
-    <button class="btn bg_ btn-inline" style="width:auto;min-height:40px;font-size:13px;margin-bottom:28px;" onclick="go('s-home')">← Back to Home</button>
+  const rclr={low:'low',medium:'medium',high:'high',unknown:'medium'}[rl];
+  let issues=(!crit.length&&!warn.length&&!info.length&&!critUns.length&&d!=='uns')
+    ?'<div style="padding:10px 0;font-size:13px;color:var(--grn)">✅ No issues detected.</div>'
+    :[...crit.map(i=>`<div class="irow"><div class="idot crit"></div><div class="ic"><div class="it">${i.q.t}</div><div class="is">${i.sec.label} · Critical</div></div></div>`),
+      ...critUns.map(i=>`<div class="irow"><div class="idot warn"></div><div class="ic"><div class="it">Unverified: ${i.q.t}</div><div class="is">${i.sec.label} · Needs checking</div></div></div>`),
+      ...warn.map(i=>`<div class="irow"><div class="idot warn"></div><div class="ic"><div class="it">${i.q.t}</div><div class="is">${i.sec.label} · Warning</div></div></div>`),
+      ...info.map(i=>`<div class="irow"><div class="idot info"></div><div class="ic"><div class="it">${i.q.t}</div><div class="is">${i.sec.label} · Minor</div></div></div>`)].join('');
+  let unsBlock=ur>=.6
+    ?`<div class="unscard"><h3>🤔 TOO MANY UNKNOWNS</h3><p>You marked ${unsure} of ${answered} checks "not sure" (${Math.round(ur*100)}%). Honest — but not enough to decide on. Book a mechanic to cover the gaps.</p><button class="btn bp" onclick="go('s-mechanics')">📅 Book a Mechanic</button></div>`
+    :unsure>0?`<div class="rcard">💡 <strong>Heads up:</strong> ${unsure} "not sure" answer${unsure>1?'s':''}. A mechanic can verify those.</div>`:'';
+  document.getElementById('result-wrap').innerHTML=`
+    <button class="btn bg_" style="width:auto;min-height:38px;font-size:13px;margin-bottom:24px;" onclick="go('s-home')">← Home</button>
     <div class="${vc}">
-      <div class="result-verdict-block">
-        <div class="rvb-badge">${icons[d]}</div>
-        <div class="rvb-text">${hl}</div>
-        <p class="rvb-sub">${st}</p>
+      <div class="rv-block">
+        <div class="rvbadge">${icons[d]}</div>
+        <div class="rvtxt">${hl}</div>
+        <p class="rvsub">${st}</p>
       </div>
-      <div class="result-cards">
-        <div class="rcard"><div class="rcard-title">Overall Risk</div><div class="risk-row_"><span>🛡️</span><span class="risk-lbl">Risk Level</span><span class="risk-val ${riskCls}">${rl.charAt(0).toUpperCase()+rl.slice(1)}</span></div></div>
+      <div class="rcards">
+        <div class="rcard"><div class="rcard-title">Overall Risk</div><div class="risk-row"><span>🛡️</span><span class="risk-lbl">Risk Level</span><span class="risk-val ${rclr}">${rl.charAt(0).toUpperCase()+rl.slice(1)}</span></div></div>
         ${unsBlock}
         <div class="rcard"><div class="rcard-title">Findings <span style="font-family:'DM Sans',sans-serif;font-weight:500;font-size:13px;color:var(--tx2)">${crit.length+warn.length+info.length} issue(s)</span></div>${issues}</div>
-        <div class="result-actions">
+        <div class="result-acts">
           <button class="btn bp" onclick="go('s-mechanics')">🔧 &nbsp;Find a Mechanic</button>
           <button class="btn bs" onclick="go('s-report')">📋 &nbsp;Full Inspection Report</button>
-          <button class="btn bg_" onclick="startInsp()">🔄 &nbsp;Start New Inspection</button>
+          <button class="btn bg_" onclick="startInsp()">🔄 &nbsp;New Inspection</button>
         </div>
       </div>
     </div>`;
 }
 
-/* ================================================================
+/* ════════════════════════════════════
    REPORT
-================================================================ */
-function renderReport(decision){
+════════════════════════════════════ */
+function renderReport(d){
   const now=new Date();
   document.getElementById('repdate').textContent=`Inspected ${now.toLocaleDateString('en-PH',{month:'long',day:'numeric',year:'numeric'})}`;
-  const tc={buy:'tg',neg:'ty',avoid:'tr',uns:'tb_'}[decision]||'ty';
-  const tl={buy:'BUY',neg:'NEGOTIATE',avoid:'AVOID',uns:'INCONCLUSIVE'}[decision];
+  const tc={buy:'tg',neg:'ty',avoid:'tr',uns:'tb_'}[d]||'ty';
+  const tl={buy:'BUY',neg:'NEGOTIATE',avoid:'AVOID',uns:'INCONCLUSIVE'}[d];
   document.getElementById('repvtag').innerHTML=`<span class="tag ${tc}">${tl}</span>`;
   document.getElementById('rcsecs').innerHTML=SECS.map((sec,si)=>{
     const probs=sec.q.filter((q,qi)=>{const a=ST.ans[`${si}-${qi}`];return a&&((q.pol==='biy'&&a==='yes')||(q.pol==='bin'&&a==='no'));}).length;
@@ -1395,24 +1217,22 @@ function renderReport(decision){
       let rc='ns';
       if(a==='yes')rc=q.pol==='biy'?'yb':'yg';
       else if(a==='no')rc=q.pol==='biy'?'nb':'ng';
-      return `<div class="rqrow"><div class="rq">${q.text}</div><div class="ra ${rc}">${a==='notsure'?'Unsure':a==='—'?'—':a.charAt(0).toUpperCase()+a.slice(1)}</div></div>`;
+      return `<div class="rqrow"><div class="rq">${q.t}</div><div class="ra ${rc}">${a==='notsure'?'Unsure':a==='—'?'—':a.charAt(0).toUpperCase()+a.slice(1)}</div></div>`;
     }).join('');
     return `<div class="rsec"><div class="rsec-head"><div class="rsec-title"><span>${sec.icon}</span>${sec.label}</div><span class="tag ${probs>0?'tr':'tg'}">${probs>0?probs+' issue(s)':'Clear'}</span></div><div class="rsec-qa">${qa}</div></div>`;
   }).join('');
 }
 
-/* ================================================================
+/* ════════════════════════════════════
    TOAST
-================================================================ */
-let tt;
-function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2500);}
+════════════════════════════════════ */
+let tt;function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2400);}
 
-/* ================================================================
+/* ════════════════════════════════════
    INIT
-================================================================ */
+════════════════════════════════════ */
 initSlider();
 renderCars();
-renderHomeListings();
 renderMechs();
 </script>
 </body>
