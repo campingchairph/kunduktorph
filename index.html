@@ -166,9 +166,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;heigh
 }
 /* Slide content sits in upper 60% */
 .hs-body{
-  position:absolute;inset:0;z-index:2;
+  position:absolute;
+  /* only occupy the upper portion — leave bottom 46% for the chrome */
+  top:0; left:0; right:0;
+  height:56%;
+  z-index:2;
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:calc(var(--hh) + 16px) 22px 0;
+  padding:calc(var(--hh) + 10px) 24px 20px;
 }
 
 /* Slide 1 — hero */
@@ -185,8 +189,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;heigh
 /* Bottom chrome — dots + 2x2 tiles — fused to bottom */
 .home-chrome{
   position:absolute;bottom:0;left:0;right:0;z-index:10;
-  padding:0 18px clamp(18px,5vh,40px);
-  background:linear-gradient(to top, rgba(10,9,7,1) 0%, rgba(10,9,7,.9) 45%, transparent 100%);
+  padding:0 18px clamp(16px,4vh,32px);
+  /* tall enough to hold dots + 2x2 grid comfortably */
+  background:linear-gradient(to top, rgba(10,9,7,1) 0%, rgba(10,9,7,.95) 55%, rgba(10,9,7,.5) 80%, transparent 100%);
 }
 .hero-dots{display:flex;gap:6px;margin-bottom:14px;}
 .hdot{width:20px;height:3px;border-radius:2px;background:rgba(255,255,255,.22);cursor:pointer;transition:background .25s,width .25s;}
@@ -198,9 +203,9 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;heigh
   background:rgba(255,255,255,.1);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   border:1px solid rgba(255,255,255,.15);
-  border-radius:var(--r);padding:13px 14px 14px;
+  border-radius:var(--r);padding:11px 13px 12px;
   cursor:pointer;transition:background .15s;
-  display:flex;flex-direction:column;gap:4px;text-align:left;
+  display:flex;flex-direction:column;gap:3px;text-align:left;
 }
 .htile:active{background:rgba(255,255,255,.18);}
 .htile.ht-primary{background:var(--y);border-color:var(--y);}
@@ -671,11 +676,31 @@ textarea.ni::placeholder{color:var(--tx3);}
   <div class="modal-box">
     <div class="m-handle"></div>
     <div class="m-title">BOOK APPOINTMENT</div>
-    <div id="bk-name" style="font-size:13px;color:var(--tx2);margin-bottom:14px;"></div>
-    <div class="fg"><div class="flbl">Service</div><select class="finput" id="bk-svc"></select></div>
+    <!-- Mechanic overview -->
+    <div style="background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rsm);padding:12px 14px;margin-bottom:16px;">
+      <div id="bk-mech-name" style="font-weight:700;font-size:15px;margin-bottom:3px;"></div>
+      <div id="bk-mech-loc" style="font-size:12px;color:var(--tx2);margin-bottom:2px;"></div>
+      <div id="bk-mech-rating" style="font-size:12px;color:var(--y);font-weight:600;"></div>
+    </div>
+    <div class="fg"><div class="flbl">Select Service</div><select class="finput" id="bk-svc"></select></div>
     <div class="fg"><div class="flbl">Date</div><input type="date" class="finput" id="bk-date"></div>
     <div class="fg"><div class="flbl">Time</div><select class="finput"><option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option></select></div>
     <div class="fg"><div class="flbl">Your Name</div><input type="text" class="finput" placeholder="Juan dela Cruz"></div>
+    <!-- Parts & supply question -->
+    <div class="fg">
+      <div class="flbl">Parts &amp; Supplies</div>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-top:4px;">
+        <label style="display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;">
+          <input type="radio" name="supply" value="mechanic" style="margin-top:2px;accent-color:var(--y);">
+          <div><div style="font-weight:600;">Mechanic handles everything</div><div style="font-size:11px;color:var(--tx2);margin-top:1px;">They source and bring all parts needed. Labor + parts on the bill.</div></div>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;">
+          <input type="radio" name="supply" value="client" style="margin-top:2px;accent-color:var(--y);">
+          <div><div style="font-weight:600;">I will bring my own parts</div><div style="font-size:11px;color:var(--tx2);margin-top:1px;">You buy the parts, they do the labor only. Usually cheaper overall.</div></div>
+        </label>
+      </div>
+    </div>
+    <div class="fg"><div class="flbl">Additional Notes</div><textarea class="finput" style="height:60px;resize:none;line-height:1.45;" placeholder="e.g. Car is a 2020 Vios, oil change + brake check needed..."></textarea></div>
     <div class="m-acts">
       <button class="btn bp" onclick="submitBook()">Confirm Booking</button>
       <button class="btn bg_" style="width:auto;padding:0 18px;" onclick="closeModal('bk-modal')">Cancel</button>
@@ -855,8 +880,40 @@ function setDealer(d,el){
   el.classList.add('active');
   renderCars();
 }
-function qf(el){ el.classList.toggle('active'); }
-function ft(el){ el.classList.toggle('active'); }
+function qf(el){
+  // If clicking a non-All chip in the same row, deactivate All in that row
+  var row = el.parentElement;
+  var allChip = row.querySelector('.chip:first-child');
+  if(el === allChip){
+    // clicking All: deactivate everything else in this row
+    row.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+    el.classList.add('active');
+  } else {
+    // clicking a specific filter: deactivate All in this row
+    if(allChip) allChip.classList.remove('active');
+    el.classList.toggle('active');
+    // if nothing active, re-activate All
+    var anyActive = Array.from(row.querySelectorAll('.chip')).some(function(c){ return c.classList.contains('active') && c!==allChip; });
+    if(!anyActive && allChip) allChip.classList.add('active');
+  }
+}
+function ft(el){
+  var row = el.parentElement;
+  var allChip = row.querySelector('.chip:first-child');
+  if(allChip && allChip.textContent.trim()==='Any'){
+    if(el===allChip){
+      row.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+      el.classList.add('active');
+    } else {
+      allChip.classList.remove('active');
+      el.classList.toggle('active');
+      var anyActive = Array.from(row.querySelectorAll('.chip')).some(function(c){ return c.classList.contains('active') && c!==allChip; });
+      if(!anyActive) allChip.classList.add('active');
+    }
+  } else {
+    el.classList.toggle('active');
+  }
+}
 function resetF(){ document.querySelectorAll('.drawer .chip').forEach(function(c){ c.classList.remove('active'); }); }
 function applyF(){ closeDrawer(); showToast('Filters applied!'); }
 function openDrawer(){ document.getElementById('dov').classList.add('show'); document.getElementById('drawer').classList.add('show'); }
@@ -864,6 +921,13 @@ function closeDrawer(){ document.getElementById('dov').classList.remove('show');
 function setRange(el,id,pre){
   var v=parseInt(el.value);
   document.getElementById(id).textContent = 'Up to ' + (pre==='P' ? 'P'+v.toLocaleString() : v.toLocaleString()+' km');
+}
+function openCarDetail(btn){
+  // Climb up to car-card and read the make
+  var card = btn;
+  while(card && !card.classList.contains('car-card')) card = card.parentElement;
+  var make = card ? card.querySelector('.car-make').textContent : 'listing';
+  showToast('Opening: '+make);
 }
 function renderCars(){
   var cars = CARS[ST.dealer]||[];
@@ -896,7 +960,9 @@ function setMT(t,el){
 }
 function renderMechs(){
   var all = ST.mech==='all' ? [].concat(MECHS.pms,MECHS.repair,MECHS.insp,MECHS.other) : (MECHS[ST.mech]||[]);
-  document.getElementById('mlist').innerHTML = all.map(function(m){
+  // store flat list for indexed lookup
+  window._mechList = all;
+  document.getElementById('mlist').innerHTML = all.map(function(m,mechIdx){
     var svcs = m.s.map(function(s){ return '<span class="sv">'+s+'</span>'; }).join('');
     return '<div class="mc">'+
       '<div class="mc-photo"><img src="'+m.img+'" alt="'+m.n+'" loading="lazy" onerror="this.style.display=\'none\'">'+
@@ -906,7 +972,7 @@ function renderMechs(){
       '<div class="mc-rating">&#9733; '+m.r+'</div>'+
       '<div class="mc-quip">"'+m.q+'"</div>'+
       '<div class="mc-svcs">'+svcs+'</div>'+
-      '<button class="btn bp" onclick="openBook(\''+m.n.replace(/'/g,"\\'")+"',"+JSON.stringify(m.s)+')">&#128197; &nbsp;Book Appointment</button>'+
+      '<button class="btn bp" onclick="openBookIdx('+mechIdx+')">&#128197; &nbsp;Book Appointment</button>'+
       '</div></div>';
   }).join('');
 }
@@ -933,13 +999,18 @@ function renderLearn(){
 }
 
 /* ════ MODALS ════ */
-function openBook(name, svcs){
-  document.getElementById('bk-name').textContent = 'at '+name;
+function openBookIdx(idx){
+  var m = window._mechList[idx];
+  if(!m) return;
+  document.getElementById('bk-mech-name').textContent = m.n;
+  document.getElementById('bk-mech-loc').textContent = '📍 '+m.l;
+  document.getElementById('bk-mech-rating').textContent = '★ '+m.r;
   var sel = document.getElementById('bk-svc');
-  sel.innerHTML = svcs.map(function(s){ return '<option>'+s+'</option>'; }).join('');
+  sel.innerHTML = m.s.map(function(s){ return '<option>'+s+'</option>'; }).join('');
   document.getElementById('bk-date').min = new Date().toISOString().split('T')[0];
   document.getElementById('bk-modal').classList.add('show');
 }
+function openBook(name, svcs){ /* legacy — not used */ }
 function closeModal(id,e){
   if(!e || e.target===document.getElementById(id)) document.getElementById(id).classList.remove('show');
 }
