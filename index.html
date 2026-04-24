@@ -395,6 +395,67 @@ textarea.ni::placeholder{color:var(--tx3);}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 .fi{animation:fadeUp .26s ease forwards;}
+/* ── MECHANIC APPLY / DASHBOARD ── */
+#s-apply .pg{padding-bottom:60px;}
+#s-mdash .pg{padding-bottom:60px;}
+.apply-hero{background:linear-gradient(135deg,#111 0%,#1a1a12 100%);padding:32px 22px 28px;border-bottom:1px solid var(--bd);}
+.apply-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.05em;color:#fff;margin-bottom:6px;}
+.apply-hero p{font-size:13px;color:rgba(255,255,255,.55);max-width:440px;line-height:1.55;}
+.apply-steps{display:flex;gap:8px;padding:16px 22px 0;max-width:var(--mw);margin:0 auto;flex-wrap:wrap;}
+.astep{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--tx2);}
+.astep-num{width:20px;height:20px;border-radius:50%;background:var(--y);color:#111;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;}
+.astep-arrow{color:var(--tx3);font-size:10px;}
+.apply-form{max-width:680px;margin:0 auto;padding:22px 22px 0;}
+.form-section{margin-bottom:28px;}
+.form-section-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.05em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.form-row{grid-template-columns:1fr;}}
+.fg{margin-bottom:13px;}
+.flbl{font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.finput{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--rsm);padding:11px 13px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
+.finput:focus{border-color:var(--y);}
+.finput option{background:var(--bg2);}
+.upload-box{border:2px dashed var(--bd);border-radius:var(--r);padding:22px;text-align:center;cursor:pointer;background:var(--bg3);transition:border-color .15s;}
+.upload-box:hover{border-color:var(--y);}
+.upload-icon{font-size:28px;margin-bottom:6px;}
+.upload-label{font-size:13px;font-weight:600;color:var(--tx);margin-bottom:3px;}
+.upload-sub{font-size:11px;color:var(--tx2);}
+.warn-box{background:rgba(209,47,36,.07);border:1px solid rgba(209,47,36,.2);border-radius:var(--rsm);padding:12px 14px;font-size:12px;color:var(--red);line-height:1.55;margin-bottom:16px;}
+.info-box{background:var(--ydim);border:1px solid rgba(230,184,0,.25);border-radius:var(--rsm);padding:12px 14px;font-size:12px;color:#7a6000;line-height:1.55;margin-bottom:16px;}
+/* Mechanic dashboard */
+.mdash-header{background:linear-gradient(135deg,#111,#1a1a12);padding:24px 22px 20px;border-bottom:1px solid var(--bd);}
+.mdash-greeting{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;letter-spacing:.04em;margin-bottom:4px;}
+.mdash-status{display:inline-flex;align-items:center;gap:6px;background:rgba(24,145,90,.15);border:1px solid rgba(24,145,90,.3);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:var(--grn);}
+.mdash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 22px 0;max-width:var(--mw);margin:0 auto;}
+.stat-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:14px;text-align:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--y);letter-spacing:.04em;}
+.stat-lbl{font-size:10px;color:var(--tx2);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+.booking-list{padding:14px 22px 0;max-width:var(--mw);margin:0 auto;}
+.booking-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;}
+.bk-date-box{background:var(--y);border-radius:var(--rsm);padding:6px 10px;text-align:center;flex-shrink:0;}
+.bk-date-day{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;color:#111;}
+.bk-date-mo{font-size:9px;font-weight:700;color:#111;text-transform:uppercase;}
+.bk-info{flex:1;}
+.bk-client{font-weight:700;font-size:14px;margin-bottom:3px;}
+.bk-service{font-size:12px;color:var(--tx2);margin-bottom:4px;}
+.bk-status{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;}
+.bk-pending{background:var(--ydim);color:#7a6000;}
+.bk-confirmed{background:var(--gdim);color:var(--grn);}
+.bk-acts{display:flex;gap:6px;margin-top:10px;}
+.cal-wrap{padding:14px 22px;max-width:var(--mw);margin:0 auto;}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.cal-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;}
+.cal-nav{display:flex;gap:6px;}
+.cal-nav button{width:32px;height:32px;border-radius:50%;border:1px solid var(--bd);background:var(--bg2);cursor:pointer;font-size:14px;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.cal-day-head{text-align:center;font-size:10px;font-weight:700;color:var(--tx3);padding:4px 0;text-transform:uppercase;}
+.cal-day{background:var(--bg3);border-radius:var(--rsm);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s;position:relative;}
+.cal-day.empty{background:transparent;cursor:default;}
+.cal-day.today{background:var(--ydim);border:1.5px solid var(--y);font-weight:700;}
+.cal-day.has-booking::after{content:'';position:absolute;bottom:4px;width:5px;height:5px;border-radius:50%;background:var(--y);}
+.cal-day:hover:not(.empty){background:var(--bg4);}
+.edit-prof-wrap{padding:16px 22px 0;max-width:680px;margin:0 auto;}
+
 </style>
 </head>
 <body>
@@ -499,54 +560,22 @@ textarea.ni::placeholder{color:var(--tx3);}
         <div class="ht-sub">Tips · Schools · Guides</div>
       </div>
     </div>
+    <div style="margin-top:8px;text-align:center;">
+      <button onclick="go('s-apply')" style="background:none;border:none;font-size:11px;font-weight:600;color:rgba(255,255,255,.35);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;padding:8px;">Are you a mechanic? Apply here ›</button>
+    </div>
   </div>
 </div>
 
 <!-- ══ LISTINGS ══ -->
 <div id="s-listings" class="screen inner-page">
   <div class="pg">
-    <div class="ph"><h1>CAR LISTINGS</h1><p>Browse Carmudi, AutoDeal, and AllCars. Filter to find your match.</p></div>
-    <div style="max-width:var(--mw);margin:0 auto;padding:14px 20px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-      <div class="chip active" id="dt-carmudi" onclick="setDealer('carmudi',this)">🟠 Carmudi</div>
-      <div class="chip" id="dt-autodeal" onclick="setDealer('autodeal',this)">🔵 AutoDeal</div>
-      <div class="chip" id="dt-allcars" onclick="setDealer('allcars',this)">🟢 AllCars</div>
-      <button class="btn bg_ bsm" style="margin-left:auto" onclick="openDrawer()">⚡ More Filters</button>
-    </div>
-    <div class="fw">
-      <div class="fg-sec">
-        <div class="fg-lbl">Condition</div>
-        <div class="fg-row">
-          <div class="chip active" onclick="qf(this)">All</div>
-          <div class="chip" onclick="qf(this)">✨ Brand New</div>
-          <div class="chip" onclick="qf(this)">🔄 Second Hand</div>
-        </div>
-      </div>
-      <div class="fg-sec">
-        <div class="fg-lbl">Transmission &amp; Fuel</div>
-        <div class="fg-row">
-          <div class="chip active" onclick="qf(this)">All</div>
-          <div class="chip" onclick="qf(this)">⚙️ AT</div>
-          <div class="chip" onclick="qf(this)">🔩 MT</div>
-          <div class="chip" onclick="qf(this)">🔁 CVT</div>
-          <div class="chip" onclick="qf(this)">⚡ Electric</div>
-          <div class="chip" onclick="qf(this)">🌿 Hybrid</div>
-          <div class="chip" onclick="qf(this)">⛽ Gasoline</div>
-          <div class="chip" onclick="qf(this)">🪨 Diesel</div>
-        </div>
-      </div>
-      <div class="fg-sec">
-        <div class="fg-lbl">Body Type</div>
-        <div class="fg-row">
-          <div class="chip" onclick="qf(this)">🚗 Sedan</div>
-          <div class="chip" onclick="qf(this)">🚙 SUV</div>
-          <div class="chip" onclick="qf(this)">🛻 Pickup</div>
-          <div class="chip" onclick="qf(this)">🚐 Van</div>
-          <div class="chip" onclick="qf(this)">🏎️ Sports</div>
-          <div class="chip" onclick="qf(this)">🚜 Hatchback</div>
-        </div>
+    <div class="ph">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+        <div><h1>CAR LISTINGS</h1><p>All listings from Carmudi, AutoDeal &amp; AllCars in one place.</p></div>
+        <button class="btn bp bsm" onclick="openDrawer()" style="flex-shrink:0;">⚡ Filter Cars</button>
       </div>
     </div>
-    <div id="lcount" style="max-width:var(--mw);margin:0 auto;padding:10px 20px 2px;font-size:13px;color:var(--tx2);"></div>
+    <div id="lcount" style="max-width:var(--mw);margin:0 auto;padding:12px 20px 2px;font-size:13px;color:var(--tx2);"></div>
     <div class="cgrid" id="clist"></div>
     <div style="height:36px"></div>
   </div>
@@ -556,13 +585,85 @@ textarea.ni::placeholder{color:var(--tx3);}
 <div class="dov" id="dov" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
   <div class="d-handle"></div>
-  <div class="d-head"><h3>MORE FILTERS</h3><button class="btn bg_ bsm" style="width:auto" onclick="resetF()">Reset</button></div>
+  <div class="d-head"><h3>FILTER CARS</h3><button class="btn bg_ bsm" style="width:auto" onclick="resetF()">Reset All</button></div>
   <div class="d-body">
-    <div><div class="fg-lbl">Brand</div><div class="fg-row" style="gap:6px"><div class="chip" onclick="ft(this)">Toyota</div><div class="chip" onclick="ft(this)">Honda</div><div class="chip" onclick="ft(this)">Mitsubishi</div><div class="chip" onclick="ft(this)">Suzuki</div><div class="chip" onclick="ft(this)">Ford</div><div class="chip" onclick="ft(this)">Hyundai</div><div class="chip" onclick="ft(this)">Nissan</div><div class="chip" onclick="ft(this)">Kia</div><div class="chip" onclick="ft(this)">BYD</div><div class="chip" onclick="ft(this)">Tesla</div><div class="chip" onclick="ft(this)">Subaru</div><div class="chip" onclick="ft(this)">MG</div></div></div>
-    <div><div class="fg-lbl">Price Range</div><input type="range" min="0" max="5000000" step="50000" value="2500000" oninput="setRange(this,'pval','P')"><div class="rrow"><span>P0</span><span id="pval">Up to P2,500,000</span><span>P5M+</span></div></div>
-    <div><div class="fg-lbl">Max Mileage</div><input type="range" min="0" max="200000" step="5000" value="100000" oninput="setRange(this,'mval','')"><div class="rrow"><span>0 km</span><span id="mval">Up to 100,000 km</span><span>200k+</span></div></div>
-    <div><div class="fg-lbl">Coding Day (MMDA)</div><div class="fg-row" style="gap:6px"><div class="chip active" onclick="ft(this)">Any</div><div class="chip" onclick="ft(this)">Mon</div><div class="chip" onclick="ft(this)">Tue</div><div class="chip" onclick="ft(this)">Wed</div><div class="chip" onclick="ft(this)">Thu</div><div class="chip" onclick="ft(this)">Fri</div></div></div>
-    <button class="btn bp" onclick="applyF()">Apply Filters</button>
+    <div>
+      <div class="fg-lbl">Condition</div>
+      <div class="fg-row" style="gap:6px">
+        <div class="chip active" onclick="ft(this)">All</div>
+        <div class="chip" onclick="ft(this)">✨ Brand New</div>
+        <div class="chip" onclick="ft(this)">🔄 Second Hand</div>
+      </div>
+    </div>
+    <div>
+      <div class="fg-lbl">Transmission</div>
+      <div class="fg-row" style="gap:6px">
+        <div class="chip active" onclick="ft(this)">All</div>
+        <div class="chip" onclick="ft(this)">⚙️ Automatic</div>
+        <div class="chip" onclick="ft(this)">🔩 Manual</div>
+        <div class="chip" onclick="ft(this)">🔁 CVT</div>
+      </div>
+    </div>
+    <div>
+      <div class="fg-lbl">Fuel Type</div>
+      <div class="fg-row" style="gap:6px">
+        <div class="chip active" onclick="ft(this)">All</div>
+        <div class="chip" onclick="ft(this)">⛽ Gasoline</div>
+        <div class="chip" onclick="ft(this)">🪨 Diesel</div>
+        <div class="chip" onclick="ft(this)">⚡ Electric</div>
+        <div class="chip" onclick="ft(this)">🌿 Hybrid</div>
+      </div>
+    </div>
+    <div>
+      <div class="fg-lbl">Body Type</div>
+      <div class="fg-row" style="gap:6px">
+        <div class="chip" onclick="ft(this)">🚗 Sedan</div>
+        <div class="chip" onclick="ft(this)">🚙 SUV</div>
+        <div class="chip" onclick="ft(this)">🛻 Pickup</div>
+        <div class="chip" onclick="ft(this)">🚐 Van</div>
+        <div class="chip" onclick="ft(this)">🏎️ Sports</div>
+        <div class="chip" onclick="ft(this)">🚜 Hatchback</div>
+      </div>
+    </div>
+    <div>
+      <div class="fg-lbl">Brand</div>
+      <div class="fg-row" style="gap:6px">
+        <div class="chip" onclick="ft(this)">Toyota</div>
+        <div class="chip" onclick="ft(this)">Honda</div>
+        <div class="chip" onclick="ft(this)">Mitsubishi</div>
+        <div class="chip" onclick="ft(this)">Suzuki</div>
+        <div class="chip" onclick="ft(this)">Ford</div>
+        <div class="chip" onclick="ft(this)">Hyundai</div>
+        <div class="chip" onclick="ft(this)">Nissan</div>
+        <div class="chip" onclick="ft(this)">Kia</div>
+        <div class="chip" onclick="ft(this)">BYD</div>
+        <div class="chip" onclick="ft(this)">Tesla</div>
+        <div class="chip" onclick="ft(this)">Subaru</div>
+        <div class="chip" onclick="ft(this)">MG</div>
+      </div>
+    </div>
+    <div>
+      <div class="fg-lbl">Max Price</div>
+      <input type="range" min="0" max="5000000" step="50000" value="5000000" oninput="setRange(this,'pval','P')">
+      <div class="rrow"><span>P0</span><span id="pval">Any price</span><span>P5M+</span></div>
+    </div>
+    <div>
+      <div class="fg-lbl">Max Mileage</div>
+      <input type="range" min="0" max="200000" step="5000" value="200000" oninput="setRange(this,'mval','')">
+      <div class="rrow"><span>0 km</span><span id="mval">Any mileage</span><span>200k+</span></div>
+    </div>
+    <div>
+      <div class="fg-lbl">Coding Day (MMDA)</div>
+      <div class="fg-row" style="gap:6px">
+        <div class="chip active" onclick="ft(this)">Any</div>
+        <div class="chip" onclick="ft(this)">Mon</div>
+        <div class="chip" onclick="ft(this)">Tue</div>
+        <div class="chip" onclick="ft(this)">Wed</div>
+        <div class="chip" onclick="ft(this)">Thu</div>
+        <div class="chip" onclick="ft(this)">Fri</div>
+      </div>
+    </div>
+    <button class="btn bp" onclick="applyF()">Show Results</button>
   </div>
 </div>
 
@@ -682,28 +783,78 @@ textarea.ni::placeholder{color:var(--tx3);}
       <div id="bk-mech-loc" style="font-size:12px;color:var(--tx2);margin-bottom:2px;"></div>
       <div id="bk-mech-rating" style="font-size:12px;color:var(--y);font-weight:600;"></div>
     </div>
-    <div class="fg"><div class="flbl">Select Service</div><select class="finput" id="bk-svc"></select></div>
-    <div class="fg"><div class="flbl">Date</div><input type="date" class="finput" id="bk-date"></div>
-    <div class="fg"><div class="flbl">Time</div><select class="finput"><option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option></select></div>
+    <div class="fg">
+      <div class="flbl">Select Services (choose all that apply)</div>
+      <div id="bk-svc-checks" style="display:flex;flex-direction:column;gap:6px;margin-top:4px;"></div>
+    </div>
+    <div class="fg"><div class="flbl">Preferred Date</div><input type="date" class="finput" id="bk-date"></div>
+    <div class="fg"><div class="flbl">Preferred Time</div>
+      <select class="finput">
+        <option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option>
+        <option>11:00 AM</option><option>1:00 PM</option><option>2:00 PM</option>
+        <option>3:00 PM</option><option>4:00 PM</option>
+      </select>
+    </div>
     <div class="fg"><div class="flbl">Your Name</div><input type="text" class="finput" placeholder="Juan dela Cruz"></div>
-    <!-- Parts & supply question -->
+    <div class="fg"><div class="flbl">Your Location / Address</div><input type="text" class="finput" placeholder="e.g. Brgy. Kapitolyo, Pasig City"></div>
     <div class="fg">
       <div class="flbl">Parts &amp; Supplies</div>
-      <div style="display:flex;flex-direction:column;gap:7px;margin-top:4px;">
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
         <label style="display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;">
           <input type="radio" name="supply" value="mechanic" style="margin-top:2px;accent-color:var(--y);">
-          <div><div style="font-weight:600;">Mechanic handles everything</div><div style="font-size:11px;color:var(--tx2);margin-top:1px;">They source and bring all parts needed. Labor + parts on the bill.</div></div>
+          <div><div style="font-weight:600;">Mechanic handles parts</div><div style="font-size:11px;color:var(--tx2);margin-top:1px;">They source everything. Labor + parts included in bill.</div></div>
         </label>
         <label style="display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;">
           <input type="radio" name="supply" value="client" style="margin-top:2px;accent-color:var(--y);">
-          <div><div style="font-weight:600;">I will bring my own parts</div><div style="font-size:11px;color:var(--tx2);margin-top:1px;">You buy the parts, they do the labor only. Usually cheaper overall.</div></div>
+          <div><div style="font-weight:600;">I will supply the parts</div><div style="font-size:11px;color:var(--tx2);margin-top:1px;">You buy parts, they do the labor. Usually cheaper.</div></div>
         </label>
       </div>
     </div>
-    <div class="fg"><div class="flbl">Additional Notes</div><textarea class="finput" style="height:60px;resize:none;line-height:1.45;" placeholder="e.g. Car is a 2020 Vios, oil change + brake check needed..."></textarea></div>
+    <div class="fg"><div class="flbl">Notes for the Mechanic</div><textarea class="finput" style="height:60px;resize:none;line-height:1.45;" placeholder="e.g. 2020 Vios, engine makes noise on cold start..."></textarea></div>
+    <p style="font-size:11px;color:var(--tx2);margin-bottom:14px;line-height:1.5;">&#9432; The mechanic will review your request and confirm the appointment. You will be notified once confirmed.</p>
     <div class="m-acts">
-      <button class="btn bp" onclick="submitBook()">Confirm Booking</button>
+      <button class="btn bp" onclick="submitBook()">&#128197; Book Mechanic</button>
       <button class="btn bg_" style="width:auto;padding:0 18px;" onclick="closeModal('bk-modal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ask Estimate Modal -->
+<div class="modal-bg" id="est-modal" onclick="closeModal('est-modal',event)">
+  <div class="modal-box">
+    <div class="m-handle"></div>
+    <div class="m-title">ASK FOR ESTIMATE</div>
+    <div id="est-car-name" style="font-size:13px;font-weight:600;color:var(--tx2);margin-bottom:4px;"></div>
+    <div id="est-car-price" style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--y);margin-bottom:16px;"></div>
+    <p style="font-size:12px;color:var(--tx2);line-height:1.55;margin-bottom:16px;padding:10px 12px;background:var(--bg3);border-radius:var(--rsm);border-left:2px solid var(--y);">
+      Fill in your details and we will forward your inquiry to the dealer. They will reach out to you directly.
+    </p>
+    <div class="fg"><div class="flbl">Your Full Name</div><input type="text" class="finput" placeholder="Juan dela Cruz"></div>
+    <div class="fg"><div class="flbl">Mobile Number</div><input type="tel" class="finput" placeholder="09XX XXX XXXX"></div>
+    <div class="fg"><div class="flbl">Email Address</div><input type="email" class="finput" placeholder="juan@email.com"></div>
+    <div class="fg"><div class="flbl">Location / City</div><input type="text" class="finput" placeholder="e.g. Quezon City"></div>
+    <div class="fg">
+      <div class="flbl">Your Message to the Dealer</div>
+      <textarea class="finput" style="height:70px;resize:none;line-height:1.45;" placeholder="e.g. Still available? Open to meet this weekend for ocular. Budget is negotiable."></textarea>
+    </div>
+    <div class="fg">
+      <div class="flbl">Preferred Contact Method</div>
+      <div style="display:flex;gap:8px;margin-top:4px;">
+        <label style="flex:1;display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;">
+          <input type="radio" name="contact" value="call" style="accent-color:var(--y);">Call
+        </label>
+        <label style="flex:1;display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;">
+          <input type="radio" name="contact" value="sms" style="accent-color:var(--y);">SMS
+        </label>
+        <label style="flex:1;display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;">
+          <input type="radio" name="contact" value="email" style="accent-color:var(--y);">Email
+        </label>
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--tx3);margin-bottom:14px;">Your details will only be shared with the dealer of this listing.</p>
+    <div class="m-acts">
+      <button class="btn bp" onclick="submitEstimate()">&#128172; Send Inquiry to Dealer</button>
+      <button class="btn bg_" style="width:auto;padding:0 18px;" onclick="closeModal('est-modal')">Cancel</button>
     </div>
   </div>
 </div>
@@ -726,6 +877,244 @@ textarea.ni::placeholder{color:var(--tx3);}
   </div>
 </div>
 
+
+<!-- ══ APPLY AS MECHANIC ══ -->
+<div id="s-apply" class="screen inner-page">
+  <div class="pg">
+    <div class="apply-hero">
+      <h1>APPLY AS A MECHANIC</h1>
+      <p>Join the Kundoktor network. Verified mechanics only. Your identity and credentials will be reviewed before approval.</p>
+    </div>
+    <div class="apply-steps">
+      <div class="astep"><div class="astep-num">1</div>Fill Form</div>
+      <div class="astep-arrow">›</div>
+      <div class="astep"><div class="astep-num">2</div>Submit IDs</div>
+      <div class="astep-arrow">›</div>
+      <div class="astep"><div class="astep-num">3</div>Verification</div>
+      <div class="astep-arrow">›</div>
+      <div class="astep"><div class="astep-num">4</div>Approved</div>
+    </div>
+    <div class="apply-form">
+      <div class="warn-box">&#128274; This information is used strictly for identity verification. It will never be shown publicly. Only your shop name, location, services, and rating will be visible to users.</div>
+
+      <div class="form-section">
+        <div class="form-section-title">&#128100; Personal Information</div>
+        <div class="form-row">
+          <div class="fg"><div class="flbl">First Name</div><input type="text" class="finput" placeholder="Juan"></div>
+          <div class="fg"><div class="flbl">Last Name</div><input type="text" class="finput" placeholder="dela Cruz"></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><div class="flbl">Date of Birth</div><input type="date" class="finput"></div>
+          <div class="fg"><div class="flbl">Mobile Number</div><input type="tel" class="finput" placeholder="09XX XXX XXXX"></div>
+        </div>
+        <div class="fg"><div class="flbl">Email Address</div><input type="email" class="finput" placeholder="juan@email.com"></div>
+        <div class="fg"><div class="flbl">Home Address</div><input type="text" class="finput" placeholder="Street, Barangay, City, Province"></div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">&#128295; Shop / Business Information</div>
+        <div class="fg"><div class="flbl">Shop / Business Name</div><input type="text" class="finput" placeholder="e.g. Mang Juan Auto Repair"></div>
+        <div class="fg"><div class="flbl">Shop Address</div><input type="text" class="finput" placeholder="Full address where clients can visit"></div>
+        <div class="form-row">
+          <div class="fg"><div class="flbl">City / Municipality</div><input type="text" class="finput" placeholder="Pasig City"></div>
+          <div class="fg"><div class="flbl">Years in Operation</div><input type="number" class="finput" placeholder="e.g. 8" min="0" max="60"></div>
+        </div>
+        <div class="fg">
+          <div class="flbl">Service Category</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128738; Preventive Maintenance (PMS)</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128295; General Repairs</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128269; Pre-Purchase Inspection</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#10024; Other Specialty Services</label>
+          </div>
+        </div>
+        <div class="fg"><div class="flbl">Specific Services Offered</div><textarea class="finput" style="height:70px;resize:none;line-height:1.45;" placeholder="e.g. Engine overhaul, aircon repair, wheel alignment, OBD diagnostics..."></textarea></div>
+        <div class="fg">
+          <div class="flbl">Available Days</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Mon</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Tue</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Wed</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Thu</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Fri</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sat</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sun</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">&#128196; Government-Issued ID</div>
+        <div class="info-box">&#9888; Required for verification. Accepted: PhilSys ID, Driver&#39;s License, Passport, SSS/GSIS ID, Voter&#39;s ID, PRC ID. Both front and back required.</div>
+        <div class="form-row" style="margin-bottom:12px;">
+          <div class="upload-box" onclick="showToast('Camera/gallery access needed')">
+            <div class="upload-icon">&#128247;</div>
+            <div class="upload-label">ID Front</div>
+            <div class="upload-sub">Tap to upload</div>
+          </div>
+          <div class="upload-box" onclick="showToast('Camera/gallery access needed')">
+            <div class="upload-icon">&#128247;</div>
+            <div class="upload-label">ID Back</div>
+            <div class="upload-sub">Tap to upload</div>
+          </div>
+        </div>
+        <div class="fg"><div class="flbl">ID Type</div>
+          <select class="finput">
+            <option value="">Select ID type</option>
+            <option>PhilSys / National ID</option>
+            <option>Driver&#39;s License</option>
+            <option>Passport</option>
+            <option>SSS / GSIS ID</option>
+            <option>Voter&#39;s ID</option>
+            <option>PRC ID</option>
+            <option>Postal ID</option>
+          </select>
+        </div>
+        <div class="fg"><div class="flbl">ID Number</div><input type="text" class="finput" placeholder="As printed on your ID"></div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">&#129317; Selfie Verification</div>
+        <div class="info-box">Take a selfie holding your government ID. This confirms the ID belongs to you. Photo will be reviewed by our team only.</div>
+        <div class="upload-box" onclick="showToast('Camera access needed')" style="max-width:260px;margin:0 auto 16px;">
+          <div class="upload-icon">&#129317;</div>
+          <div class="upload-label">Selfie with ID</div>
+          <div class="upload-sub">Face + ID clearly visible</div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">&#128220; Supporting Documents (optional but recommended)</div>
+        <p style="font-size:13px;color:var(--tx2);margin-bottom:12px;line-height:1.5;">Business permit, TESDA NC certificate, or any proof of automotive training or employment. This speeds up verification.</p>
+        <div class="upload-box" onclick="showToast('File access needed')">
+          <div class="upload-icon">&#128196;</div>
+          <div class="upload-label">Upload Document</div>
+          <div class="upload-sub">PDF, JPG, or PNG · Max 5MB</div>
+        </div>
+      </div>
+
+      <div class="warn-box" style="margin-top:4px;">&#128274; By submitting, you agree that Kundoktor may verify your identity with relevant government agencies. False information will result in permanent ban and may be reported to authorities.</div>
+
+      <div style="display:flex;flex-direction:column;gap:9px;padding-bottom:32px;">
+        <button class="btn bp" onclick="submitApplication()">&#128196; Submit Application</button>
+        <button class="btn bg_" onclick="go('s-mdash')" style="font-size:12px;color:var(--tx3);">Preview Mechanic Dashboard →</button>
+        <button class="btn bg_" onclick="go('s-home')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MECHANIC DASHBOARD ══ -->
+<div id="s-mdash" class="screen inner-page">
+  <div class="pg">
+    <div class="mdash-header">
+      <div class="mdash-greeting">WELCOME BACK, MECHANIC</div>
+      <div class="mdash-status">&#9679; Verified &amp; Active</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="mdash-stats">
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-lbl">Pending</div></div>
+      <div class="stat-card"><div class="stat-num">12</div><div class="stat-lbl">This Month</div></div>
+      <div class="stat-card"><div class="stat-num">4.9</div><div class="stat-lbl">Rating</div></div>
+    </div>
+
+    <!-- Booking tabs -->
+    <div style="padding:16px 22px 0;max-width:var(--mw);margin:0 auto;">
+      <div style="display:flex;gap:6px;margin-bottom:14px;">
+        <div class="chip active" onclick="mechTab('pending',this)">Pending (3)</div>
+        <div class="chip" onclick="mechTab('confirmed',this)">Confirmed</div>
+        <div class="chip" onclick="mechTab('done',this)">Completed</div>
+      </div>
+    </div>
+
+    <!-- Booking list -->
+    <div class="booking-list" id="booking-list">
+      <div class="booking-card">
+        <div class="bk-date-box"><div class="bk-date-day">26</div><div class="bk-date-mo">Apr</div></div>
+        <div class="bk-info">
+          <div class="bk-client">Miguel Santos</div>
+          <div class="bk-service">Oil Change + Brake Check · 2020 Vios · 9:00 AM</div>
+          <div class="bk-service" style="color:var(--tx3);font-size:11px;">Pasig City · Mechanic supplies parts</div>
+          <div class="bk-status bk-pending">&#9679; Pending Confirmation</div>
+          <div class="bk-acts">
+            <button class="btn bp bsm" onclick="showToast('Booking confirmed!')">Accept</button>
+            <button class="btn bg_ bsm" onclick="showToast('Booking declined')">Decline</button>
+          </div>
+        </div>
+      </div>
+      <div class="booking-card">
+        <div class="bk-date-box"><div class="bk-date-day">27</div><div class="bk-date-mo">Apr</div></div>
+        <div class="bk-info">
+          <div class="bk-client">Carlo Reyes</div>
+          <div class="bk-service">Pre-Purchase Inspection · Toyota Fortuner · 10:00 AM</div>
+          <div class="bk-service" style="color:var(--tx3);font-size:11px;">Quezon City · Client supplies parts</div>
+          <div class="bk-status bk-pending">&#9679; Pending Confirmation</div>
+          <div class="bk-acts">
+            <button class="btn bp bsm" onclick="showToast('Booking confirmed!')">Accept</button>
+            <button class="btn bg_ bsm" onclick="showToast('Booking declined')">Decline</button>
+          </div>
+        </div>
+      </div>
+      <div class="booking-card">
+        <div class="bk-date-box"><div class="bk-date-day">28</div><div class="bk-date-mo">Apr</div></div>
+        <div class="bk-info">
+          <div class="bk-client">Ana Dizon</div>
+          <div class="bk-service">Engine Diagnostic + AC Repair · Honda City · 2:00 PM</div>
+          <div class="bk-service" style="color:var(--tx3);font-size:11px;">Makati City · Mechanic supplies parts</div>
+          <div class="bk-status bk-pending">&#9679; Pending Confirmation</div>
+          <div class="bk-acts">
+            <button class="btn bp bsm" onclick="showToast('Booking confirmed!')">Accept</button>
+            <button class="btn bg_ bsm" onclick="showToast('Booking declined')">Decline</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="cal-wrap">
+      <div class="cal-header">
+        <div class="cal-title" id="cal-title">April 2026</div>
+        <div class="cal-nav">
+          <button onclick="calNav(-1)">&#8249;</button>
+          <button onclick="calNav(1)">&#8250;</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+    <!-- Edit Profile -->
+    <div class="edit-prof-wrap">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.05em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--bd);">&#9998; EDIT YOUR PROFILE</div>
+      <div class="info-box">You can update your services, availability, and rates. Name, ID details, and contact info cannot be changed after verification to prevent fraud.</div>
+      <div class="fg"><div class="flbl">Services Offered</div><textarea class="finput" style="height:70px;resize:none;line-height:1.45;" placeholder="Update your list of services...">Oil & Filter Change, Engine Flush, Spark Plugs, Brake Check</textarea></div>
+      <div class="fg">
+        <div class="flbl">Service Category</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
+          <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" checked style="accent-color:var(--y);width:16px;height:16px;">&#128738; Preventive Maintenance (PMS)</label>
+          <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128295; General Repairs</label>
+          <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128269; Pre-Purchase Inspection</label>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="flbl">Available Days</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Mon</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Tue</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Wed</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Thu</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Fri</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sat</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sun</label>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:32px;margin-top:8px;">
+        <button class="btn bp" onclick="showToast('Profile updated!')">Save Changes</button>
+        <button class="btn bg_" onclick="go('s-home')">&#8592; Back to Home</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -874,12 +1263,6 @@ function initSlider(){
 }
 
 /* ════ LISTINGS ════ */
-function setDealer(d,el){
-  ST.dealer=d;
-  ['carmudi','autodeal','allcars'].forEach(function(x){ document.getElementById('dt-'+x).classList.remove('active'); });
-  el.classList.add('active');
-  renderCars();
-}
 function qf(el){
   // If clicking a non-All chip in the same row, deactivate All in that row
   var row = el.parentElement;
@@ -923,16 +1306,26 @@ function setRange(el,id,pre){
   document.getElementById(id).textContent = 'Up to ' + (pre==='P' ? 'P'+v.toLocaleString() : v.toLocaleString()+' km');
 }
 function openCarDetail(btn){
-  // Climb up to car-card and read the make
   var card = btn;
   while(card && !card.classList.contains('car-card')) card = card.parentElement;
-  var make = card ? card.querySelector('.car-make').textContent : 'listing';
-  showToast('Opening: '+make);
+  if(!card) return;
+  showToast('Opening listing...');
+}
+function openEstimate(btn){
+  var card = btn;
+  while(card && !card.classList.contains('car-card')) card = card.parentElement;
+  if(!card) return;
+  document.getElementById('est-car-name').textContent = card.querySelector('.car-make').textContent;
+  document.getElementById('est-car-price').textContent = '&#8369;'+card.querySelector('.car-price').textContent.replace('₱','').trim();
+  document.getElementById('est-modal').classList.add('show');
+}
+function submitEstimate(){
+  document.getElementById('est-modal').classList.remove('show');
+  showToast('Inquiry sent! The dealer will contact you soon.');
 }
 function renderCars(){
-  var cars = CARS[ST.dealer]||[];
-  var names = {carmudi:'Carmudi', autodeal:'AutoDeal', allcars:'AllCars'};
-  document.getElementById('lcount').innerHTML = '<strong>'+cars.length+' cars</strong> on '+names[ST.dealer];
+  var cars = CARS.carmudi.concat(CARS.autodeal, CARS.allcars);
+  document.getElementById('lcount').innerHTML = '<strong>'+cars.length+' cars</strong> across all dealers';
   document.getElementById('clist').innerHTML = cars.map(function(c){
     var tags = c.tags.map(function(t){ return '<span class="tag '+t.c+'">'+t.t+'</span>'; }).join('');
     var meta = c.meta.map(function(m){ return '<span>'+m+'</span>'; }).join('');
@@ -945,7 +1338,7 @@ function renderCars(){
       '<div class="car-meta">'+meta+'<span>Coding: '+c.coding+'</span></div>'+
       '<div class="car-price">&#8369;'+c.p+'</div>'+
       '<div class="car-acts">'+
-      '<button class="btn bs bsm" onclick="showToast(\'Sending estimate request...\')">&#x1F4AC; Ask Estimate</button>'+
+      '<button class="btn bs bsm" onclick="openEstimate(this)">&#128172; Ask Estimate</button>'+
       '<button class="btn bp bsm" onclick="showToast(\'Opening listing...\')">View Listing</button>'+
       '</div></div></div>';
   }).join('');
@@ -1005,16 +1398,19 @@ function openBookIdx(idx){
   document.getElementById('bk-mech-name').textContent = m.n;
   document.getElementById('bk-mech-loc').textContent = '📍 '+m.l;
   document.getElementById('bk-mech-rating').textContent = '★ '+m.r;
-  var sel = document.getElementById('bk-svc');
-  sel.innerHTML = m.s.map(function(s){ return '<option>'+s+'</option>'; }).join('');
+  var checks = document.getElementById('bk-svc-checks');
+  checks.innerHTML = m.s.map(function(s,i){
+    return '<label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;">'+
+      '<input type="checkbox" name="svc" value="'+s+'" style="accent-color:var(--y);width:16px;height:16px;">'+s+'</label>';
+  }).join('');
   document.getElementById('bk-date').min = new Date().toISOString().split('T')[0];
   document.getElementById('bk-modal').classList.add('show');
 }
-function openBook(name, svcs){ /* legacy — not used */ }
+function openBook(name, svcs){ /* legacy */ }
 function closeModal(id,e){
   if(!e || e.target===document.getElementById(id)) document.getElementById(id).classList.remove('show');
 }
-function submitBook(){ document.getElementById('bk-modal').classList.remove('show'); showToast('Booking confirmed! You will hear from them shortly.'); }
+function submitBook(){ document.getElementById('bk-modal').classList.remove('show'); showToast('Booking sent! The mechanic will confirm your request.'); }
 function openSend(){ document.getElementById('send-modal').classList.add('show'); }
 function submitSend(){ document.getElementById('send-modal').classList.remove('show'); showToast('Report sent to mechanic!'); }
 
@@ -1245,6 +1641,29 @@ function renderReport(d){
   }).join('');
 }
 
+
+/* ════ MECHANIC DASHBOARD ════ */
+var calYear=2026, calMonth=3; // April 2026 (0-indexed)
+var bookingDays=[26,27,28];
+function renderCal(){
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-title').textContent = months[calMonth]+' '+calYear;
+  var firstDay = new Date(calYear, calMonth, 1).getDay();
+  var daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+  var today = new Date();
+  var todayMatch = today.getFullYear()===calYear && today.getMonth()===calMonth ? today.getDate() : -1;
+  var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var html = days.map(function(d){ return '<div class="cal-day-head">'+d+'</div>'; }).join('');
+  for(var i=0;i<firstDay;i++) html+='<div class="cal-day empty"></div>';
+  for(var d=1;d<=daysInMonth;d++){
+    var cls='cal-day'+(d===todayMatch?' today':'')+(bookingDays.indexOf(d)>-1?' has-booking':'');
+    html+='<div class="'+cls+'">'+d+'</div>';
+  }
+  document.getElementById('cal-grid').innerHTML=html;
+}
+function calNav(dir){ calMonth+=dir; if(calMonth>11){calMonth=0;calYear++;} if(calMonth<0){calMonth=11;calYear--;} renderCal(); }
+function mechTab(tab,el){ document.querySelectorAll('#s-mdash .chip').forEach(function(c){c.classList.remove('active');}); el.classList.add('active'); showToast('Showing '+tab+' bookings'); }
+function submitApplication(){ showToast('Application submitted! We will review within 3-5 business days.'); setTimeout(function(){ go('s-home'); },1800); }
 /* ════ TOAST ════ */
 var toastT;
 function showToast(m){
@@ -1258,6 +1677,7 @@ initSlider();
 renderCars();
 renderMechs();
 renderLearn();
+renderCal();
 </script>
 </body>
 </html>
