@@ -32,7 +32,8 @@ img{display:block;width:100%;height:100%;object-fit:cover;}
 ::-webkit-scrollbar{width:0;height:0;}
 
 /* ── SCREENS ── */
-.screen{display:none;height:100dvh;flex-direction:column;}
+.screen{display:none;height:100dvh;flex-direction:column;overflow:hidden;}
+#s-home{height:auto;min-height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .screen.active{display:flex;}
 .pg{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:var(--hh);}
 
@@ -531,10 +532,10 @@ textarea.ni::placeholder{color:var(--tx3);}
 </header>
 
 <!-- ══ HOME ══ -->
-<div id="s-home" class="screen active" style="height:auto;min-height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:var(--hh);">
+<div id="s-home" class="screen active" style="padding-top:var(--hh);">
 
   <!-- HERO SLIDER SECTION (full viewport height) -->
-  <div style="position:relative;height:calc(100dvh - var(--hh));overflow:hidden;background:#0c0b09;flex-shrink:0;">
+  <div style="position:relative;height:100dvh;margin-top:calc(-1 * var(--hh));overflow:hidden;background:#0c0b09;flex-shrink:0;">
     <div class="hero-track" id="hero-track">
       <div class="hero-slide">
         <div class="hs-bg"><img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1800&q=80&auto=format&fit=crop" loading="eager" alt=""></div>
@@ -1527,18 +1528,13 @@ function setRange(el,id,pre){
   var v=parseInt(el.value);
   document.getElementById(id).textContent = 'Up to ' + (pre==='P' ? 'P'+v.toLocaleString() : v.toLocaleString()+' km');
 }
-function openCarDetail(btn){
-  var card = btn;
-  while(card && !card.classList.contains('car-card')) card = card.parentElement;
-  if(!card) return;
-  showToast('Opening listing...');
-}
-function openEstimate(btn){
-  var card = btn;
-  while(card && !card.classList.contains('car-card')) card = card.parentElement;
-  if(!card) return;
-  document.getElementById('est-car-name').textContent = card.querySelector('.car-make').textContent;
-  document.getElementById('est-car-price').textContent = '&#8369;'+card.querySelector('.car-price').textContent.replace('₱','').trim();
+/* openCarDetail moved below */
+function openEstimate(idx){
+  var cars = CARS.carmudi.concat(CARS.autodeal, CARS.allcars);
+  var c = cars[idx];
+  if(!c) return;
+  document.getElementById('est-car-name').textContent = c.m;
+  document.getElementById('est-car-price').textContent = '₱'+c.p;
   document.getElementById('est-modal').classList.add('show');
 }
 function submitEstimate(){
@@ -2102,9 +2098,7 @@ function submitChat(){
 }
 
 /* ════ UPDATE renderCars to show View Listing opening detail ════ */
-function openCarDetailFromList(idx){
-  openCarDetail(idx);
-}
+/* openCarDetailFromList — use openCarDetail directly */
 
 /* ════ INIT ════ */
 initSlider();
