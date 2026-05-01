@@ -25,7 +25,8 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{background:var(--bg);}
-body{font-family:'DM Sans',sans-serif;color:var(--tx);overflow:hidden;height:100%;}
+body{font-family:'DM Sans',sans-serif;color:var(--tx);height:100%;overflow:hidden;}html.home-view{overflow:auto;height:auto;}html.home-view body{overflow:auto;height:auto;}
+body.home-active{overflow:hidden;}
 body.can-scroll{overflow:auto;}
 button{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:none;color:inherit;}
 img{display:block;width:100%;height:100%;object-fit:cover;}
@@ -33,7 +34,7 @@ img{display:block;width:100%;height:100%;object-fit:cover;}
 
 /* ── SCREENS ── */
 .screen{display:none;height:100dvh;flex-direction:column;overflow:hidden;}
-#s-home{height:auto;min-height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+#s-home{height:auto !important;min-height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .screen.active{display:flex;}
 .pg{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:var(--hh);}
 
@@ -154,7 +155,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;heigh
 /* ════════════════════════
    HOME — SCROLLABLE
 ════════════════════════ */
-#s-home{overflow-y:auto;-webkit-overflow-scrolling:touch;height:auto;min-height:100dvh;background:#0c0b09;}
+/* #s-home already set above */
 .hbtype{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 14px;border-radius:var(--r);background:var(--bg2);border:1.5px solid var(--bd);cursor:pointer;min-width:62px;transition:all .15s;}
 .hbtype:hover,.hbtype:active{border-color:var(--y);background:var(--ydim);}
 .hbt-icon{font-size:22px;line-height:1;}
@@ -532,10 +533,10 @@ textarea.ni::placeholder{color:var(--tx3);}
 </header>
 
 <!-- ══ HOME ══ -->
-<div id="s-home" class="screen active" style="padding-top:var(--hh);">
+<div id="s-home" class="screen active">
 
   <!-- HERO SLIDER SECTION (full viewport height) -->
-  <div style="position:relative;height:100dvh;margin-top:calc(-1 * var(--hh));overflow:hidden;background:#0c0b09;flex-shrink:0;">
+  <div style="position:relative;height:100dvh;overflow:hidden;background:#0c0b09;flex-shrink:0;">
     <div class="hero-track" id="hero-track">
       <div class="hero-slide">
         <div class="hs-bg"><img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1800&q=80&auto=format&fit=crop" loading="eager" alt=""></div>
@@ -1480,7 +1481,14 @@ function initSlider(){
   }, {passive:true});
 
   window.heroGo = function(i){ hsIdx = i; update(); resetHsTimer(); };
-  function resetHsTimer(){ clearInterval(hsTimer); hsTimer = setInterval(function(){ hsIdx=(hsIdx+1)%N; update(); }, 5000); }
+  function resetHsTimer(){
+    clearInterval(hsTimer);
+    hsTimer = setInterval(function(){
+      // Only advance if home screen is active
+      var home = document.getElementById('s-home');
+      if(home && home.classList.contains('active')){ hsIdx=(hsIdx+1)%N; update(); }
+    }, 5000);
+  }
   resetHsTimer();
   update();
 }
@@ -1549,7 +1557,7 @@ function renderCars(){
     var tags = c.tags.map(function(t){ return '<span class="tag '+t.c+'">'+t.t+'</span>'; }).join('');
     var meta = c.meta.map(function(m){ return '<span>'+m+'</span>'; }).join('');
     return '<div class="car-card">'+
-      '<div class="car-thumb"><img src="'+c.img+'" alt="'+c.m+'" loading="lazy" onerror=\'this.style.display=\'none\'\'>'+
+      '<div class="car-thumb"><img src="'+c.img+'" alt="'+c.m+'" loading="lazy">'+
       '<div class="ct-ov"></div><div class="ct-l">'+tags+'</div>'+
       '<div class="ct-r"><span class="tag ty">'+c.cond+'</span></div></div>'+
       '<div class="car-info">'+
@@ -1577,7 +1585,7 @@ function renderMechs(){
   document.getElementById('mlist').innerHTML = all.map(function(m,mechIdx){
     var svcs = m.s.map(function(s){ return '<span class="sv">'+s+'</span>'; }).join('');
     return '<div class="mc">'+
-      '<div class="mc-photo"><img src="'+m.img+'" alt="'+m.n+'" loading="lazy" onerror=\'this.style.display=\'none\'\'>'+
+      '<div class="mc-photo"><img src="'+m.img+'" alt="'+m.n+'" loading="lazy">'+
       '<div class="mc-photo-ov"></div>'+
       '<div class="mc-photo-info"><div class="mc-name">'+m.n+'</div><div class="mc-loc">&#128205; '+m.l+'</div></div></div>'+
       '<div class="mc-body">'+
@@ -1679,7 +1687,7 @@ function buildQEl(si,qi,q,sec){
   var el = document.createElement('div');
   el.className='qi'; el.id='qi-'+si+'-'+qi;
   el.innerHTML =
-    (photo?'<div class="q-photo"><img src="'+photo+'" alt="" loading="lazy" onerror=\'this.parentElement.style.display=\'none\'\'><div class="q-photo-ov"></div><div class="q-photo-lbl">Visual Reference</div></div>':'')+
+    (photo?'<div class="q-photo"><img src="'+photo+'" alt="" loading="lazy" ><div class="q-photo-ov"></div><div class="q-photo-lbl">Visual Reference</div></div>':'')+
     '<div class="q-body">'+
     '<div class="q-num">'+sec.label+' · Check '+(qi+1)+' of '+sec.q.length+'</div>'+
     '<div class="q-text">'+q.t+'</div>'+
@@ -1894,7 +1902,8 @@ function showToast(m){
 
 /* ════ CALCULATOR ════ */
 function calcPayment(){
-  var price = parseFloat(document.getElementById('calc-price').value)||0;
+  var pe = document.getElementById('calc-price'); if(!pe) return;
+  var price = parseFloat(pe.value)||0;
   var dp    = parseFloat(document.getElementById('calc-dp').value)||0;
   var term  = parseInt(document.getElementById('calc-term').value)||60;
   var rate  = parseFloat(document.getElementById('calc-rate').value)||10;
@@ -1922,7 +1931,7 @@ function renderHomeCars(){
     var wk = Math.round(monthly/4.33);
     var tags = c.tags.map(function(t){return '<span class="tag '+t.c+'" style="font-size:10px;">'+t.t+'</span>';}).join('');
     return '<div class="hcar-card" onclick="openCarDetail('+i+')">'+
-      '<div class="hcar-thumb"><img src="'+c.img+'" alt="'+c.m+'" loading="lazy" onerror=\'this.style.display=\'none\'\'><div class="hcar-tov"></div>'+
+      '<div class="hcar-thumb"><img src="'+c.img+'" alt="'+c.m+'" loading="lazy"><div class="hcar-tov"></div>'+
       '<div style="position:absolute;top:8px;left:8px;display:flex;gap:4px;">'+tags+'</div>'+
       '</div>'+
       '<div class="hcar-info">'+
@@ -1994,7 +2003,7 @@ function openCarDetail(idx){
   photos[0] = c.img; // first = main card image
   var track = document.getElementById('cdm-gallery-track');
   track.innerHTML = photos.map(function(p){
-    return '<div class="cdm-gallery-slide"><img src="'+p+'" alt="" loading="lazy" onerror=\'this.style.display=\'none\'\'></div>';
+    return '<div class="cdm-gallery-slide"><img src="'+p+'" alt="" loading="lazy"></div>';
   }).join('');
   track.style.transform = 'translateX(0)';
   document.getElementById('cdm-gcount').textContent = '1/'+photos.length;
@@ -2002,7 +2011,7 @@ function openCarDetail(idx){
 
   // Gallery grid
   document.getElementById('cdm-gallery-grid').innerHTML = photos.map(function(p,i){
-    return '<div style="height:120px;border-radius:var(--rsm);overflow:hidden;cursor:pointer;background:var(--bg3);" onclick="jumpGallery('+i+')"><img src="'+p+'" alt="" loading="lazy" style="object-fit:cover;width:100%;height:100%;" onerror=\'this.style.display=\'none\'\'></div>';
+    return '<div style="height:120px;border-radius:var(--rsm);overflow:hidden;cursor:pointer;background:var(--bg3);" onclick="jumpGallery('+i+')"><img src="'+p+'" alt="" loading="lazy" style="object-fit:cover;width:100%;height:100%;"></div>';
   }).join('');
 
   // Specs
@@ -2101,6 +2110,7 @@ function submitChat(){
 /* openCarDetailFromList — use openCarDetail directly */
 
 /* ════ INIT ════ */
+document.documentElement.classList.add('home-view');
 initSlider();
 renderCars();
 renderMechs();
