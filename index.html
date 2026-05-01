@@ -1554,6 +1554,7 @@ function renderCars(){
   window._allCars = cars;
   document.getElementById('lcount').innerHTML = '<strong>'+cars.length+' cars</strong> across all dealers';
   document.getElementById('clist').innerHTML = cars.map(function(c,i){
+    var p = parseInt(c.p.replace(/,/g,''))||0; var wk = p>0 ? Math.round(calcMonthly(p,100000,60,10)/4.33) : 0;
     var tags = c.tags.map(function(t){ return '<span class="tag '+t.c+'">'+t.t+'</span>'; }).join('');
     var meta = c.meta.map(function(m){ return '<span>'+m+'</span>'; }).join('');
     return '<div class="car-card">'+
@@ -1565,8 +1566,8 @@ function renderCars(){
       '<div class="car-meta">'+meta+'<span>Coding: '+c.coding+'</span></div>'+
       '<div class="car-price">&#8369;'+c.p+'</div>'+
       '<div class="car-acts">'+
-      '<button class="btn bs bsm" onclick="openEstimate(this)">&#128172; Ask Estimate</button>'+
-      '<button class="btn bp bsm" onclick="showToast(\'Opening listing...\')">View Listing</button>'+
+      '<button class="btn bs bsm" onclick="openEstimate('+i+')">&#128172; Ask Estimate</button>'+
+      '<button class="btn bp bsm" onclick="openCarDetail('+i+')">View Listing</button>'+
       '</div></div></div>';
   }).join('');
 }
