@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -35,140 +34,140 @@ img{display:block;width:100%;height:100%;object-fit:cover;}
 /* ── SCREENS ── */
 .screen{display:none;height:100dvh;flex-direction:column;}
 .screen.active{display:flex;}
-.pg{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:var(–hh);}
+.pg{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:var(--hh);}
 
 /* ── HEADER ── */
 .hdr{
-position:fixed;top:0;left:0;right:0;z-index:200;height:var(–hh);
-background:rgba(244,243,239,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-border-bottom:1px solid var(–bd);
-display:flex;align-items:flex-end;justify-content:space-between;
-padding:env(safe-area-inset-top,0px) 18px 10px;
+  position:fixed;top:0;left:0;right:0;z-index:200;height:var(--hh);
+  background:rgba(244,243,239,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--bd);
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:env(safe-area-inset-top,0px) 18px 10px;
 }
 .hdr-logo{display:flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0;}
-.hdr-mark{width:30px;height:30px;background:var(–grad);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
-.hdr-name{font-family:‘Bebas Neue’,sans-serif;font-size:21px;letter-spacing:.1em;color:var(–tx);}
-.hdr-name em{background:var(–grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal;}
+.hdr-mark{width:30px;height:30px;background:var(--grad);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.hdr-name{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:.1em;color:var(--tx);}
+.hdr-name em{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal;}
 .hdr-nav{display:flex;align-items:center;gap:2px;}
-.hn{padding:7px 11px;border-radius:var(–rsm);font-size:12px;font-weight:600;color:var(–tx2);transition:color .15s;white-space:nowrap;}
-.hn:hover{color:var(–tx);}
-.hn.yb{background:var(–grad);color:#fff;font-weight:700;}
+.hn{padding:7px 11px;border-radius:var(--rsm);font-size:12px;font-weight:600;color:var(--tx2);transition:color .15s;white-space:nowrap;}
+.hn:hover{color:var(--tx);}
+.hn.yb{background:var(--grad);color:#fff;font-weight:700;}
 @media(max-width:420px){.hn:not(.yb){display:none;}}
 
 /* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:var(–rsm);font-weight:600;font-size:15px;padding:0 20px;min-height:50px;cursor:pointer;border:none;width:100%;transition:opacity .15s,transform .1s;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:var(--rsm);font-weight:600;font-size:15px;padding:0 20px;min-height:50px;cursor:pointer;border:none;width:100%;transition:opacity .15s,transform .1s;}
 .btn:active{transform:scale(.97);opacity:.88;}
-.bp{background:var(–grad);color:#fff;}
-.bs{background:var(–bg3);color:var(–tx);border:1px solid var(–bd);}
-.bg_{background:transparent;color:var(–tx);border:1px solid var(–bd);}
+.bp{background:var(--grad);color:#fff;}
+.bs{background:var(--bg3);color:var(--tx);border:1px solid var(--bd);}
+.bg_{background:transparent;color:var(--tx);border:1px solid var(--bd);}
 .bsm{min-height:40px;font-size:13px;padding:0 15px;border-radius:8px;width:auto;}
 
 /* ── TAGS ── */
 .tag{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
-.ty{background:var(–ydim);color:#9a7a00;}
-.tr{background:var(–rdim);color:var(–red);}
-.tg{background:var(–gdim);color:var(–grn);}
-.tb{background:var(–bdim);color:var(–blu);}
+.ty{background:var(--ydim);color:#9a7a00;}
+.tr{background:var(--rdim);color:var(--red);}
+.tg{background:var(--gdim);color:var(--grn);}
+.tb{background:var(--bdim);color:var(--blu);}
 
 /* ── CHIP ── */
-.chip{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:var(–rsm);font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid var(–bd);background:var(–bg2);color:var(–tx2);transition:all .15s;white-space:nowrap;}
-.chip.active,.chip:hover{border-color:var(–y);background:var(–ydim);color:var(–y);}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:var(--rsm);font-size:12px;font-weight:500;cursor:pointer;border:1.5px solid var(--bd);background:var(--bg2);color:var(--tx2);transition:all .15s;white-space:nowrap;}
+.chip.active,.chip:hover{border-color:var(--y);background:var(--ydim);color:var(--y);}
 
 /* ── TOAST ── */
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(8px);background:var(–tx);border-radius:var(–rsm);padding:11px 20px;font-size:13px;color:#fff;z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--tx);border-radius:var(--rsm);padding:11px 20px;font-size:13px;color:#fff;z-index:9999;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
 /* ── MODAL ── */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;opacity:0;pointer-events:none;transition:opacity .2s;display:flex;align-items:flex-end;justify-content:center;}
 .modal-bg.show{opacity:1;pointer-events:all;}
-.modal-box{background:var(–bg2);border-radius:20px 20px 0 0;width:100%;max-width:540px;padding:20px 22px 40px;transform:translateY(40px);transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:0 -8px 40px rgba(0,0,0,.12);}
+.modal-box{background:var(--bg2);border-radius:20px 20px 0 0;width:100%;max-width:540px;padding:20px 22px 40px;transform:translateY(40px);transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:0 -8px 40px rgba(0,0,0,.12);}
 .modal-bg.show .modal-box{transform:translateY(0);}
-.m-handle{width:38px;height:4px;background:var(–bd2);border-radius:2px;margin:0 auto 18px;}
-.m-title{font-family:‘Bebas Neue’,sans-serif;font-size:24px;letter-spacing:.05em;margin-bottom:14px;}
+.m-handle{width:38px;height:4px;background:var(--bd2);border-radius:2px;margin:0 auto 18px;}
+.m-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.05em;margin-bottom:14px;}
 .fg{margin-bottom:14px;}
-.flbl{font-size:11px;font-weight:700;color:var(–tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
-.finput{width:100%;background:var(–bg3);border:1.5px solid var(–bd);border-radius:var(–rsm);padding:12px 14px;color:var(–tx);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
-.finput:focus{border-color:var(–y);}
-.finput option{background:var(–bg2);}
+.flbl{font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.finput{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--rsm);padding:12px 14px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
+.finput:focus{border-color:var(--y);}
+.finput option{background:var(--bg2);}
 .m-acts{display:flex;gap:9px;margin-top:18px;}
 
 /* ── PAGE HEADER ── */
-.ph{padding:32px 24px 24px;border-bottom:1px solid var(–bd);background:linear-gradient(180deg,var(–ydim) 0%,transparent 100%);}
-.ph h1{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(32px,5vw,54px);letter-spacing:.05em;margin-bottom:6px;}
-.ph p{font-size:13px;color:var(–tx2);max-width:460px;line-height:1.55;}
+.ph{padding:32px 24px 24px;border-bottom:1px solid var(--bd);background:linear-gradient(180deg,var(--ydim) 0%,transparent 100%);}
+.ph h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,54px);letter-spacing:.05em;margin-bottom:6px;}
+.ph p{font-size:13px;color:var(--tx2);max-width:460px;line-height:1.55;}
 
 /* ── CARD GRID (responsive) ── */
-.cgrid{display:grid;gap:14px;padding:18px 20px;max-width:var(–mw);margin:0 auto;grid-template-columns:1fr;}
+.cgrid{display:grid;gap:14px;padding:18px 20px;max-width:var(--mw);margin:0 auto;grid-template-columns:1fr;}
 @media(min-width:520px){.cgrid{grid-template-columns:repeat(2,1fr);}}
 @media(min-width:860px){.cgrid{grid-template-columns:repeat(3,1fr);}}
 @media(min-width:1140px){.cgrid{grid-template-columns:repeat(4,1fr);}}
 
 /* ── FILTER GRID (wraps, no scroll) ── */
-.fw{max-width:var(–mw);margin:0 auto;padding:16px 20px 0;}
+.fw{max-width:var(--mw);margin:0 auto;padding:16px 20px 0;}
 .fg-sec{margin-bottom:14px;}
-.fg-lbl{font-size:10px;font-weight:700;color:var(–tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
+.fg-lbl{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
 .fg-row{display:flex;flex-wrap:wrap;gap:6px;}
 
 /* ── DRAWER ── */
 .dov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;opacity:0;pointer-events:none;transition:opacity .2s;}
 .dov.show{opacity:1;pointer-events:all;}
-.drawer{position:fixed;bottom:0;left:0;right:0;background:var(–bg2);border-radius:20px 20px 0 0;z-index:301;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:88dvh;overflow-y:auto;padding-bottom:28px;}
+.drawer{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-radius:20px 20px 0 0;z-index:301;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:88dvh;overflow-y:auto;padding-bottom:28px;}
 .drawer.show{transform:translateY(0);}
-.d-handle{width:38px;height:4px;background:var(–bd2);border-radius:2px;margin:12px auto 0;}
+.d-handle{width:38px;height:4px;background:var(--bd2);border-radius:2px;margin:12px auto 0;}
 .d-head{display:flex;align-items:center;justify-content:space-between;padding:14px 22px 12px;}
-.d-head h3{font-family:‘Bebas Neue’,sans-serif;font-size:22px;letter-spacing:.05em;}
+.d-head h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.05em;}
 .d-body{padding:0 22px 16px;display:flex;flex-direction:column;gap:16px;}
-input[type=range]{width:100%;-webkit-appearance:none;height:4px;background:var(–bg4);border-radius:2px;outline:none;margin-top:8px;}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;height:21px;border-radius:50%;background:var(–y);cursor:pointer;border:2px solid #111;}
-.rrow{display:flex;justify-content:space-between;font-size:11px;color:var(–tx2);margin-top:5px;}
+input[type=range]{width:100%;-webkit-appearance:none;height:4px;background:var(--bg4);border-radius:2px;outline:none;margin-top:8px;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;height:21px;border-radius:50%;background:var(--y);cursor:pointer;border:2px solid #111;}
+.rrow{display:flex;justify-content:space-between;font-size:11px;color:var(--tx2);margin-top:5px;}
 
 /* ── CAR CARD ── */
-.car-card{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;}
-.car-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.10);border-color:var(–y);}
-.car-thumb{height:170px;background:var(–bg3);position:relative;overflow:hidden;}
+.car-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;}
+.car-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.10);border-color:var(--y);}
+.car-thumb{height:170px;background:var(--bg3);position:relative;overflow:hidden;}
 .ct-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 55%);}
 .ct-l{position:absolute;top:10px;left:10px;display:flex;gap:5px;}
 .ct-r{position:absolute;top:10px;right:10px;}
 .car-info{padding:13px;flex:1;display:flex;flex-direction:column;}
 .car-make{font-weight:700;font-size:14px;margin-bottom:4px;line-height:1.3;}
-.car-meta{display:flex;flex-wrap:wrap;gap:2px 8px;font-size:11px;color:var(–tx2);margin-bottom:10px;}
-.car-meta span::before{content:’·’;margin-right:4px;opacity:.35;}
+.car-meta{display:flex;flex-wrap:wrap;gap:2px 8px;font-size:11px;color:var(--tx2);margin-bottom:10px;}
+.car-meta span::before{content:'·';margin-right:4px;opacity:.35;}
 .car-meta span:first-child::before{display:none;}
-.car-price{font-family:‘Bebas Neue’,sans-serif;font-size:24px;color:var(–y);letter-spacing:.04em;margin-bottom:10px;margin-top:auto;}
+.car-price{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--y);letter-spacing:.04em;margin-bottom:10px;margin-top:auto;}
 .car-acts{display:flex;gap:7px;}
 
 /* ── MECHANIC CARD ── */
-.mc{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;}
+.mc{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;}
 .mc:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.10);}
-.mc-photo{height:155px;position:relative;overflow:hidden;background:var(–bg3);}
+.mc-photo{height:155px;position:relative;overflow:hidden;background:var(--bg3);}
 .mc-photo-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 55%);}
 .mc-photo-info{position:absolute;bottom:0;left:0;right:0;padding:11px 13px;}
 .mc-name{font-weight:700;font-size:15px;color:#fff;margin-bottom:2px;}
 .mc-loc{font-size:11px;color:rgba(255,255,255,.65);}
 .mc-body{padding:13px;}
-.mc-rating{font-size:12px;color:var(–y);font-weight:700;margin-bottom:7px;}
-.mc-quip{font-size:12px;color:var(–tx2);font-style:italic;line-height:1.5;margin-bottom:10px;padding:8px 11px;background:var(–bg3);border-radius:8px;border-left:2px solid var(–bd2);}
+.mc-rating{font-size:12px;color:var(--y);font-weight:700;margin-bottom:7px;}
+.mc-quip{font-size:12px;color:var(--tx2);font-style:italic;line-height:1.5;margin-bottom:10px;padding:8px 11px;background:var(--bg3);border-radius:8px;border-left:2px solid var(--bd2);}
 .mc-svcs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
-.sv{background:var(–bg3);border:1px solid var(–bd);border-radius:20px;font-size:11px;font-weight:500;padding:4px 9px;color:var(–tx2);}
+.sv{background:var(--bg3);border:1px solid var(--bd);border-radius:20px;font-size:11px;font-weight:500;padding:4px 9px;color:var(--tx2);}
 
 /* ════════════════════════
-HOME — SCROLLABLE
+   HOME — SCROLLABLE
 ════════════════════════ */
 #s-home{overflow-y:auto;-webkit-overflow-scrolling:touch;height:auto;min-height:100dvh;background:#0c0b09;}
-.hbtype{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 14px;border-radius:var(–r);background:var(–bg2);border:1.5px solid var(–bd);cursor:pointer;min-width:62px;transition:all .15s;}
-.hbtype:hover,.hbtype:active{border-color:var(–y);background:var(–ydim);}
+.hbtype{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 14px;border-radius:var(--r);background:var(--bg2);border:1.5px solid var(--bd);cursor:pointer;min-width:62px;transition:all .15s;}
+.hbtype:hover,.hbtype:active{border-color:var(--y);background:var(--ydim);}
 .hbt-icon{font-size:22px;line-height:1;}
-.hbt-lbl{font-size:11px;font-weight:600;color:var(–tx2);white-space:nowrap;}
+.hbt-lbl{font-size:11px;font-weight:600;color:var(--tx2);white-space:nowrap;}
 /* home cars horizontal scroll card */
-.hcar-card{flex-shrink:0;width:240px;background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.hcar-card{flex-shrink:0;width:240px;background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;}
 .hcar-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1);}
-.hcar-thumb{height:140px;position:relative;overflow:hidden;background:var(–bg3);}
+.hcar-thumb{height:140px;position:relative;overflow:hidden;background:var(--bg3);}
 .hcar-tov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 55%);}
 .hcar-info{padding:12px 13px;}
 .hcar-make{font-weight:700;font-size:14px;margin-bottom:3px;line-height:1.3;}
-.hcar-meta{font-size:11px;color:var(–tx2);margin-bottom:8px;}
-.hcar-price{font-family:‘Bebas Neue’,sans-serif;font-size:22px;color:var(–y);letter-spacing:.04em;margin-bottom:1px;}
-.hcar-wk{font-size:11px;color:var(–tx2);}
+.hcar-meta{font-size:11px;color:var(--tx2);margin-bottom:8px;}
+.hcar-price{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--y);letter-spacing:.04em;margin-bottom:1px;}
+.hcar-wk{font-size:11px;color:var(--tx2);}
 
 /* Slider track */
 .hero-track{position:absolute;inset:0;display:flex;transition:transform .7s cubic-bezier(.4,0,.2,1);}
@@ -176,115 +175,115 @@ HOME — SCROLLABLE
 .hs-bg{position:absolute;inset:0;}
 .hs-bg img{object-position:center 30%;}
 .hs-grad{
-position:absolute;inset:0;
-background:
-linear-gradient(to top, rgba(10,9,7,1) 0%, rgba(10,9,7,.96) 20%, rgba(10,9,7,.7) 45%, rgba(10,9,7,.3) 68%, rgba(10,9,7,.55) 100%),
-linear-gradient(to right, rgba(10,9,7,.7) 0%, rgba(10,9,7,.1) 65%);
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top, rgba(10,9,7,1) 0%, rgba(10,9,7,.96) 20%, rgba(10,9,7,.7) 45%, rgba(10,9,7,.3) 68%, rgba(10,9,7,.55) 100%),
+    linear-gradient(to right, rgba(10,9,7,.7) 0%, rgba(10,9,7,.1) 65%);
 }
 /* Slide content sits in upper 60% */
 .hs-body{
-position:absolute;
-/* only occupy the upper portion — leave bottom 46% for the chrome */
-top:0; left:0; right:0;
-height:56%;
-z-index:2;
-display:flex;flex-direction:column;justify-content:flex-end;
-padding:calc(var(–hh) + 10px) 24px 20px;
+  position:absolute;
+  /* only occupy the upper portion — leave bottom 46% for the chrome */
+  top:0; left:0; right:0;
+  height:56%;
+  z-index:2;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:calc(var(--hh) + 10px) 24px 20px;
 }
 
 /* Slide 1 — hero */
-.hs-eye{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(–y);margin-bottom:10px;}
-.hs-h1{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(44px,12vw,92px);line-height:.91;letter-spacing:.02em;color:#fff;margin-bottom:11px;}
-.hs-h1 em{color:var(–y);font-style:normal;}
+.hs-eye{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--y);margin-bottom:10px;}
+.hs-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,12vw,92px);line-height:.91;letter-spacing:.02em;color:#fff;margin-bottom:11px;}
+.hs-h1 em{color:var(--y);font-style:normal;}
 .hs-p{font-size:clamp(13px,3.5vw,15px);color:rgba(255,255,255,.58);max-width:380px;line-height:1.45;font-weight:300;}
 
 /* Slides 2–5 — features */
-.hs-pill{display:inline-flex;align-items:center;background:var(–grad);color:#fff;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:20px;margin-bottom:11px;}
-.hs-fh{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(38px,10vw,76px);line-height:.91;letter-spacing:.02em;color:#fff;margin-bottom:11px;}
+.hs-pill{display:inline-flex;align-items:center;background:var(--grad);color:#fff;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:20px;margin-bottom:11px;}
+.hs-fh{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,10vw,76px);line-height:.91;letter-spacing:.02em;color:#fff;margin-bottom:11px;}
 .hs-fp{font-size:clamp(13px,3.2vw,15px);color:rgba(255,255,255,.56);max-width:360px;line-height:1.45;font-weight:300;}
 
 /* Bottom chrome — dots + 2x2 tiles — fused to bottom */
 .home-chrome{
-position:absolute;bottom:0;left:0;right:0;z-index:10;
-padding:0 18px clamp(16px,4vh,32px);
-/* tall enough to hold dots + 2x2 grid comfortably */
-background:linear-gradient(to top, rgba(10,9,7,1) 0%, rgba(10,9,7,.95) 55%, rgba(10,9,7,.5) 80%, transparent 100%);
+  position:absolute;bottom:0;left:0;right:0;z-index:10;
+  padding:0 18px clamp(16px,4vh,32px);
+  /* tall enough to hold dots + 2x2 grid comfortably */
+  background:linear-gradient(to top, rgba(10,9,7,1) 0%, rgba(10,9,7,.95) 55%, rgba(10,9,7,.5) 80%, transparent 100%);
 }
 .hero-dots{display:flex;gap:6px;margin-bottom:14px;}
 .hdot{width:20px;height:3px;border-radius:2px;background:rgba(255,255,255,.22);cursor:pointer;transition:background .25s,width .25s;}
-.hdot.active{background:var(–y);width:32px;}
+.hdot.active{background:var(--y);width:32px;}
 
 /* 2×2 tile grid */
 .home-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .htile{
-background:rgba(255,255,255,.1);
-backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-border:1px solid rgba(255,255,255,.15);
-border-radius:var(–r);padding:11px 13px 12px;
-cursor:pointer;transition:background .15s;
-display:flex;flex-direction:column;gap:3px;text-align:left;
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--r);padding:11px 13px 12px;
+  cursor:pointer;transition:background .15s;
+  display:flex;flex-direction:column;gap:3px;text-align:left;
 }
 .htile:active{background:rgba(255,255,255,.18);}
-.htile.ht-primary{background:var(–grad);border-color:transparent;}
+.htile.ht-primary{background:var(--grad);border-color:transparent;}
 .htile.ht-primary:active{opacity:.88;}
 .ht-icon{font-size:19px;line-height:1;margin-bottom:3px;}
-.ht-label{font-family:‘Bebas Neue’,sans-serif;font-size:15px;letter-spacing:.05em;color:#fff;line-height:1.1;}
+.ht-label{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.05em;color:#fff;line-height:1.1;}
 .htile.ht-primary .ht-label{color:#111;}
 .ht-sub{font-size:10px;color:rgba(255,255,255,.45);line-height:1.3;}
 .htile.ht-primary .ht-sub{color:rgba(0,0,0,.5);}
 
 /* ════════════════════════
-INSPECTION
+   INSPECTION
 ════════════════════════ */
 #s-insp{overflow:hidden;height:100dvh;}
-.insp-wrap{display:flex;height:100dvh;padding-top:var(–hh);}
+.insp-wrap{display:flex;height:100dvh;padding-top:var(--hh);}
 
 /* Sidebar desktop */
-.insp-side{width:186px;flex-shrink:0;border-right:1px solid var(–bd);background:var(–bg3);display:flex;flex-direction:column;padding:18px 13px;overflow-y:auto;height:100%;}
+.insp-side{width:186px;flex-shrink:0;border-right:1px solid var(--bd);background:var(--bg3);display:flex;flex-direction:column;padding:18px 13px;overflow-y:auto;height:100%;}
 @media(max-width:680px){.insp-side{display:none;}}
-.is-title{font-size:10px;font-weight:700;color:var(–tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:11px;}
+.is-title{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:11px;}
 .snavs{display:flex;flex-direction:column;gap:3px;}
-.snav-item{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:var(–rsm);font-size:13px;font-weight:500;color:var(–tx2);cursor:pointer;transition:all .15s;border:1px solid transparent;}
-.snav-item:hover{background:var(–bg2);color:var(–tx);}
-.snav-item.sn-active{background:var(–ydim);border-color:rgba(230,184,0,.25);color:#9a7a00;}
-.snav-item.sn-done{color:var(–grn);}
+.snav-item{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:var(--rsm);font-size:13px;font-weight:500;color:var(--tx2);cursor:pointer;transition:all .15s;border:1px solid transparent;}
+.snav-item:hover{background:var(--bg2);color:var(--tx);}
+.snav-item.sn-active{background:var(--ydim);border-color:rgba(230,184,0,.25);color:#9a7a00;}
+.snav-item.sn-done{color:var(--grn);}
 .sn-ic{font-size:15px;flex-shrink:0;}
-.sn-ct{margin-left:auto;font-size:10px;color:var(–tx3);}
-.is-prog-wrap{margin-top:auto;padding-top:16px;border-top:1px solid var(–bd);}
-.is-pb{height:3px;background:var(–bd);border-radius:2px;margin-bottom:6px;}
-.is-pbf{height:100%;background:var(–grad);border-radius:2px;transition:width .3s;}
-.is-pl{font-size:11px;color:var(–tx2);}
+.sn-ct{margin-left:auto;font-size:10px;color:var(--tx3);}
+.is-prog-wrap{margin-top:auto;padding-top:16px;border-top:1px solid var(--bd);}
+.is-pb{height:3px;background:var(--bd);border-radius:2px;margin-bottom:6px;}
+.is-pbf{height:100%;background:var(--grad);border-radius:2px;transition:width .3s;}
+.is-pl{font-size:11px;color:var(--tx2);}
 .is-exit{margin-top:12px;}
 
 /* Main column */
 .insp-main{flex:1;min-width:0;display:flex;flex-direction:column;height:100%;overflow:hidden;}
 
 /* Mobile top nav */
-.insp-tnav{display:none;overflow-x:auto;gap:6px;padding:10px 15px;border-bottom:1px solid var(–bd);background:var(–bg3);flex-shrink:0;}
+.insp-tnav{display:none;overflow-x:auto;gap:6px;padding:10px 15px;border-bottom:1px solid var(--bd);background:var(--bg3);flex-shrink:0;}
 @media(max-width:680px){.insp-tnav{display:flex;}}
 .insp-tnav::-webkit-scrollbar{display:none;}
-.itnc{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:var(–rsm);font-size:12px;font-weight:600;border:1.5px solid var(–bd);background:var(–bg2);color:var(–tx2);cursor:pointer;transition:all .15s;}
-.itnc.sn-active{border-color:var(–y);background:var(–ydim);color:#9a7a00;}
-.itnc.sn-done{border-color:rgba(24,145,90,.3);background:var(–gdim);color:var(–grn);}
+.itnc{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:var(--rsm);font-size:12px;font-weight:600;border:1.5px solid var(--bd);background:var(--bg2);color:var(--tx2);cursor:pointer;transition:all .15s;}
+.itnc.sn-active{border-color:var(--y);background:var(--ydim);color:#9a7a00;}
+.itnc.sn-done{border-color:rgba(24,145,90,.3);background:var(--gdim);color:var(--grn);}
 
 /* Section bar */
-.insp-sbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid var(–bd);background:var(–bg2);flex-shrink:0;}
-.isb-l h2{font-family:‘Bebas Neue’,sans-serif;font-size:24px;letter-spacing:.04em;margin-bottom:2px;}
+.insp-sbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid var(--bd);background:var(--bg2);flex-shrink:0;}
+.isb-l h2{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;margin-bottom:2px;}
 @media(max-width:680px){.isb-l h2{font-size:19px;}}
-.isb-l p{font-size:11px;color:var(–tx2);}
+.isb-l p{font-size:11px;color:var(--tx2);}
 .isb-r{text-align:right;flex-shrink:0;}
-.isb-num{font-family:‘Bebas Neue’,sans-serif;font-size:20px;color:var(–y);}
-.isb-lbl{font-size:10px;color:var(–tx2);}
-.ig-bar{height:2px;background:var(–bd);flex-shrink:0;}
-.ig-fill{height:100%;background:var(–grad);transition:width .3s;}
+.isb-num{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--y);}
+.isb-lbl{font-size:10px;color:var(--tx2);}
+.ig-bar{height:2px;background:var(--bd);flex-shrink:0;}
+.ig-fill{height:100%;background:var(--grad);transition:width .3s;}
 
 /* Scrollable questions */
 .insp-qs{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 20px 60px;scroll-behavior:smooth;}
 @media(max-width:680px){.insp-qs{padding:14px 14px 60px;}}
 
 /* Question card */
-.qi{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);overflow:hidden;margin-bottom:11px;box-shadow:0 2px 6px rgba(0,0,0,.05);transition:border-color .2s,opacity .3s;}
-.qi.q-answered{border-color:var(–bd2);opacity:.5;}
+.qi{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:11px;box-shadow:0 2px 6px rgba(0,0,0,.05);transition:border-color .2s,opacity .3s;}
+.qi.q-answered{border-color:var(--bd2);opacity:.5;}
 .qi.q-answered:hover{opacity:1;cursor:pointer;}
 .qi.q-upcoming{opacity:.22;pointer-events:none;}
 .q-photo{height:155px;position:relative;overflow:hidden;}
@@ -293,132 +292,133 @@ INSPECTION
 .q-photo-lbl{position:absolute;bottom:9px;left:13px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);}
 .q-body{padding:15px 16px 16px;}
 @media(max-width:680px){.q-body{padding:13px 14px 14px;}}
-.q-num{font-size:10px;font-weight:700;color:var(–tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
+.q-num{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
 .q-text{font-size:16px;font-weight:500;line-height:1.45;margin-bottom:8px;}
 @media(max-width:680px){.q-text{font-size:14px;}}
-.q-hint{font-size:11.5px;color:var(–tx2);line-height:1.5;padding:8px 12px;background:var(–bg3);border-radius:8px;border-left:2px solid var(–y);margin-bottom:13px;}
+.q-hint{font-size:11.5px;color:var(--tx2);line-height:1.5;padding:8px 12px;background:var(--bg3);border-radius:8px;border-left:2px solid var(--y);margin-bottom:13px;}
 .q-choices{display:flex;flex-direction:column;gap:7px;}
 .q-choices.hidden{display:none;}
 
 /* Answer buttons — context-aware */
-.ac{display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:var(–rsm);border:1.5px solid var(–bd);background:var(–bg3);color:var(–tx);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;text-align:left;width:100%;}
+.ac{display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);color:var(--tx);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;text-align:left;width:100%;}
 .ac:active{transform:scale(.98);}
-.ac-dot{width:29px;height:29px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1.5px solid var(–bd);}
+.ac-dot{width:29px;height:29px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1.5px solid var(--bd);}
 .ac-sub{font-size:11px;opacity:.5;margin-top:1px;}
 /* polarity colours */
-.ac.ayb .ac-dot{background:var(–rdim);border-color:rgba(209,47,36,.3);}
-.ac.ayg .ac-dot{background:var(–gdim);border-color:rgba(24,145,90,.3);}
-.ac.anb .ac-dot{background:var(–gdim);border-color:rgba(24,145,90,.3);}
-.ac.ang .ac-dot{background:var(–rdim);border-color:rgba(209,47,36,.3);}
-.ac.ans .ac-dot{background:var(–ydim);border-color:rgba(230,184,0,.3);}
-.ac.sel.ayb{border-color:var(–red);background:var(–rdim);}
-.ac.sel.ayg{border-color:var(–grn);background:var(–gdim);}
-.ac.sel.anb{border-color:var(–grn);background:var(–gdim);}
-.ac.sel.ang{border-color:var(–red);background:var(–rdim);}
-.ac.sel.ans{border-color:var(–y);background:var(–ydim);}
+.ac.ayb .ac-dot{background:var(--rdim);border-color:rgba(209,47,36,.3);}
+.ac.ayg .ac-dot{background:var(--gdim);border-color:rgba(24,145,90,.3);}
+.ac.anb .ac-dot{background:var(--gdim);border-color:rgba(24,145,90,.3);}
+.ac.ang .ac-dot{background:var(--rdim);border-color:rgba(209,47,36,.3);}
+.ac.ans .ac-dot{background:var(--ydim);border-color:rgba(230,184,0,.3);}
+.ac.sel.ayb{border-color:var(--red);background:var(--rdim);}
+.ac.sel.ayg{border-color:var(--grn);background:var(--gdim);}
+.ac.sel.anb{border-color:var(--grn);background:var(--gdim);}
+.ac.sel.ang{border-color:var(--red);background:var(--rdim);}
+.ac.sel.ans{border-color:var(--y);background:var(--ydim);}
 
 /* Collapsed pill */
-.a-pill{display:none;align-items:center;gap:10px;padding:10px 13px;border-radius:var(–rsm);font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(–bd2);}
+.a-pill{display:none;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--bd2);}
 .a-pill.show{display:flex;}
-.a-pill:hover{border-color:var(–y);}
+.a-pill:hover{border-color:var(--y);}
 .ap-lbl{flex:1;}
-.ap-edit{font-size:10px;color:var(–tx3);}
+.ap-edit{font-size:10px;color:var(--tx3);}
 
 .finish-row{display:none;padding-bottom:24px;}
 
 /* ════════════════════════
-RESULT
+   RESULT
 ════════════════════════ */
 #s-result .pg{padding-bottom:48px;}
 .result-wrap{max-width:680px;margin:0 auto;padding:32px 22px;}
 @media(max-width:560px){.result-wrap{padding:22px 16px;}}
 .rv-block{text-align:center;margin-bottom:28px;}
 .rv-badge{display:inline-flex;align-items:center;justify-content:center;width:82px;height:82px;border-radius:50%;font-size:34px;margin-bottom:14px;}
-.vc-buy .rv-badge{background:var(–gdim);border:2px solid var(–grn);}
-.vc-neg .rv-badge{background:var(–ydim);border:2px solid var(–y);}
-.vc-avoid .rv-badge{background:var(–rdim);border:2px solid var(–red);}
-.vc-uns .rv-badge{background:var(–bdim);border:2px solid var(–blu);}
-.rv-txt{font-family:‘Bebas Neue’,sans-serif;font-size:56px;line-height:1;margin-bottom:8px;}
-.vc-buy .rv-txt{color:var(–grn);}
-.vc-neg .rv-txt{color:var(–y);}
-.vc-avoid .rv-txt{color:var(–red);}
-.vc-uns .rv-txt{color:var(–blu);}
-.rv-sub{font-size:14px;color:var(–tx2);max-width:320px;margin:0 auto;line-height:1.6;}
+.vc-buy .rv-badge{background:var(--gdim);border:2px solid var(--grn);}
+.vc-neg .rv-badge{background:var(--ydim);border:2px solid var(--y);}
+.vc-avoid .rv-badge{background:var(--rdim);border:2px solid var(--red);}
+.vc-uns .rv-badge{background:var(--bdim);border:2px solid var(--blu);}
+.rv-txt{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;margin-bottom:8px;}
+.vc-buy .rv-txt{color:var(--grn);}
+.vc-neg .rv-txt{color:var(--y);}
+.vc-avoid .rv-txt{color:var(--red);}
+.vc-uns .rv-txt{color:var(--blu);}
+.rv-sub{font-size:14px;color:var(--tx2);max-width:320px;margin:0 auto;line-height:1.6;}
 .r-cards{display:flex;flex-direction:column;gap:11px;}
-.rcard{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);padding:16px;box-shadow:0 1px 6px rgba(0,0,0,.05);}
-.rcard-title{font-family:‘Bebas Neue’,sans-serif;font-size:15px;letter-spacing:.05em;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;}
+.rcard{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:16px;box-shadow:0 1px 6px rgba(0,0,0,.05);}
+.rcard-title{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.05em;margin-bottom:11px;display:flex;align-items:center;justify-content:space-between;}
 .risk-row{display:flex;align-items:center;gap:9px;}
-.risk-lbl{font-size:13px;color:var(–tx2);flex:1;}
+.risk-lbl{font-size:13px;color:var(--tx2);flex:1;}
 .risk-val{font-weight:700;font-size:14px;}
-.risk-val.low{color:var(–grn);}.risk-val.medium{color:var(–y);}.risk-val.high{color:var(–red);}
-.irow{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid var(–bd);}
+.risk-val.low{color:var(--grn);}.risk-val.medium{color:var(--y);}.risk-val.high{color:var(--red);}
+.irow{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid var(--bd);}
 .irow:last-child{border-bottom:none;}
 .idot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;}
-.idot.crit{background:var(–red);}.idot.warn{background:var(–y);}.idot.info{background:var(–blu);}
+.idot.crit{background:var(--red);}.idot.warn{background:var(--y);}.idot.info{background:var(--blu);}
 .ic .it{font-size:13px;font-weight:500;line-height:1.4;}
-.ic .is{font-size:11px;color:var(–tx2);margin-top:2px;}
-.uns-card{background:rgba(30,101,196,.06);border:1px solid rgba(30,101,196,.2);border-radius:var(–r);padding:17px;}
-.uns-card h3{font-family:‘Bebas Neue’,sans-serif;font-size:21px;letter-spacing:.04em;margin-bottom:5px;color:var(–blu);}
-.uns-card p{font-size:13px;color:var(–tx2);line-height:1.6;margin-bottom:13px;}
+.ic .is{font-size:11px;color:var(--tx2);margin-top:2px;}
+.uns-card{background:rgba(30,101,196,.06);border:1px solid rgba(30,101,196,.2);border-radius:var(--r);padding:17px;}
+.uns-card h3{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:.04em;margin-bottom:5px;color:var(--blu);}
+.uns-card p{font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:13px;}
 .r-acts{display:flex;flex-direction:column;gap:9px;}
 
 /* ════════════════════════
-REPORT
+   REPORT
 ════════════════════════ */
 #s-report .pg{padding-bottom:48px;}
 .rep-wrap{max-width:780px;margin:0 auto;padding:26px 22px;}
-.rep-meta{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);padding:15px;display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.rep-meta{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:15px;display:flex;align-items:center;gap:12px;margin-bottom:20px;}
 .rep-ic{font-size:36px;}
 .rep-name{font-weight:700;font-size:15px;}
-.rep-date{font-size:12px;color:var(–tx2);margin-top:2px;}
+.rep-date{font-size:12px;color:var(--tx2);margin-top:2px;}
 .rsecs{display:flex;flex-direction:column;gap:9px;margin-bottom:18px;}
-.rsec{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);overflow:hidden;}
-.rsec-head{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;background:var(–bg3);}
-.rsec-title{font-family:‘Bebas Neue’,sans-serif;font-size:15px;letter-spacing:.05em;display:flex;align-items:center;gap:7px;}
-.rsec-qa{border-top:1px solid var(–bd);}
-.rqrow{display:flex;align-items:flex-start;justify-content:space-between;padding:10px 15px;border-bottom:1px solid var(–bd);gap:10px;}
+.rsec{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;}
+.rsec-head{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;background:var(--bg3);}
+.rsec-title{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.05em;display:flex;align-items:center;gap:7px;}
+.rsec-qa{border-top:1px solid var(--bd);}
+.rqrow{display:flex;align-items:flex-start;justify-content:space-between;padding:10px 15px;border-bottom:1px solid var(--bd);gap:10px;}
 .rqrow:last-child{border-bottom:none;}
-.rq{font-size:12px;color:var(–tx2);flex:1;line-height:1.4;}
+.rq{font-size:12px;color:var(--tx2);flex:1;line-height:1.4;}
 .ra{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;}
-.ra.yb{background:var(–rdim);color:var(–red);}
-.ra.yg{background:var(–gdim);color:var(–grn);}
-.ra.nb{background:var(–gdim);color:var(–grn);}
-.ra.ng{background:var(–rdim);color:var(–red);}
-.ra.ns{background:var(–ydim);color:#9a7a00;}
-.send-blk{background:linear-gradient(135deg,rgba(230,184,0,.1),rgba(230,184,0,.03));border:1px solid rgba(230,184,0,.22);border-radius:var(–r);padding:16px;margin-bottom:16px;}
-.send-title{font-family:‘Bebas Neue’,sans-serif;font-size:17px;letter-spacing:.04em;margin-bottom:4px;}
-.send-sub{font-size:13px;color:var(–tx2);margin-bottom:11px;line-height:1.5;}
+.ra.yb{background:var(--rdim);color:var(--red);}
+.ra.yg{background:var(--gdim);color:var(--grn);}
+.ra.nb{background:var(--gdim);color:var(--grn);}
+.ra.ng{background:var(--rdim);color:var(--red);}
+.ra.ns{background:var(--ydim);color:#9a7a00;}
+.send-blk{background:linear-gradient(135deg,rgba(230,184,0,.1),rgba(230,184,0,.03));border:1px solid rgba(230,184,0,.22);border-radius:var(--r);padding:16px;margin-bottom:16px;}
+.send-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.04em;margin-bottom:4px;}
+.send-sub{font-size:13px;color:var(--tx2);margin-bottom:11px;line-height:1.5;}
 .send-btns{display:flex;gap:8px;flex-wrap:wrap;}
 .send-btns .btn{flex:1;min-width:150px;width:auto;}
-.rep-notes{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);padding:15px;margin-bottom:16px;}
-.rep-notes-title{font-family:‘Bebas Neue’,sans-serif;font-size:16px;letter-spacing:.05em;margin-bottom:11px;}
-textarea.ni{width:100%;background:var(–bg3);border:1.5px solid var(–bd);border-radius:var(–rsm);padding:11px;color:var(–tx);font-family:‘DM Sans’,sans-serif;font-size:13px;resize:none;min-height:72px;outline:none;line-height:1.5;}
-textarea.ni:focus{border-color:var(–y);}
-textarea.ni::placeholder{color:var(–tx3);}
+.rep-notes{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:15px;margin-bottom:16px;}
+.rep-notes-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.05em;margin-bottom:11px;}
+textarea.ni{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--rsm);padding:11px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:13px;resize:none;min-height:72px;outline:none;line-height:1.5;}
+textarea.ni:focus{border-color:var(--y);}
+textarea.ni::placeholder{color:var(--tx3);}
 .photo-row{display:flex;gap:8px;margin-top:11px;}
-.pph{flex:1;max-width:78px;aspect-ratio:1;background:var(–bg3);border:1.5px dashed var(–bd);border-radius:var(–rsm);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:19px;color:var(–tx3);cursor:pointer;}
-.pph small{font-size:9px;color:var(–tx3);}
+.pph{flex:1;max-width:78px;aspect-ratio:1;background:var(--bg3);border:1.5px dashed var(--bd);border-radius:var(--rsm);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:19px;color:var(--tx3);cursor:pointer;}
+.pph small{font-size:9px;color:var(--tx3);}
 .rep-acts{display:flex;flex-direction:column;gap:8px;}
 
 /* ── LEARN ── */
 #s-learn .pg{padding-bottom:48px;}
-.lcard{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.05);transition:transform .2s;}
+.lcard{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.05);transition:transform .2s;}
 .lcard:hover{transform:translateY(-3px);}
-.lcard-icon{height:110px;background:var(–bg3);display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;}
+.lcard-icon{height:110px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;}
 .lcard-body{padding:13px;}
-.lcard-cat{font-size:10px;font-weight:700;color:var(–tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
+.lcard-cat{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
 .lcard-title{font-weight:700;font-size:14px;line-height:1.35;margin-bottom:5px;}
-.lcard-desc{font-size:12px;color:var(–tx2);line-height:1.45;margin-bottom:11px;}
+.lcard-desc{font-size:12px;color:var(--tx2);line-height:1.45;margin-bottom:11px;}
+
 
 /* ── CAR DETAIL MODAL ── */
-.car-detail-modal{position:fixed;inset:0;background:var(–bg);z-index:400;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
+.car-detail-modal{position:fixed;inset:0;background:var(--bg);z-index:400;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden;}
 .car-detail-modal.show{transform:translateY(0);}
-.cdm-header{display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 12px) 18px 12px;background:var(–bg2);border-bottom:1px solid var(–bd);flex-shrink:0;}
-.cdm-back{width:38px;height:38px;border-radius:50%;border:1px solid var(–bd);background:var(–bg3);display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;flex-shrink:0;}
+.cdm-header{display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 12px) 18px 12px;background:var(--bg2);border-bottom:1px solid var(--bd);flex-shrink:0;}
+.cdm-back{width:38px;height:38px;border-radius:50%;border:1px solid var(--bd);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;flex-shrink:0;}
 .cdm-title{font-weight:700;font-size:14px;flex:1;line-height:1.3;}
 .cdm-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 /* Gallery */
-.cdm-gallery{position:relative;height:260px;overflow:hidden;background:var(–bg3);}
+.cdm-gallery{position:relative;height:260px;overflow:hidden;background:var(--bg3);}
 @media(max-width:500px){.cdm-gallery{height:210px;}}
 .cdm-gallery-track{display:flex;height:100%;transition:transform .4s cubic-bezier(.4,0,.2,1);}
 .cdm-gallery-slide{flex-shrink:0;width:100%;height:100%;position:relative;}
@@ -427,89 +427,89 @@ textarea.ni::placeholder{color:var(–tx3);}
 .cdm-garrow{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.45);border:none;color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .cdm-garrow.prev{left:10px;}.cdm-garrow.next{right:10px;}
 /* Tab row */
-.cdm-tabs{display:flex;border-bottom:1px solid var(–bd);background:var(–bg2);overflow-x:auto;flex-shrink:0;}
+.cdm-tabs{display:flex;border-bottom:1px solid var(--bd);background:var(--bg2);overflow-x:auto;flex-shrink:0;}
 .cdm-tabs::-webkit-scrollbar{display:none;}
-.cdm-tab{flex-shrink:0;padding:12px 16px;font-size:12px;font-weight:600;color:var(–tx2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;transition:all .15s;}
-.cdm-tab.active{color:var(–y);border-bottom-color:var(–y);}
+.cdm-tab{flex-shrink:0;padding:12px 16px;font-size:12px;font-weight:600;color:var(--tx2);cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;transition:all .15s;}
+.cdm-tab.active{color:var(--y);border-bottom-color:var(--y);}
 /* Panels */
 .cdm-panel{display:none;padding:18px;}
 .cdm-panel.active{display:block;}
 .cdm-specs-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
-.cdm-spec{background:var(–bg3);border-radius:var(–rsm);padding:10px 13px;flex:1;min-width:80px;text-align:center;}
+.cdm-spec{background:var(--bg3);border-radius:var(--rsm);padding:10px 13px;flex:1;min-width:80px;text-align:center;}
 .cdm-spec-val{font-weight:700;font-size:14px;margin-bottom:2px;}
-.cdm-spec-lbl{font-size:10px;color:var(–tx2);text-transform:uppercase;letter-spacing:.06em;}
+.cdm-spec-lbl{font-size:10px;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;}
 .cdm-price-block{margin-bottom:16px;}
-.cdm-price-big{font-family:‘Bebas Neue’,sans-serif;font-size:38px;color:var(–y);letter-spacing:.04em;line-height:1;}
-.cdm-price-wk{font-size:13px;color:var(–tx2);margin-top:3px;}
+.cdm-price-big{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--y);letter-spacing:.04em;line-height:1;}
+.cdm-price-wk{font-size:13px;color:var(--tx2);margin-top:3px;}
 .cdm-ctas{display:flex;flex-direction:column;gap:9px;margin-bottom:20px;}
 /* Imperfection items */
-.cdm-imperf{background:var(–rdim);border:1px solid rgba(209,47,36,.15);border-radius:var(–rsm);padding:12px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;}
+.cdm-imperf{background:var(--rdim);border:1px solid rgba(209,47,36,.15);border-radius:var(--rsm);padding:12px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start;}
 .cdm-imperf-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
 .cdm-imperf-title{font-weight:600;font-size:13px;margin-bottom:2px;}
-.cdm-imperf-desc{font-size:12px;color:var(–tx2);line-height:1.45;}
-.cdm-ok{background:var(–gdim);border:1px solid rgba(24,145,90,.15);border-radius:var(–rsm);padding:11px 14px;font-size:13px;color:var(–grn);font-weight:500;}
+.cdm-imperf-desc{font-size:12px;color:var(--tx2);line-height:1.45;}
+.cdm-ok{background:var(--gdim);border:1px solid rgba(24,145,90,.15);border-radius:var(--rsm);padding:11px 14px;font-size:13px;color:var(--grn);font-weight:500;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 .fi{animation:fadeUp .26s ease forwards;}
 /* ── MECHANIC APPLY / DASHBOARD ── */
 #s-apply .pg{padding-bottom:60px;}
 #s-mdash .pg{padding-bottom:60px;}
-.apply-hero{background:linear-gradient(135deg,#111 0%,#1a1a12 100%);padding:32px 22px 28px;border-bottom:1px solid var(–bd);}
-.apply-hero h1{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.05em;color:#fff;margin-bottom:6px;}
+.apply-hero{background:linear-gradient(135deg,#111 0%,#1a1a12 100%);padding:32px 22px 28px;border-bottom:1px solid var(--bd);}
+.apply-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.05em;color:#fff;margin-bottom:6px;}
 .apply-hero p{font-size:13px;color:rgba(255,255,255,.55);max-width:440px;line-height:1.55;}
-.apply-steps{display:flex;gap:8px;padding:16px 22px 0;max-width:var(–mw);margin:0 auto;flex-wrap:wrap;}
-.astep{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(–tx2);}
-.astep-num{width:20px;height:20px;border-radius:50%;background:var(–grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;}
-.astep-arrow{color:var(–tx3);font-size:10px;}
+.apply-steps{display:flex;gap:8px;padding:16px 22px 0;max-width:var(--mw);margin:0 auto;flex-wrap:wrap;}
+.astep{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--tx2);}
+.astep-num{width:20px;height:20px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;}
+.astep-arrow{color:var(--tx3);font-size:10px;}
 .apply-form{max-width:680px;margin:0 auto;padding:22px 22px 0;}
 .form-section{margin-bottom:28px;}
-.form-section-title{font-family:‘Bebas Neue’,sans-serif;font-size:18px;letter-spacing:.05em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(–bd);display:flex;align-items:center;gap:8px;}
+.form-section-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.05em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 @media(max-width:500px){.form-row{grid-template-columns:1fr;}}
 .fg{margin-bottom:13px;}
-.flbl{font-size:11px;font-weight:700;color:var(–tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
-.finput{width:100%;background:var(–bg3);border:1.5px solid var(–bd);border-radius:var(–rsm);padding:11px 13px;color:var(–tx);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
-.finput:focus{border-color:var(–y);}
-.finput option{background:var(–bg2);}
-.upload-box{border:2px dashed var(–bd);border-radius:var(–r);padding:22px;text-align:center;cursor:pointer;background:var(–bg3);transition:border-color .15s;}
-.upload-box:hover{border-color:var(–y);}
+.flbl{font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.finput{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--rsm);padding:11px 13px;color:var(--tx);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
+.finput:focus{border-color:var(--y);}
+.finput option{background:var(--bg2);}
+.upload-box{border:2px dashed var(--bd);border-radius:var(--r);padding:22px;text-align:center;cursor:pointer;background:var(--bg3);transition:border-color .15s;}
+.upload-box:hover{border-color:var(--y);}
 .upload-icon{font-size:28px;margin-bottom:6px;}
-.upload-label{font-size:13px;font-weight:600;color:var(–tx);margin-bottom:3px;}
-.upload-sub{font-size:11px;color:var(–tx2);}
-.warn-box{background:rgba(209,47,36,.07);border:1px solid rgba(209,47,36,.2);border-radius:var(–rsm);padding:12px 14px;font-size:12px;color:var(–red);line-height:1.55;margin-bottom:16px;}
-.info-box{background:var(–ydim);border:1px solid rgba(230,184,0,.25);border-radius:var(–rsm);padding:12px 14px;font-size:12px;color:#7a6000;line-height:1.55;margin-bottom:16px;}
+.upload-label{font-size:13px;font-weight:600;color:var(--tx);margin-bottom:3px;}
+.upload-sub{font-size:11px;color:var(--tx2);}
+.warn-box{background:rgba(209,47,36,.07);border:1px solid rgba(209,47,36,.2);border-radius:var(--rsm);padding:12px 14px;font-size:12px;color:var(--red);line-height:1.55;margin-bottom:16px;}
+.info-box{background:var(--ydim);border:1px solid rgba(230,184,0,.25);border-radius:var(--rsm);padding:12px 14px;font-size:12px;color:#7a6000;line-height:1.55;margin-bottom:16px;}
 /* Mechanic dashboard */
-.mdash-header{background:linear-gradient(135deg,#111,#1a1a12);padding:24px 22px 20px;border-bottom:1px solid var(–bd);}
-.mdash-greeting{font-family:‘Bebas Neue’,sans-serif;font-size:26px;color:#fff;letter-spacing:.04em;margin-bottom:4px;}
-.mdash-status{display:inline-flex;align-items:center;gap:6px;background:rgba(24,145,90,.15);border:1px solid rgba(24,145,90,.3);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:var(–grn);}
-.mdash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 22px 0;max-width:var(–mw);margin:0 auto;}
-.stat-card{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);padding:14px;text-align:center;}
-.stat-num{font-family:‘Bebas Neue’,sans-serif;font-size:28px;color:var(–y);letter-spacing:.04em;}
-.stat-lbl{font-size:10px;color:var(–tx2);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
-.booking-list{padding:14px 22px 0;max-width:var(–mw);margin:0 auto;}
-.booking-card{background:var(–bg2);border:1px solid var(–bd);border-radius:var(–r);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;}
-.bk-date-box{background:var(–grad);border-radius:var(–rsm);padding:6px 10px;text-align:center;flex-shrink:0;}
-.bk-date-day{font-family:‘Bebas Neue’,sans-serif;font-size:22px;line-height:1;color:#111;}
+.mdash-header{background:linear-gradient(135deg,#111,#1a1a12);padding:24px 22px 20px;border-bottom:1px solid var(--bd);}
+.mdash-greeting{font-family:'Bebas Neue',sans-serif;font-size:26px;color:#fff;letter-spacing:.04em;margin-bottom:4px;}
+.mdash-status{display:inline-flex;align-items:center;gap:6px;background:rgba(24,145,90,.15);border:1px solid rgba(24,145,90,.3);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:var(--grn);}
+.mdash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 22px 0;max-width:var(--mw);margin:0 auto;}
+.stat-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:14px;text-align:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--y);letter-spacing:.04em;}
+.stat-lbl{font-size:10px;color:var(--tx2);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+.booking-list{padding:14px 22px 0;max-width:var(--mw);margin:0 auto;}
+.booking-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;}
+.bk-date-box{background:var(--grad);border-radius:var(--rsm);padding:6px 10px;text-align:center;flex-shrink:0;}
+.bk-date-day{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;color:#111;}
 .bk-date-mo{font-size:9px;font-weight:700;color:#111;text-transform:uppercase;}
 .bk-info{flex:1;}
 .bk-client{font-weight:700;font-size:14px;margin-bottom:3px;}
-.bk-service{font-size:12px;color:var(–tx2);margin-bottom:4px;}
+.bk-service{font-size:12px;color:var(--tx2);margin-bottom:4px;}
 .bk-status{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;}
-.bk-pending{background:var(–ydim);color:#7a6000;}
-.bk-confirmed{background:var(–gdim);color:var(–grn);}
+.bk-pending{background:var(--ydim);color:#7a6000;}
+.bk-confirmed{background:var(--gdim);color:var(--grn);}
 .bk-acts{display:flex;gap:6px;margin-top:10px;}
-.cal-wrap{padding:14px 22px;max-width:var(–mw);margin:0 auto;}
+.cal-wrap{padding:14px 22px;max-width:var(--mw);margin:0 auto;}
 .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.cal-title{font-family:‘Bebas Neue’,sans-serif;font-size:20px;letter-spacing:.04em;}
+.cal-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;}
 .cal-nav{display:flex;gap:6px;}
-.cal-nav button{width:32px;height:32px;border-radius:50%;border:1px solid var(–bd);background:var(–bg2);cursor:pointer;font-size:14px;}
+.cal-nav button{width:32px;height:32px;border-radius:50%;border:1px solid var(--bd);background:var(--bg2);cursor:pointer;font-size:14px;}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
-.cal-day-head{text-align:center;font-size:10px;font-weight:700;color:var(–tx3);padding:4px 0;text-transform:uppercase;}
-.cal-day{background:var(–bg3);border-radius:var(–rsm);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s;position:relative;}
+.cal-day-head{text-align:center;font-size:10px;font-weight:700;color:var(--tx3);padding:4px 0;text-transform:uppercase;}
+.cal-day{background:var(--bg3);border-radius:var(--rsm);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s;position:relative;}
 .cal-day.empty{background:transparent;cursor:default;}
-.cal-day.today{background:var(–ydim);border:1.5px solid var(–y);font-weight:700;}
-.cal-day.has-booking::after{content:’’;position:absolute;bottom:4px;width:5px;height:5px;border-radius:50%;background:var(–y);}
-.cal-day:hover:not(.empty){background:var(–bg4);}
+.cal-day.today{background:var(--ydim);border:1.5px solid var(--y);font-weight:700;}
+.cal-day.has-booking::after{content:'';position:absolute;bottom:4px;width:5px;height:5px;border-radius:50%;background:var(--y);}
+.cal-day:hover:not(.empty){background:var(--bg4);}
 .edit-prof-wrap{padding:16px 22px 0;max-width:680px;margin:0 auto;}
 
 </style>
@@ -517,7 +517,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 <body>
 
 <!-- HEADER -->
-
 <header class="hdr">
   <div class="hdr-logo" onclick="go('s-home')">
     <div class="hdr-mark">🔍</div>
@@ -532,11 +531,9 @@ textarea.ni::placeholder{color:var(–tx3);}
 </header>
 
 <!-- ══ HOME ══ -->
-
 <div id="s-home" class="screen active" style="height:auto;min-height:100dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:var(--hh);">
 
   <!-- HERO SLIDER SECTION (full viewport height) -->
-
   <div style="position:relative;height:calc(100dvh - var(--hh));overflow:hidden;background:#0c0b09;flex-shrink:0;">
     <div class="hero-track" id="hero-track">
       <div class="hero-slide">
@@ -616,7 +613,6 @@ textarea.ni::placeholder{color:var(–tx3);}
   </div>
 
   <!-- ── BODY TYPE QUICK FILTERS ── -->
-
   <div style="background:var(--bg2);border-bottom:1px solid var(--bd);padding:20px 0 16px;">
     <div style="max-width:var(--mw);margin:0 auto;padding:0 20px;">
       <div style="font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;">Browse by type</div>
@@ -634,7 +630,6 @@ textarea.ni::placeholder{color:var(–tx3);}
   </div>
 
   <!-- ── HOW IT WORKS ── -->
-
   <div style="background:var(--bg);padding:32px 20px;">
     <div style="max-width:var(--mw);margin:0 auto;">
       <div style="font-size:11px;font-weight:700;color:var(--y);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;">Why Kundoktor</div>
@@ -660,7 +655,6 @@ textarea.ni::placeholder{color:var(–tx3);}
   </div>
 
   <!-- ── FEATURED LISTINGS ── -->
-
   <div style="background:var(--bg3);padding:28px 0 32px;">
     <div style="max-width:var(--mw);margin:0 auto;padding:0 20px 14px;display:flex;align-items:flex-end;justify-content:space-between;">
       <div>
@@ -673,7 +667,6 @@ textarea.ni::placeholder{color:var(–tx3);}
   </div>
 
   <!-- ── CALCULATOR SECTION ── -->
-
   <div style="background:var(--bg2);padding:32px 20px;">
     <div style="max-width:600px;margin:0 auto;">
       <div style="font-size:11px;font-weight:700;color:var(--y);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;">Finance Calculator</div>
@@ -718,7 +711,6 @@ textarea.ni::placeholder{color:var(–tx3);}
   </div>
 
   <!-- ── TRUST STRIP ── -->
-
   <div style="background:var(--bg);padding:24px 20px;border-top:1px solid var(--bd);">
     <div style="max-width:var(--mw);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;">
       <div><div style="font-size:22px;margin-bottom:4px;">🛡️</div><div style="font-size:11px;font-weight:700;color:var(--tx);margin-bottom:2px;">Verified Mechanics</div><div style="font-size:10px;color:var(--tx2);">ID-checked, community-rated</div></div>
@@ -728,7 +720,6 @@ textarea.ni::placeholder{color:var(–tx3);}
   </div>
 
   <!-- ── FOOTER ── -->
-
   <div style="background:var(--tx);padding:24px 20px;text-align:center;">
     <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.1em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;">KUNDOKTOR</div>
     <div style="font-size:11px;color:rgba(255,255,255,.35);">Your street-smart car companion · Philippines</div>
@@ -738,7 +729,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- ══ LISTINGS ══ -->
-
 <div id="s-listings" class="screen inner-page">
   <div class="pg">
     <div class="ph">
@@ -754,7 +744,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- Filter Drawer -->
-
 <div class="dov" id="dov" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
   <div class="d-handle"></div>
@@ -841,7 +830,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- ══ INSPECTION ══ -->
-
 <div id="s-insp" class="screen">
   <div class="insp-wrap">
     <aside class="insp-side">
@@ -866,13 +854,11 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- ══ RESULT ══ -->
-
 <div id="s-result" class="screen inner-page">
   <div class="pg"><div class="result-wrap" id="result-wrap"></div></div>
 </div>
 
 <!-- ══ MECHANICS ══ -->
-
 <div id="s-mechanics" class="screen inner-page">
   <div class="pg">
     <div class="ph"><h1>FIND A MECHANIC</h1><p>Vetted shops across Metro Manila. Book a slot — they assist, you decide.</p></div>
@@ -894,7 +880,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- ══ REPORT ══ -->
-
 <div id="s-report" class="screen inner-page">
   <div class="pg">
     <div class="rep-wrap">
@@ -929,7 +914,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- ══ LEARN ══ -->
-
 <div id="s-learn" class="screen inner-page">
   <div class="pg">
     <div class="ph"><h1>LEARN &amp; TRAIN</h1><p>Maintenance basics, buying guides, and training schools.</p></div>
@@ -951,7 +935,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- Book Modal -->
-
 <div class="modal-bg" id="bk-modal" onclick="closeModal('bk-modal',event)">
   <div class="modal-box">
     <div class="m-handle"></div>
@@ -999,7 +982,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- Ask Estimate Modal -->
-
 <div class="modal-bg" id="est-modal" onclick="closeModal('est-modal',event)">
   <div class="modal-box">
     <div class="m-handle"></div>
@@ -1040,7 +1022,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- Send Modal -->
-
 <div class="modal-bg" id="send-modal" onclick="closeModal('send-modal',event)">
   <div class="modal-box">
     <div class="m-handle"></div>
@@ -1058,8 +1039,8 @@ textarea.ni::placeholder{color:var(–tx3);}
   </div>
 </div>
 
-<!-- ══ APPLY AS MECHANIC ══ -->
 
+<!-- ══ APPLY AS MECHANIC ══ -->
 <div id="s-apply" class="screen inner-page">
   <div class="pg">
     <div class="apply-hero">
@@ -1078,118 +1059,114 @@ textarea.ni::placeholder{color:var(–tx3);}
     <div class="apply-form">
       <div class="warn-box">&#128274; This information is used strictly for identity verification. It will never be shown publicly. Only your shop name, location, services, and rating will be visible to users.</div>
 
-```
-  <div class="form-section">
-    <div class="form-section-title">&#128100; Personal Information</div>
-    <div class="form-row">
-      <div class="fg"><div class="flbl">First Name</div><input type="text" class="finput" placeholder="Juan"></div>
-      <div class="fg"><div class="flbl">Last Name</div><input type="text" class="finput" placeholder="dela Cruz"></div>
-    </div>
-    <div class="form-row">
-      <div class="fg"><div class="flbl">Date of Birth</div><input type="date" class="finput"></div>
-      <div class="fg"><div class="flbl">Mobile Number</div><input type="tel" class="finput" placeholder="09XX XXX XXXX"></div>
-    </div>
-    <div class="fg"><div class="flbl">Email Address</div><input type="email" class="finput" placeholder="juan@email.com"></div>
-    <div class="fg"><div class="flbl">Home Address</div><input type="text" class="finput" placeholder="Street, Barangay, City, Province"></div>
-  </div>
+      <div class="form-section">
+        <div class="form-section-title">&#128100; Personal Information</div>
+        <div class="form-row">
+          <div class="fg"><div class="flbl">First Name</div><input type="text" class="finput" placeholder="Juan"></div>
+          <div class="fg"><div class="flbl">Last Name</div><input type="text" class="finput" placeholder="dela Cruz"></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><div class="flbl">Date of Birth</div><input type="date" class="finput"></div>
+          <div class="fg"><div class="flbl">Mobile Number</div><input type="tel" class="finput" placeholder="09XX XXX XXXX"></div>
+        </div>
+        <div class="fg"><div class="flbl">Email Address</div><input type="email" class="finput" placeholder="juan@email.com"></div>
+        <div class="fg"><div class="flbl">Home Address</div><input type="text" class="finput" placeholder="Street, Barangay, City, Province"></div>
+      </div>
 
-  <div class="form-section">
-    <div class="form-section-title">&#128295; Shop / Business Information</div>
-    <div class="fg"><div class="flbl">Shop / Business Name</div><input type="text" class="finput" placeholder="e.g. Mang Juan Auto Repair"></div>
-    <div class="fg"><div class="flbl">Shop Address</div><input type="text" class="finput" placeholder="Full address where clients can visit"></div>
-    <div class="form-row">
-      <div class="fg"><div class="flbl">City / Municipality</div><input type="text" class="finput" placeholder="Pasig City"></div>
-      <div class="fg"><div class="flbl">Years in Operation</div><input type="number" class="finput" placeholder="e.g. 8" min="0" max="60"></div>
-    </div>
-    <div class="fg">
-      <div class="flbl">Service Category</div>
-      <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
-        <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128738; Preventive Maintenance (PMS)</label>
-        <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128295; General Repairs</label>
-        <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128269; Pre-Purchase Inspection</label>
-        <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#10024; Other Specialty Services</label>
+      <div class="form-section">
+        <div class="form-section-title">&#128295; Shop / Business Information</div>
+        <div class="fg"><div class="flbl">Shop / Business Name</div><input type="text" class="finput" placeholder="e.g. Mang Juan Auto Repair"></div>
+        <div class="fg"><div class="flbl">Shop Address</div><input type="text" class="finput" placeholder="Full address where clients can visit"></div>
+        <div class="form-row">
+          <div class="fg"><div class="flbl">City / Municipality</div><input type="text" class="finput" placeholder="Pasig City"></div>
+          <div class="fg"><div class="flbl">Years in Operation</div><input type="number" class="finput" placeholder="e.g. 8" min="0" max="60"></div>
+        </div>
+        <div class="fg">
+          <div class="flbl">Service Category</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128738; Preventive Maintenance (PMS)</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128295; General Repairs</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128269; Pre-Purchase Inspection</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#10024; Other Specialty Services</label>
+          </div>
+        </div>
+        <div class="fg"><div class="flbl">Specific Services Offered</div><textarea class="finput" style="height:70px;resize:none;line-height:1.45;" placeholder="e.g. Engine overhaul, aircon repair, wheel alignment, OBD diagnostics..."></textarea></div>
+        <div class="fg">
+          <div class="flbl">Available Days</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Mon</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Tue</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Wed</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Thu</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Fri</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sat</label>
+            <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sun</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">&#128196; Government-Issued ID</div>
+        <div class="info-box">&#9888; Required for verification. Accepted: PhilSys ID, Driver&#39;s License, Passport, SSS/GSIS ID, Voter&#39;s ID, PRC ID. Both front and back required.</div>
+        <div class="form-row" style="margin-bottom:12px;">
+          <div class="upload-box" onclick="showToast('Camera/gallery access needed')">
+            <div class="upload-icon">&#128247;</div>
+            <div class="upload-label">ID Front</div>
+            <div class="upload-sub">Tap to upload</div>
+          </div>
+          <div class="upload-box" onclick="showToast('Camera/gallery access needed')">
+            <div class="upload-icon">&#128247;</div>
+            <div class="upload-label">ID Back</div>
+            <div class="upload-sub">Tap to upload</div>
+          </div>
+        </div>
+        <div class="fg"><div class="flbl">ID Type</div>
+          <select class="finput">
+            <option value="">Select ID type</option>
+            <option>PhilSys / National ID</option>
+            <option>Driver&#39;s License</option>
+            <option>Passport</option>
+            <option>SSS / GSIS ID</option>
+            <option>Voter&#39;s ID</option>
+            <option>PRC ID</option>
+            <option>Postal ID</option>
+          </select>
+        </div>
+        <div class="fg"><div class="flbl">ID Number</div><input type="text" class="finput" placeholder="As printed on your ID"></div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">&#129317; Selfie Verification</div>
+        <div class="info-box">Take a selfie holding your government ID. This confirms the ID belongs to you. Photo will be reviewed by our team only.</div>
+        <div class="upload-box" onclick="showToast('Camera access needed')" style="max-width:260px;margin:0 auto 16px;">
+          <div class="upload-icon">&#129317;</div>
+          <div class="upload-label">Selfie with ID</div>
+          <div class="upload-sub">Face + ID clearly visible</div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">&#128220; Supporting Documents (optional but recommended)</div>
+        <p style="font-size:13px;color:var(--tx2);margin-bottom:12px;line-height:1.5;">Business permit, TESDA NC certificate, or any proof of automotive training or employment. This speeds up verification.</p>
+        <div class="upload-box" onclick="showToast('File access needed')">
+          <div class="upload-icon">&#128196;</div>
+          <div class="upload-label">Upload Document</div>
+          <div class="upload-sub">PDF, JPG, or PNG · Max 5MB</div>
+        </div>
+      </div>
+
+      <div class="warn-box" style="margin-top:4px;">&#128274; By submitting, you agree that Kundoktor may verify your identity with relevant government agencies. False information will result in permanent ban and may be reported to authorities.</div>
+
+      <div style="display:flex;flex-direction:column;gap:9px;padding-bottom:32px;">
+        <button class="btn bp" onclick="submitApplication()">&#128196; Submit Application</button>
+        <button class="btn bg_" onclick="go('s-mdash')" style="font-size:12px;color:var(--tx3);">Preview Mechanic Dashboard →</button>
+        <button class="btn bg_" onclick="go('s-home')">Cancel</button>
       </div>
     </div>
-    <div class="fg"><div class="flbl">Specific Services Offered</div><textarea class="finput" style="height:70px;resize:none;line-height:1.45;" placeholder="e.g. Engine overhaul, aircon repair, wheel alignment, OBD diagnostics..."></textarea></div>
-    <div class="fg">
-      <div class="flbl">Available Days</div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
-        <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Mon</label>
-        <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Tue</label>
-        <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Wed</label>
-        <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Thu</label>
-        <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Fri</label>
-        <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sat</label>
-        <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sun</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-section">
-    <div class="form-section-title">&#128196; Government-Issued ID</div>
-    <div class="info-box">&#9888; Required for verification. Accepted: PhilSys ID, Driver&#39;s License, Passport, SSS/GSIS ID, Voter&#39;s ID, PRC ID. Both front and back required.</div>
-    <div class="form-row" style="margin-bottom:12px;">
-      <div class="upload-box" onclick="showToast('Camera/gallery access needed')">
-        <div class="upload-icon">&#128247;</div>
-        <div class="upload-label">ID Front</div>
-        <div class="upload-sub">Tap to upload</div>
-      </div>
-      <div class="upload-box" onclick="showToast('Camera/gallery access needed')">
-        <div class="upload-icon">&#128247;</div>
-        <div class="upload-label">ID Back</div>
-        <div class="upload-sub">Tap to upload</div>
-      </div>
-    </div>
-    <div class="fg"><div class="flbl">ID Type</div>
-      <select class="finput">
-        <option value="">Select ID type</option>
-        <option>PhilSys / National ID</option>
-        <option>Driver&#39;s License</option>
-        <option>Passport</option>
-        <option>SSS / GSIS ID</option>
-        <option>Voter&#39;s ID</option>
-        <option>PRC ID</option>
-        <option>Postal ID</option>
-      </select>
-    </div>
-    <div class="fg"><div class="flbl">ID Number</div><input type="text" class="finput" placeholder="As printed on your ID"></div>
-  </div>
-
-  <div class="form-section">
-    <div class="form-section-title">&#129317; Selfie Verification</div>
-    <div class="info-box">Take a selfie holding your government ID. This confirms the ID belongs to you. Photo will be reviewed by our team only.</div>
-    <div class="upload-box" onclick="showToast('Camera access needed')" style="max-width:260px;margin:0 auto 16px;">
-      <div class="upload-icon">&#129317;</div>
-      <div class="upload-label">Selfie with ID</div>
-      <div class="upload-sub">Face + ID clearly visible</div>
-    </div>
-  </div>
-
-  <div class="form-section">
-    <div class="form-section-title">&#128220; Supporting Documents (optional but recommended)</div>
-    <p style="font-size:13px;color:var(--tx2);margin-bottom:12px;line-height:1.5;">Business permit, TESDA NC certificate, or any proof of automotive training or employment. This speeds up verification.</p>
-    <div class="upload-box" onclick="showToast('File access needed')">
-      <div class="upload-icon">&#128196;</div>
-      <div class="upload-label">Upload Document</div>
-      <div class="upload-sub">PDF, JPG, or PNG · Max 5MB</div>
-    </div>
-  </div>
-
-  <div class="warn-box" style="margin-top:4px;">&#128274; By submitting, you agree that Kundoktor may verify your identity with relevant government agencies. False information will result in permanent ban and may be reported to authorities.</div>
-
-  <div style="display:flex;flex-direction:column;gap:9px;padding-bottom:32px;">
-    <button class="btn bp" onclick="submitApplication()">&#128196; Submit Application</button>
-    <button class="btn bg_" onclick="go('s-mdash')" style="font-size:12px;color:var(--tx3);">Preview Mechanic Dashboard →</button>
-    <button class="btn bg_" onclick="go('s-home')">Cancel</button>
-  </div>
-</div>
-```
-
   </div>
 </div>
 
 <!-- ══ MECHANIC DASHBOARD ══ -->
-
 <div id="s-mdash" class="screen inner-page">
   <div class="pg">
     <div class="mdash-header">
@@ -1197,115 +1174,111 @@ textarea.ni::placeholder{color:var(–tx3);}
       <div class="mdash-status">&#9679; Verified &amp; Active</div>
     </div>
 
-```
-<!-- Stats -->
-<div class="mdash-stats">
-  <div class="stat-card"><div class="stat-num">3</div><div class="stat-lbl">Pending</div></div>
-  <div class="stat-card"><div class="stat-num">12</div><div class="stat-lbl">This Month</div></div>
-  <div class="stat-card"><div class="stat-num">4.9</div><div class="stat-lbl">Rating</div></div>
-</div>
+    <!-- Stats -->
+    <div class="mdash-stats">
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-lbl">Pending</div></div>
+      <div class="stat-card"><div class="stat-num">12</div><div class="stat-lbl">This Month</div></div>
+      <div class="stat-card"><div class="stat-num">4.9</div><div class="stat-lbl">Rating</div></div>
+    </div>
 
-<!-- Booking tabs -->
-<div style="padding:16px 22px 0;max-width:var(--mw);margin:0 auto;">
-  <div style="display:flex;gap:6px;margin-bottom:14px;">
-    <div class="chip active" onclick="mechTab('pending',this)">Pending (3)</div>
-    <div class="chip" onclick="mechTab('confirmed',this)">Confirmed</div>
-    <div class="chip" onclick="mechTab('done',this)">Completed</div>
-  </div>
-</div>
-
-<!-- Booking list -->
-<div class="booking-list" id="booking-list">
-  <div class="booking-card">
-    <div class="bk-date-box"><div class="bk-date-day">26</div><div class="bk-date-mo">Apr</div></div>
-    <div class="bk-info">
-      <div class="bk-client">Miguel Santos</div>
-      <div class="bk-service">Oil Change + Brake Check · 2020 Vios · 9:00 AM</div>
-      <div class="bk-service" style="color:var(--tx3);font-size:11px;">Pasig City · Mechanic supplies parts</div>
-      <div class="bk-status bk-pending">&#9679; Pending Confirmation</div>
-      <div class="bk-acts">
-        <button class="btn bp bsm" onclick="showToast('Booking confirmed!')">Accept</button>
-        <button class="btn bg_ bsm" onclick="showToast('Booking declined')">Decline</button>
+    <!-- Booking tabs -->
+    <div style="padding:16px 22px 0;max-width:var(--mw);margin:0 auto;">
+      <div style="display:flex;gap:6px;margin-bottom:14px;">
+        <div class="chip active" onclick="mechTab('pending',this)">Pending (3)</div>
+        <div class="chip" onclick="mechTab('confirmed',this)">Confirmed</div>
+        <div class="chip" onclick="mechTab('done',this)">Completed</div>
       </div>
     </div>
-  </div>
-  <div class="booking-card">
-    <div class="bk-date-box"><div class="bk-date-day">27</div><div class="bk-date-mo">Apr</div></div>
-    <div class="bk-info">
-      <div class="bk-client">Carlo Reyes</div>
-      <div class="bk-service">Pre-Purchase Inspection · Toyota Fortuner · 10:00 AM</div>
-      <div class="bk-service" style="color:var(--tx3);font-size:11px;">Quezon City · Client supplies parts</div>
-      <div class="bk-status bk-pending">&#9679; Pending Confirmation</div>
-      <div class="bk-acts">
-        <button class="btn bp bsm" onclick="showToast('Booking confirmed!')">Accept</button>
-        <button class="btn bg_ bsm" onclick="showToast('Booking declined')">Decline</button>
+
+    <!-- Booking list -->
+    <div class="booking-list" id="booking-list">
+      <div class="booking-card">
+        <div class="bk-date-box"><div class="bk-date-day">26</div><div class="bk-date-mo">Apr</div></div>
+        <div class="bk-info">
+          <div class="bk-client">Miguel Santos</div>
+          <div class="bk-service">Oil Change + Brake Check · 2020 Vios · 9:00 AM</div>
+          <div class="bk-service" style="color:var(--tx3);font-size:11px;">Pasig City · Mechanic supplies parts</div>
+          <div class="bk-status bk-pending">&#9679; Pending Confirmation</div>
+          <div class="bk-acts">
+            <button class="btn bp bsm" onclick="showToast('Booking confirmed!')">Accept</button>
+            <button class="btn bg_ bsm" onclick="showToast('Booking declined')">Decline</button>
+          </div>
+        </div>
+      </div>
+      <div class="booking-card">
+        <div class="bk-date-box"><div class="bk-date-day">27</div><div class="bk-date-mo">Apr</div></div>
+        <div class="bk-info">
+          <div class="bk-client">Carlo Reyes</div>
+          <div class="bk-service">Pre-Purchase Inspection · Toyota Fortuner · 10:00 AM</div>
+          <div class="bk-service" style="color:var(--tx3);font-size:11px;">Quezon City · Client supplies parts</div>
+          <div class="bk-status bk-pending">&#9679; Pending Confirmation</div>
+          <div class="bk-acts">
+            <button class="btn bp bsm" onclick="showToast('Booking confirmed!')">Accept</button>
+            <button class="btn bg_ bsm" onclick="showToast('Booking declined')">Decline</button>
+          </div>
+        </div>
+      </div>
+      <div class="booking-card">
+        <div class="bk-date-box"><div class="bk-date-day">28</div><div class="bk-date-mo">Apr</div></div>
+        <div class="bk-info">
+          <div class="bk-client">Ana Dizon</div>
+          <div class="bk-service">Engine Diagnostic + AC Repair · Honda City · 2:00 PM</div>
+          <div class="bk-service" style="color:var(--tx3);font-size:11px;">Makati City · Mechanic supplies parts</div>
+          <div class="bk-status bk-pending">&#9679; Pending Confirmation</div>
+          <div class="bk-acts">
+            <button class="btn bp bsm" onclick="showToast('Booking confirmed!')">Accept</button>
+            <button class="btn bg_ bsm" onclick="showToast('Booking declined')">Decline</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="booking-card">
-    <div class="bk-date-box"><div class="bk-date-day">28</div><div class="bk-date-mo">Apr</div></div>
-    <div class="bk-info">
-      <div class="bk-client">Ana Dizon</div>
-      <div class="bk-service">Engine Diagnostic + AC Repair · Honda City · 2:00 PM</div>
-      <div class="bk-service" style="color:var(--tx3);font-size:11px;">Makati City · Mechanic supplies parts</div>
-      <div class="bk-status bk-pending">&#9679; Pending Confirmation</div>
-      <div class="bk-acts">
-        <button class="btn bp bsm" onclick="showToast('Booking confirmed!')">Accept</button>
-        <button class="btn bg_ bsm" onclick="showToast('Booking declined')">Decline</button>
+
+    <!-- Calendar -->
+    <div class="cal-wrap">
+      <div class="cal-header">
+        <div class="cal-title" id="cal-title">April 2026</div>
+        <div class="cal-nav">
+          <button onclick="calNav(-1)">&#8249;</button>
+          <button onclick="calNav(1)">&#8250;</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+    <!-- Edit Profile -->
+    <div class="edit-prof-wrap">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.05em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--bd);">&#9998; EDIT YOUR PROFILE</div>
+      <div class="info-box">You can update your services, availability, and rates. Name, ID details, and contact info cannot be changed after verification to prevent fraud.</div>
+      <div class="fg"><div class="flbl">Services Offered</div><textarea class="finput" style="height:70px;resize:none;line-height:1.45;" placeholder="Update your list of services...">Oil & Filter Change, Engine Flush, Spark Plugs, Brake Check</textarea></div>
+      <div class="fg">
+        <div class="flbl">Service Category</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
+          <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" checked style="accent-color:var(--y);width:16px;height:16px;">&#128738; Preventive Maintenance (PMS)</label>
+          <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128295; General Repairs</label>
+          <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128269; Pre-Purchase Inspection</label>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="flbl">Available Days</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Mon</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Tue</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Wed</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Thu</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Fri</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sat</label>
+          <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sun</label>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:32px;margin-top:8px;">
+        <button class="btn bp" onclick="showToast('Profile updated!')">Save Changes</button>
+        <button class="btn bg_" onclick="go('s-home')">&#8592; Back to Home</button>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- Calendar -->
-<div class="cal-wrap">
-  <div class="cal-header">
-    <div class="cal-title" id="cal-title">April 2026</div>
-    <div class="cal-nav">
-      <button onclick="calNav(-1)">&#8249;</button>
-      <button onclick="calNav(1)">&#8250;</button>
-    </div>
-  </div>
-  <div class="cal-grid" id="cal-grid"></div>
-</div>
-
-<!-- Edit Profile -->
-<div class="edit-prof-wrap">
-  <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.05em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--bd);">&#9998; EDIT YOUR PROFILE</div>
-  <div class="info-box">You can update your services, availability, and rates. Name, ID details, and contact info cannot be changed after verification to prevent fraud.</div>
-  <div class="fg"><div class="flbl">Services Offered</div><textarea class="finput" style="height:70px;resize:none;line-height:1.45;" placeholder="Update your list of services...">Oil & Filter Change, Engine Flush, Spark Plugs, Brake Check</textarea></div>
-  <div class="fg">
-    <div class="flbl">Service Category</div>
-    <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
-      <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" checked style="accent-color:var(--y);width:16px;height:16px;">&#128738; Preventive Maintenance (PMS)</label>
-      <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128295; General Repairs</label>
-      <label style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:13px;font-weight:500;"><input type="checkbox" style="accent-color:var(--y);width:16px;height:16px;">&#128269; Pre-Purchase Inspection</label>
-    </div>
-  </div>
-  <div class="fg">
-    <div class="flbl">Available Days</div>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
-      <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Mon</label>
-      <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Tue</label>
-      <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Wed</label>
-      <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Thu</label>
-      <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" checked style="accent-color:var(--y);">Fri</label>
-      <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sat</label>
-      <label style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:var(--rsm);border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:12px;font-weight:600;"><input type="checkbox" style="accent-color:var(--y);">Sun</label>
-    </div>
-  </div>
-  <div style="display:flex;flex-direction:column;gap:8px;padding-bottom:32px;margin-top:8px;">
-    <button class="btn bp" onclick="showToast('Profile updated!')">Save Changes</button>
-    <button class="btn bg_" onclick="go('s-home')">&#8592; Back to Home</button>
-  </div>
-</div>
-```
-
   </div>
 </div>
 
 <!-- ══ CAR DETAIL MODAL ══ -->
-
 <div class="car-detail-modal" id="car-detail-modal">
   <div class="cdm-header">
     <div class="cdm-back" onclick="closeCarDetail()">←</div>
@@ -1354,7 +1327,6 @@ textarea.ni::placeholder{color:var(–tx3);}
 </div>
 
 <!-- ══ FLOATING CHAT ══ -->
-
 <div id="chat-bubble" style="position:fixed;bottom:24px;right:18px;z-index:350;display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
   <div id="chat-popup" style="display:none;background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:16px;width:280px;box-shadow:0 8px 32px rgba(0,0,0,.15);">
     <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.05em;margin-bottom:4px;">GOT A QUESTION?</div>
@@ -2143,6 +2115,5 @@ renderHomeCars();
 calcPayment();
 renderCal();
 </script>
-
 </body>
 </html>
